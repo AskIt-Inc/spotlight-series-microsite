@@ -74,6 +74,7 @@ export const HeroSection: React.FC = () => {
       }}
     >
       <div
+        className="hero-content-row"
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
@@ -90,25 +91,40 @@ export const HeroSection: React.FC = () => {
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
-            gap: '16px',
+            gap: '12px',
           }}
         >
-          {/* Eyebrow */}
+          {/* STTT Spotlight Series programme eyebrow */}
           <div
             style={{
-              fontSize: '12px',
-              fontWeight: 300,
+              fontSize: '11px',
+              fontWeight: 700,
               textTransform: 'uppercase' as const,
-              letterSpacing: '1.5px',
-              color: 'rgba(255,255,255,0.7)',
+              letterSpacing: '2px',
+              color: 'rgba(255,255,255,0.9)',
               fontFamily: FONT,
             }}
           >
-            Spotlight Partner Programme · June 2026
+            SomeBodyToTalkTo Spotlight Series · June 2026
           </div>
 
-          {/* H1 */}
+          {/* "featuring" connector */}
+          <div
+            style={{
+              fontSize: '15px',
+              fontWeight: 300,
+              color: 'rgba(255,255,255,0.65)',
+              fontFamily: FONT,
+              fontStyle: 'italic',
+              marginBottom: '-4px',
+            }}
+          >
+            featuring
+          </div>
+
+          {/* H1 — the featured institution */}
           <h1
+            className="hero-h1"
             style={{
               fontSize: '40px',
               fontWeight: 700,
@@ -127,8 +143,8 @@ export const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Right column — UoC logo */}
-        <div style={{ flexShrink: 0 }}>
+        {/* Right column — UoC logo (hidden on mobile via .hero-logo-col CSS class) */}
+        <div className="hero-logo-col" style={{ flexShrink: 0 }}>
           <UoCLogo />
         </div>
       </div>

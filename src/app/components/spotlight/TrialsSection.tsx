@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, CheckCircle } from 'lucide-react';
+import { ExternalLink, CheckCircle, Edit3 } from 'lucide-react';
 import { trials, type Trial } from './data';
 
 const FONT = 'gotham, sans-serif';
@@ -414,7 +414,7 @@ export const TrialsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Trial card list */}
+        {/* Trial card list — or content-needed callout if empty */}
         <div
           style={{
             display: 'flex',
@@ -423,9 +423,47 @@ export const TrialsSection: React.FC = () => {
             marginTop: '32px',
           }}
         >
-          {trials.map((trial) => (
-            <TrialCard key={trial.id} trial={trial} />
-          ))}
+          {trials.length > 0 ? (
+            trials.map((trial) => (
+              <TrialCard key={trial.id} trial={trial} />
+            ))
+          ) : (
+            <div
+              style={{
+                background: '#FFFBEB',
+                border: '1px dashed #D97706',
+                borderRadius: '6px',
+                padding: '20px 24px',
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '14px',
+              }}
+            >
+              <Edit3 size={18} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#92400E', fontFamily: FONT, marginBottom: '8px', textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
+                  Content needed from University of Chicago
+                </div>
+                <p style={{ fontSize: '14px', color: '#92400E', margin: '0 0 12px 0', fontFamily: FONT, lineHeight: 1.6 }}>
+                  Please provide the list of open clinical trials currently recruiting at UChicago Medicine — Amyloidosis Program. For each trial include:
+                </p>
+                <ul style={{ fontSize: '14px', color: '#92400E', margin: '0 0 12px 0', paddingLeft: '18px', fontFamily: FONT, lineHeight: 1.7 }}>
+                  <li>ClinicalTrials.gov identifier (NCT number)</li>
+                  <li>Trial name / short title</li>
+                  <li>Current status (e.g. Recruiting, Active Not Recruiting)</li>
+                  <li>Brief description (2–3 sentences)</li>
+                  <li>Phase (Phase 2, Phase 3, etc.)</li>
+                </ul>
+                <p style={{ fontSize: '13px', color: '#B45309', margin: 0, fontFamily: FONT }}>
+                  For a full list of active trials, visit{' '}
+                  <a href="https://clinicaltrials.gov" target="_blank" rel="noopener noreferrer" style={{ color: '#92400E', fontWeight: 700 }}>
+                    clinicaltrials.gov
+                  </a>{' '}
+                  and search "University of Chicago" + "amyloidosis".
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

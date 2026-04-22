@@ -317,8 +317,9 @@ export const TeamSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Clinician card grid — 2 columns on desktop */}
+        {/* Clinician card grid — 2 columns on desktop, 1 on mobile */}
         <div
+          className="team-card-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',

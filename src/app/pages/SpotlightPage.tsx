@@ -9,11 +9,15 @@ import { SessionsSidebar } from '../components/spotlight/SessionsSidebar';
 export const SpotlightPage: React.FC = () => {
   return (
     <div>
-      {/* §2 Programme Hero — full width */}
+      {/* Programme Hero — full width */}
       <HeroSection />
 
-      {/* Two-column content area */}
+      {/* Two-column content area.
+          On desktop: main content left, sticky sessions sidebar right.
+          On mobile (≤768px): .spotlight-content-grid CSS stacks to column,
+          .spotlight-sidebar-wrapper gets order:-1 so sessions appear above content. */}
       <div
+        className="spotlight-content-grid"
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
@@ -25,21 +29,16 @@ export const SpotlightPage: React.FC = () => {
       >
         {/* Left — main content */}
         <div style={{ flex: 1, minWidth: 0 }}>
-          {/* §3 Programme Overview */}
           <OverviewSection />
-
-          {/* §4 Meet the Team */}
           <TeamSection />
-
-          {/* §5 Programme Highlights */}
           <HighlightsSection />
-
-          {/* §6 Open Clinical Trials */}
           <TrialsSection />
         </div>
 
-        {/* Right — sticky sessions sidebar */}
+        {/* Right — sticky sessions sidebar
+            On mobile this becomes full-width and floats above content via CSS order:-1 */}
         <div
+          className="spotlight-sidebar-wrapper"
           style={{
             width: '300px',
             flexShrink: 0,

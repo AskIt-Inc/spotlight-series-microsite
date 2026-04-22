@@ -51,30 +51,28 @@ export const OverviewSection: React.FC = () => {
           African-Americans have a higher risk for hereditary TTR amyloidosis.
         </p>
 
-        {/* Cross-disease paragraph */}
+        {/* ⚠ Content needed from UoC */}
         <div
           style={{
             marginTop: '24px',
+            background: '#FFFBEB',
+            border: '1px dashed #D97706',
+            borderRadius: '6px',
+            padding: '16px 20px',
             display: 'flex',
             alignItems: 'flex-start',
-            gap: '8px',
+            gap: '12px',
           }}
         >
-          <Globe size={16} color="#8B1F2D" style={{ flexShrink: 0, marginTop: '3px' }} />
-          <p
-            style={{
-              fontSize: '16px',
-              fontWeight: 300,
-              color: '#000000',
-              lineHeight: 1.7,
-              margin: 0,
-              fontFamily: FONT,
-            }}
-          >
-            The University of Chicago Medicine is a comprehensive academic medical centre committed to discovery
-            and excellence across a broad range of rare and complex diseases. In partnership with STTT, UChicago
-            Medicine is expanding patient access to education and specialist care beyond the clinic walls.
-          </p>
+          <Globe size={16} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
+          <div>
+            <div style={{ fontSize: '12px', fontWeight: 700, color: '#92400E', fontFamily: FONT, marginBottom: '4px', textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
+              Content needed from University of Chicago
+            </div>
+            <p style={{ fontSize: '14px', color: '#92400E', margin: 0, fontFamily: FONT, lineHeight: 1.6 }}>
+              Please provide an additional paragraph here about the programme — for example, what makes the UoC Amyloidosis Program unique, its research focus, or its patient care philosophy. This will appear directly below the programme overview text.
+            </p>
+          </div>
         </div>
       </div>
     </section>

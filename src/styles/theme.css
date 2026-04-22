@@ -157,28 +157,95 @@
     line-height: var(--lh-body);
   }
 
+  p, li {
+    font-weight: var(--fw-body);
+  }
+
   label {
     font-size: var(--text-base);
-    font-weight: 400;
+    font-weight: var(--fw-body);
     line-height: var(--lh-body);
   }
 
   button {
     font-size: var(--text-base);
-    font-weight: 400;
+    font-weight: var(--fw-body);
     line-height: var(--lh-body);
   }
 
   input {
     font-size: var(--text-base);
-    font-weight: 400;
+    font-weight: var(--fw-body);
     line-height: var(--lh-body);
   }
 }
 
-/* Responsive utility for SpotlightLayout nav */
+/* ── Responsive breakpoints ─────────────────────────────────────────────────── */
+
+/* Nav collapse at 900px (existing) */
 @media (max-width: 900px) {
   .hidden-mobile-nav {
     display: none !important;
+  }
+}
+
+/* Mobile hamburger button — hidden on desktop, shown on mobile */
+@media (min-width: 769px) {
+  .mobile-menu-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Show hamburger */
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+
+  /* Spotlight two-column → single column */
+  .spotlight-content-grid {
+    flex-direction: column !important;
+    padding: 0 16px 48px !important;
+    gap: 24px !important;
+  }
+
+  /* Sidebar: unstick and go full-width, float above content */
+  .spotlight-sidebar-wrapper {
+    width: 100% !important;
+    position: static !important;
+    align-self: auto !important;
+    order: -1;
+  }
+
+  /* Hero row → stacked column */
+  .hero-content-row {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  /* Hide logo on mobile hero — save vertical space */
+  .hero-logo-col {
+    display: none !important;
+  }
+
+  /* Hero h1 scale */
+  .hero-h1 {
+    font-size: 28px !important;
+  }
+
+  /* Team grid → single column */
+  .team-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Dashboard tile grid → single column */
+  .dashboard-tile-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Section inner padding */
+  .section-inner {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
 }

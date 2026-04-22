@@ -1,4 +1,5 @@
 import React from 'react';
+import { Edit3 } from 'lucide-react';
 
 const FONT = 'gotham, sans-serif';
 
@@ -28,60 +29,34 @@ export const HighlightsSection: React.FC = () => {
           Programme Highlights
         </div>
 
-        {/* Rich text body */}
+        {/* ⚠ Content needed from UoC */}
         <div
           style={{
-            fontSize: '16px',
-            color: '#000000',
-            lineHeight: 1.7,
-            fontFamily: FONT,
+            background: '#FFFBEB',
+            border: '1px dashed #D97706',
+            borderRadius: '6px',
+            padding: '20px 24px',
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '14px',
           }}
         >
-          <p style={{ margin: '0 0 16px 0' }}>
-            The University of Chicago Amyloidosis Programme has established itself as one of the leading
-            comprehensive amyloidosis centres in the United States. In 2024, the programme was recognised
-            by the Amyloidosis Research Consortium as a designated Centre of Excellence — one of only a
-            handful of programmes in the country to receive this distinction.
-          </p>
-
-          <p style={{ margin: '0 0 16px 0' }}>
-            <strong style={{ fontWeight: 700, color: '#000000' }}>Recent programme achievements include:</strong>
-          </p>
-
-          <ul
-            style={{
-              margin: '0 0 16px 0',
-              paddingLeft: '20px',
-              display: 'flex',
-              flexDirection: 'column' as const,
-              gap: '8px',
-            }}
-          >
-            <li>
-              Publication of a landmark study on early detection of cardiac ATTR amyloidosis using
-              technetium pyrophosphate (Tc-PYP) scintigraphy, now adopted as a standard diagnostic
-              protocol at affiliated regional hospitals.
-            </li>
-            <li>
-              Enrolment of over 150 patients across three concurrent phase 3 clinical trials targeting
-              transthyretin stabilisation and RNA-silencing mechanisms.
-            </li>
-            <li>
-              Launch of a dedicated hereditary ATTR family cascade screening clinic — the first
-              of its kind in the greater Chicago metropolitan area.
-            </li>
-            <li>
-              Presentation of original research at the American College of Cardiology (ACC) 2025
-              Annual Scientific Session, including outcomes data from the programme's cardiac
-              amyloidosis registry.
-            </li>
-          </ul>
-
-          <p style={{ margin: 0 }}>
-            The programme continues to expand its regional referral network, partnering with community
-            cardiology practices and primary care providers to reduce the average time from symptom
-            onset to confirmed diagnosis — currently a national priority in the amyloidosis field.
-          </p>
+          <Edit3 size={18} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
+          <div>
+            <div style={{ fontSize: '12px', fontWeight: 700, color: '#92400E', fontFamily: FONT, marginBottom: '8px', textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
+              Content needed from University of Chicago
+            </div>
+            <p style={{ fontSize: '14px', color: '#92400E', margin: '0 0 12px 0', fontFamily: FONT, lineHeight: 1.6 }}>
+              Please provide the programme's key highlights, recent accomplishments, and notable publications. Suggested content to include:
+            </p>
+            <ul style={{ fontSize: '14px', color: '#92400E', margin: 0, paddingLeft: '18px', fontFamily: FONT, lineHeight: 1.7 }}>
+              <li>Any designations or accreditations the programme has received (e.g. Centre of Excellence status)</li>
+              <li>Recent publications or research milestones</li>
+              <li>Clinical trial enrolment figures or notable study outcomes</li>
+              <li>New services or clinics launched (e.g. genetic screening, multidisciplinary clinics)</li>
+              <li>Awards, conference presentations, or media recognition</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>

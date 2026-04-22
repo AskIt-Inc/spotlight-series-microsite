@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router';
-import { Search, ChevronDown, ChevronRight } from 'lucide-react';
+import { Search, ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
 import { sessions } from './spotlight/data';
 
 const FONT = 'gotham, sans-serif';
@@ -168,69 +168,134 @@ const OAVLogo: React.FC = () => {
 // ─── Main nav ──────────────────────────────────────────────────────────────────
 const SiteHeader: React.FC = () => {
   const [searchOpen, setSearchOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header
-      style={{
-        background: '#ffffff',
-        borderBottom: '1px solid #E5E5E5',
-        width: '100%',
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
-      }}
-    >
-      <div
+    <>
+      <header
         style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          padding: '0 24px',
-          height: '72px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '24px',
+          background: '#ffffff',
+          borderBottom: '1px solid #E5E5E5',
+          width: '100%',
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
         }}
       >
-        {/* Logo */}
-        <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-          <OAVLogo />
-        </a>
-
-        {/* Nav links */}
-        <nav
+        <div
           style={{
+            maxWidth: '1400px',
+            margin: '0 auto',
+            padding: '0 24px',
+            height: '72px',
             display: 'flex',
             alignItems: 'center',
-            gap: '2px',
-            flex: 1,
-            justifyContent: 'flex-end',
+            justifyContent: 'space-between',
+            gap: '24px',
           }}
         >
-          {NAV_LINKS.map(({ label, dropdown }) => (
-            <NavItem key={label} label={label} dropdown={dropdown} />
+          {/* Logo */}
+          <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+            <OAVLogo />
+          </a>
+
+          {/* Nav links — hidden on mobile via CSS */}
+          <nav
+            className="hidden-mobile-nav"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '2px',
+              flex: 1,
+              justifyContent: 'flex-end',
+            }}
+          >
+            {NAV_LINKS.map(({ label, dropdown }) => (
+              <NavItem key={label} label={label} dropdown={dropdown} />
+            ))}
+          </nav>
+
+          {/* Search icon */}
+          <button
+            onClick={() => setSearchOpen(!searchOpen)}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '4px',
+              color: '#000000',
+              display: 'flex',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+            aria-label="Search"
+          >
+            <Search size={18} color="#000000" />
+          </button>
+
+          {/* Hamburger — mobile only, hidden on desktop via CSS */}
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              flexShrink: 0,
+              color: '#000000',
+            }}
+          >
+            {mobileMenuOpen
+              ? <X size={22} color="#000000" />
+              : <Menu size={22} color="#000000" />
+            }
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile nav panel — full-width dropdown below header */}
+      {mobileMenuOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '112px',  /* ticker bar (40px) + header (72px) */
+            left: 0,
+            right: 0,
+            background: '#ffffff',
+            borderBottom: '1px solid #E5E5E5',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+            zIndex: 99,
+            padding: '8px 0',
+          }}
+        >
+          {NAV_LINKS.map(({ label }) => (
+            <a
+              key={label}
+              href="#"
+              onClick={() => setMobileMenuOpen(false)}
+              style={{
+                display: 'block',
+                padding: '12px 24px',
+                fontSize: '15px',
+                fontWeight: 300,
+                color: '#000000',
+                textDecoration: 'none',
+                fontFamily: FONT,
+                borderBottom: '1px solid #F5F5F5',
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#8B1F2D'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#000000'; }}
+            >
+              {label}
+            </a>
           ))}
-        </nav>
-
-        {/* Search icon */}
-        <button
-          onClick={() => setSearchOpen(!searchOpen)}
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '4px',
-            color: '#000000',
-            display: 'flex',
-            alignItems: 'center',
-            flexShrink: 0,
-          }}
-          aria-label="Search"
-        >
-          <Search size={18} color="#000000" />
-        </button>
-      </div>
-    </header>
+        </div>
+      )}
+    </>
   );
 };
 

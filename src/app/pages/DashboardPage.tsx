@@ -82,6 +82,7 @@ export const DashboardPage: React.FC = () => {
       </p>
 
       <div
+        className="dashboard-tile-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
