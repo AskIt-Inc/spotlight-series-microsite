@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
-import { User, PlayCircle, Calendar, ExternalLink, Users } from 'lucide-react';
+import { PlayCircle, Calendar, ExternalLink, Users } from 'lucide-react';
 import { clinicians, type Clinician } from './data';
+
+/** Returns up to 2 initials from a full name, e.g. "Dr. Edwin K. McDonald IV" → "EM" */
+function getInitials(name: string): string {
+  const words = name.replace(/^Dr\.?\s+/i, '').split(/\s+/).filter(Boolean);
+  if (words.length === 0) return '?';
+  if (words.length === 1) return words[0][0].toUpperCase();
+  // Use first and last meaningful word (skip suffixes like IV, Jr, MD)
+  const suffixes = new Set(['iv', 'iii', 'ii', 'jr', 'sr', 'md', 'phd', 'ms', 'cgc']);
+  const filtered = words.filter(w => !suffixes.has(w.toLowerCase().replace(/[.,]/g, '')));
+  if (filtered.length >= 2) return (filtered[0][0] + filtered[filtered.length - 1][0]).toUpperCase();
+  return filtered[0][0].toUpperCase();
+}
 
 const FONT = 'gotham, sans-serif';
 
@@ -43,7 +55,7 @@ const ClinicianCard: React.FC<ClinicianCardProps> = ({ clinician }) => {
             justifyContent: 'center',
           }}
         >
-          {!imgError ? (
+          {clinician.photo && !imgError ? (
             <img
               src={clinician.photo}
               alt={clinician.name}
@@ -51,7 +63,24 @@ const ClinicianCard: React.FC<ClinicianCardProps> = ({ clinician }) => {
               style={{ width: '100%', height: '100%', objectFit: 'cover' as const, display: 'block' }}
             />
           ) : (
-            <User size={36} color="#9CA3AF" />
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                background: '#8B1F2D',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '26px',
+                fontWeight: 600,
+                color: '#ffffff',
+                letterSpacing: '0.5px',
+                fontFamily: FONT,
+                userSelect: 'none',
+              }}
+            >
+              {getInitials(clinician.name)}
+            </div>
           )}
         </div>
 
