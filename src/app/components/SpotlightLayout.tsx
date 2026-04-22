@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router';
-import { Search, ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
-import { sessions } from './spotlight/data';
+import { Search, ChevronDown, Menu, X } from 'lucide-react';
 
 const FONT = 'gotham, sans-serif';
 
@@ -24,128 +23,6 @@ const FOOTER_LINKS = [
   'Terms of use', 'FAQ', 'Code of Conduct',
 ];
 
-// ─── Ticker bar ────────────────────────────────────────────────────────────────
-const TickerBar: React.FC = () => {
-  const upcoming = sessions.filter((s) => s.status === 'upcoming')[0];
-  if (!upcoming) return null;
-
-  return (
-    <div
-      style={{
-        background: '#ffffff',
-        borderBottom: '1px solid #E5E5E5',
-        padding: '0 16px',
-        height: '40px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '12px',
-        fontFamily: FONT,
-        overflow: 'hidden',
-      }}
-    >
-      {/* Label pill */}
-      <span
-        style={{
-          background: '#8B1F2D',
-          color: '#ffffff',
-          fontSize: '10px',
-          fontWeight: 700,
-          letterSpacing: '0.06em',
-          textTransform: 'uppercase' as const,
-          padding: '3px 8px',
-          borderRadius: '3px',
-          whiteSpace: 'nowrap' as const,
-          flexShrink: 0,
-        }}
-      >
-        UPCOMING SESSIONS &gt; IST
-      </span>
-
-      {/* Date */}
-      <span
-        style={{
-          fontSize: '12px',
-          color: '#000000',
-          whiteSpace: 'nowrap' as const,
-          flexShrink: 0,
-        }}
-      >
-        {upcoming.dayOfWeek}, {upcoming.month} {upcoming.day} · {upcoming.time}
-      </span>
-
-      {/* Session title — truncated */}
-      <span
-        style={{
-          fontSize: '12px',
-          color: '#000000',
-          fontWeight: 300,
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap' as const,
-          flex: 1,
-          minWidth: 0,
-        }}
-      >
-        {upcoming.title}
-      </span>
-
-      {/* Presenter */}
-      <span
-        style={{
-          fontSize: '12px',
-          color: '#000000',
-          whiteSpace: 'nowrap' as const,
-          flexShrink: 0,
-        }}
-      >
-        {upcoming.presenter}
-      </span>
-
-      {/* CTA */}
-      <a
-        href="#"
-        style={{
-          background: '#8B1F2D',
-          color: '#ffffff',
-          fontSize: '11px',
-          fontWeight: 700,
-          padding: '4px 12px',
-          borderRadius: '3px',
-          textDecoration: 'none',
-          whiteSpace: 'nowrap' as const,
-          flexShrink: 0,
-          letterSpacing: '0.02em',
-          fontFamily: FONT,
-        }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = '#6E1A24'; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = '#8B1F2D'; }}
-      >
-        Click To Register ›
-      </a>
-
-      {/* View all */}
-      <a
-        href="#"
-        style={{
-          fontSize: '11px',
-          fontWeight: 700,
-          color: '#8B1F2D',
-          textDecoration: 'none',
-          whiteSpace: 'nowrap' as const,
-          flexShrink: 0,
-          letterSpacing: '0.04em',
-          textTransform: 'uppercase' as const,
-          fontFamily: FONT,
-        }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#6E1A24'; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#8B1F2D'; }}
-      >
-        VIEW ALL &gt;
-      </a>
-    </div>
-  );
-};
-
 // ─── OAV Logo ─────────────────────────────────────────────────────────────────
 const OAV_LOGO_URL = 'https://oneamyloidosisvoice.com/sites/default/files/files/oneamyloidosisvoice-logo-red.svg';
 
@@ -159,7 +36,7 @@ const OAVLogo: React.FC = () => {
     <img
       src={OAV_LOGO_URL}
       alt="oneAMYLOIDOSISvoice"
-      style={{ display: 'block', height: '52px', width: 'auto' }}
+      style={{ display: 'block', height: '72px', width: 'auto' }}
       onError={() => setFailed(true)}
     />
   );
@@ -187,7 +64,7 @@ const SiteHeader: React.FC = () => {
             maxWidth: '1400px',
             margin: '0 auto',
             padding: '0 24px',
-            height: '72px',
+            height: '88px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -262,7 +139,7 @@ const SiteHeader: React.FC = () => {
         <div
           style={{
             position: 'fixed',
-            top: '112px',  /* ticker bar (40px) + header (72px) */
+            top: '88px',  /* header height */
             left: 0,
             right: 0,
             background: '#ffffff',
@@ -534,7 +411,6 @@ export const SpotlightLayout: React.FC = () => {
         fontFamily: FONT,
       }}
     >
-      <TickerBar />
       <SiteHeader />
 
       <main style={{ flex: 1 }}>

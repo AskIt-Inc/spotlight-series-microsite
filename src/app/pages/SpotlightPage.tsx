@@ -43,7 +43,7 @@ export const SpotlightPage: React.FC = () => {
             width: '300px',
             flexShrink: 0,
             position: 'sticky' as const,
-            top: '96px',
+            top: '104px',
             alignSelf: 'flex-start',
           }}
         >

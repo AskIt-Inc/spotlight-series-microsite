@@ -60,7 +60,7 @@ const ClinicianCard: React.FC<ClinicianCardProps> = ({ clinician }) => {
               src={clinician.photo}
               alt={clinician.name}
               onError={() => setImgError(true)}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' as const, display: 'block' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' as const, objectPosition: 'center top', display: 'block' }}
             />
           ) : (
             <div
@@ -147,13 +147,13 @@ const ClinicianCard: React.FC<ClinicianCardProps> = ({ clinician }) => {
         <div
           style={
             bioExpanded
-              ? { fontSize: '14px', color: '#000000', lineHeight: 1.7, fontFamily: FONT }
+              ? { fontSize: '14px', color: '#000000', lineHeight: 1.7, fontFamily: FONT, textAlign: 'justify' as const }
               : {
                   fontSize: '14px',
                   color: '#000000',
                   lineHeight: 1.7,
                   fontFamily: FONT,
-                  display: '-webkit-box',
+                                    display: '-webkit-box',
                   WebkitLineClamp: 4,
                   WebkitBoxOrient: 'vertical' as const,
                   overflow: 'hidden',

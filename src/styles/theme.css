@@ -159,6 +159,8 @@
 
   p, li {
     font-weight: var(--fw-body);
+    text-align: justify;
+    hyphens: auto;
   }
 
   label {
@@ -223,14 +225,23 @@
     gap: 24px !important;
   }
 
-  /* Hide logo on mobile hero — save vertical space */
+  /* Scale down UoC logo on mobile — keep visible but compact */
   .hero-logo-col {
-    display: none !important;
+    display: block !important;
+  }
+
+  .hero-logo-col img {
+    height: 36px !important;
+  }
+
+  .hero-logo-col > div {
+    min-width: unset !important;
+    padding: 10px 14px !important;
   }
 
   /* Hero h1 scale */
   .hero-h1 {
-    font-size: 28px !important;
+    font-size: 24px !important;
   }
 
   /* Team grid → single column */

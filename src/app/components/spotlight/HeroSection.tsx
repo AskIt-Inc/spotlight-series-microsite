@@ -64,90 +64,128 @@ const UoCLogo = () => {
   );
 };
 
-export const HeroSection: React.FC = () => {
+// ─── Series strip ─────────────────────────────────────────────────────────────
+// Slim 40px white band identifying the STTT Spotlight Series.
+// Sits between the nav and the maroon UoC feature band.
+// Text-only — no OAV logo (already in nav).
+const SeriesStrip: React.FC = () => {
   return (
-    <section
+    <div
       style={{
-        background: 'linear-gradient(135deg, #8B1F2D 0%, #6E1A24 100%)',
-        borderBottom: '4px solid #6E1A24',
-        padding: '64px 24px 56px',
+        background: '#F7F7F7',
+        borderBottom: '1px solid #E8E8E8',
+        padding: '10px 24px',
+        overflow: 'hidden',
       }}
     >
       <div
-        className="hero-content-row"
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
+          height: '100%',
           display: 'flex',
-          flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '48px',
+          gap: '16px',
         }}
       >
-        {/* Left column */}
-        <div
+        {/* Series label */}
+        <span
           style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
+            fontSize: '11px',
+            fontWeight: 700,
+            textTransform: 'uppercase' as const,
+            letterSpacing: '1.5px',
+            color: '#8B1F2D',
+            fontFamily: FONT,
+            whiteSpace: 'nowrap' as const,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
           }}
         >
-          {/* STTT Spotlight Series programme eyebrow */}
-          <div
-            style={{
-              fontSize: '11px',
-              fontWeight: 700,
-              textTransform: 'uppercase' as const,
-              letterSpacing: '2px',
-              color: 'rgba(255,255,255,0.9)',
-              fontFamily: FONT,
-            }}
-          >
-            SomeBodyToTalkTo Spotlight Series · June 2026
-          </div>
+          SomeBodyToTalkTo Spotlight Series · June 2026
+        </span>
 
-          {/* "featuring" connector */}
-          <div
-            style={{
-              fontSize: '15px',
-              fontWeight: 300,
-              color: 'rgba(255,255,255,0.65)',
-              fontFamily: FONT,
-              fontStyle: 'italic',
-              marginBottom: '-4px',
-            }}
-          >
-            featuring
-          </div>
-
-          {/* H1 — the featured institution */}
-          <h1
-            className="hero-h1"
-            style={{
-              fontSize: '40px',
-              fontWeight: 700,
-              color: '#ffffff',
-              margin: 0,
-              lineHeight: 1.2,
-              fontFamily: FONT,
-            }}
-          >
-            University of Chicago Amyloidosis Program
-          </h1>
-
-          {/* Indication badge */}
-          <div style={{ marginTop: '8px' }}>
-            <AmyloidosisBadge />
-          </div>
-        </div>
-
-        {/* Right column — UoC logo (hidden on mobile via .hero-logo-col CSS class) */}
-        <div className="hero-logo-col" style={{ flexShrink: 0 }}>
-          <UoCLogo />
-        </div>
       </div>
-    </section>
+    </div>
+  );
+};
+
+// ─── Hero section ─────────────────────────────────────────────────────────────
+export const HeroSection: React.FC = () => {
+  return (
+    <>
+      <SeriesStrip />
+
+      {/* Maroon UoC feature band */}
+      <section
+        style={{
+          background: 'linear-gradient(135deg, #8B1F2D 0%, #6E1A24 100%)',
+          borderBottom: '3px solid #6E1A24',
+          padding: '10px 24px',
+        }}
+      >
+        <div
+          className="hero-content-row"
+          style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '48px',
+          }}
+        >
+          {/* Left column */}
+          <div
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+            }}
+          >
+            {/* "featuring" connector */}
+            <div
+              style={{
+                fontSize: '15px',
+                fontWeight: 300,
+                color: 'rgba(255,255,255,0.65)',
+                fontFamily: FONT,
+                fontStyle: 'italic',
+              }}
+            >
+              featuring
+            </div>
+
+            {/* H1 — the featured institution */}
+            <h1
+              className="hero-h1"
+              style={{
+                fontSize: '32px',
+                fontWeight: 700,
+                color: '#ffffff',
+                margin: 0,
+                lineHeight: 1.2,
+                fontFamily: FONT,
+              }}
+            >
+              University of Chicago Amyloidosis Program
+            </h1>
+
+            {/* Indication badge */}
+            <div style={{ marginTop: '8px' }}>
+              <AmyloidosisBadge />
+            </div>
+          </div>
+
+          {/* Right column — UoC logo (hidden on mobile via .hero-logo-col CSS class) */}
+          <div className="hero-logo-col" style={{ flexShrink: 0 }}>
+            <UoCLogo />
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
