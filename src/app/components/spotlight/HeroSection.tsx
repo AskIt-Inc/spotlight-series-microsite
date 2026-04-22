@@ -4,26 +4,6 @@ const FONT = 'gotham, sans-serif';
 const UOC_LOGO_URL =
   'https://edge.sitecorecloud.io/unichicagomc-81nbqnb3/media/images/ucmc/landing-pages/ucm-logo-horizontal.png';
 
-// Amyloidosis indication badge
-const AmyloidosisBadge = () => (
-  <span
-    style={{
-      background: 'rgba(255,255,255,0.15)',
-      color: '#ffffff',
-      border: '1px solid rgba(255,255,255,0.35)',
-      padding: '4px 12px',
-      borderRadius: '9999px',
-      fontSize: '13px',
-      fontWeight: 300,
-      display: 'inline-block',
-      fontFamily: FONT,
-      letterSpacing: '0.02em',
-    }}
-  >
-    Amyloidosis
-  </span>
-);
-
 // UoC logo with white background pill for contrast on maroon
 const UoCLogo = () => {
   const [imgFailed, setImgFailed] = useState(false);
@@ -65,47 +45,66 @@ const UoCLogo = () => {
 };
 
 // ─── Series strip ─────────────────────────────────────────────────────────────
-// Slim 40px white band identifying the STTT Spotlight Series.
-// Sits between the nav and the maroon UoC feature band.
-// Text-only — no OAV logo (already in nav).
 const SeriesStrip: React.FC = () => {
   return (
     <div
       style={{
-        background: '#F7F7F7',
+        background: '#ffffff',
         borderBottom: '1px solid #E8E8E8',
-        padding: '10px 24px',
-        overflow: 'hidden',
+        padding: '14px 24px',
       }}
     >
       <div
+        className="series-strip-inner"
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          height: '100%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '16px',
         }}
       >
-        {/* Series label */}
-        <span
+        {/* Thick left accent bar — hidden on mobile */}
+        <div
+          className="series-strip-accent"
           style={{
-            fontSize: '11px',
-            fontWeight: 700,
-            textTransform: 'uppercase' as const,
-            letterSpacing: '1.5px',
-            color: '#8B1F2D',
-            fontFamily: FONT,
-            whiteSpace: 'nowrap' as const,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
+            width: '4px',
+            alignSelf: 'stretch',
+            background: '#8B1F2D',
+            borderRadius: '2px',
+            flexShrink: 0,
+            marginRight: '16px',
           }}
-        >
-          SomeBodyToTalkTo Spotlight Series · June 2026
-        </span>
+        />
 
+        <div className="series-strip-text">
+          {/* Brand owner — dominant */}
+          <div
+            style={{
+              fontSize: '22px',
+              fontWeight: 700,
+              color: '#8B1F2D',
+              fontFamily: FONT,
+              lineHeight: 1,
+              letterSpacing: '-0.3px',
+            }}
+          >
+            SomeBodyToTalkTo
+          </div>
+          {/* Series label — secondary */}
+          <div
+            style={{
+              fontSize: '12px',
+              fontWeight: 700,
+              textTransform: 'uppercase' as const,
+              letterSpacing: '2px',
+              color: '#9CA3AF',
+              fontFamily: FONT,
+              marginTop: '4px',
+            }}
+          >
+            Spotlight Series <span style={{ fontWeight: 300 }}>· June 2026</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -139,6 +138,7 @@ export const HeroSection: React.FC = () => {
         >
           {/* Left column */}
           <div
+            className="hero-left-col"
             style={{
               flex: 1,
               display: 'flex',
@@ -146,17 +146,29 @@ export const HeroSection: React.FC = () => {
               gap: '12px',
             }}
           >
-            {/* "featuring" connector */}
+            {/* "featuring" connector — flanking rule lines */}
             <div
               style={{
-                fontSize: '15px',
-                fontWeight: 300,
-                color: 'rgba(255,255,255,0.65)',
-                fontFamily: FONT,
-                fontStyle: 'italic',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
               }}
             >
-              featuring
+              <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.3)' }} />
+              <span
+                style={{
+                  fontSize: '12px',
+                  fontWeight: 300,
+                  color: 'rgba(255,255,255,0.7)',
+                  fontFamily: FONT,
+                  fontStyle: 'italic',
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase' as const,
+                }}
+              >
+                featuring
+              </span>
+              <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.3)' }} />
             </div>
 
             {/* H1 — the featured institution */}
@@ -174,10 +186,6 @@ export const HeroSection: React.FC = () => {
               University of Chicago Amyloidosis Program
             </h1>
 
-            {/* Indication badge */}
-            <div style={{ marginTop: '8px' }}>
-              <AmyloidosisBadge />
-            </div>
           </div>
 
           {/* Right column — UoC logo (hidden on mobile via .hero-logo-col CSS class) */}

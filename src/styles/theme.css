@@ -196,9 +196,40 @@
   .mobile-menu-btn {
     display: none !important;
   }
+
+  /* Desktop: sessions list scrolls within the sticky sidebar to fill available viewport height */
+  .sessions-list {
+    max-height: calc(100vh - 260px);
+    overflow-y: auto;
+  }
 }
 
 @media (max-width: 768px) {
+  /* Series strip — center on mobile, hide left accent bar */
+  .series-strip-inner {
+    justify-content: center !important;
+  }
+
+  .series-strip-accent {
+    display: none !important;
+  }
+
+  .series-strip-text {
+    text-align: center;
+  }
+
+  /* Hero left column — center text on mobile */
+  .hero-left-col {
+    align-items: center !important;
+    text-align: center;
+  }
+
+  /* Mobile: fixed height scroll */
+  .sessions-list {
+    max-height: 360px;
+    overflow-y: auto;
+  }
+
   /* Show hamburger */
   .mobile-menu-btn {
     display: flex !important;

@@ -162,9 +162,22 @@ export const clinicians: Clinician[] = [
   },
 ];
 
-// ⚠ Trials list to be provided by University of Chicago.
-// Replace this empty array with real NCT entries once confirmed.
-export const trials: Trial[] = [];
+export const trials: Trial[] = [
+  {
+    id: 'NCT06563895',
+    title: 'ACT-EARLY: Acoramidis Transthyretin Amyloidosis Prevention Trial in the Young',
+    status: 'Recruiting',
+    description: 'A Phase 3, randomised, double-blind, placebo-controlled study evaluating whether acoramidis — a TTR protein stabiliser — can prevent or delay the onset of ATTR cardiomyopathy or polyneuropathy in asymptomatic adults aged 18–75 who carry a known pathogenic TTR gene variant. Treatment begins before any symptoms develop, with the goal of halting disease progression entirely. Sponsored by Eidos Therapeutics, a BridgeBio company.',
+    phase: 'Phase 3',
+  },
+  {
+    id: 'NCT06465810',
+    title: 'MaesTTRo: Non-interventional Study of Patients With Transthyretin (ATTR) Amyloidosis',
+    status: 'Recruiting',
+    description: 'A global, prospective, non-interventional observational study enrolling at least 1,850 patients with ATTR amyloidosis to document real-world treatment patterns and long-term outcomes — including effectiveness of eplontersen, a gene-silencing therapy targeting TTR. Participants are followed for 3–7 years through routine clinic visits only; no additional study visits are required. Sponsored by AstraZeneca.',
+    phase: 'Observational',
+  },
+];
 
 export const sessions: Session[] = [
   {

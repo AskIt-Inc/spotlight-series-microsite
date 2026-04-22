@@ -424,9 +424,22 @@ export const TrialsSection: React.FC = () => {
           }}
         >
           {trials.length > 0 ? (
-            trials.map((trial) => (
-              <TrialCard key={trial.id} trial={trial} />
-            ))
+            <>
+              {trials.map((trial) => (
+                <TrialCard key={trial.id} trial={trial} />
+              ))}
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: '#9CA3AF',
+                  margin: '8px 0 0 0',
+                  fontFamily: FONT,
+                  fontStyle: 'italic',
+                }}
+              >
+                * Trial descriptions generated for review purposes. Requires authentication and approval from University of Chicago Medicine before publication.
+              </p>
+            </>
           ) : (
             <div
               style={{

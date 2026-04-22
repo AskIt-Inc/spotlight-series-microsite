@@ -1,7 +1,33 @@
 import React from 'react';
-import { Edit3 } from 'lucide-react';
 
 const FONT = 'gotham, sans-serif';
+
+const highlights = [
+  {
+    label: 'One Programme, Nine Specialists',
+    text: 'The UChicago Medicine Amyloidosis Program brings together nine dedicated specialists across cardiology, haematology and oncology, nephrology, neurology, gastroenterology, orthopaedic surgery, and cardiovascular genetics — one of the most comprehensive amyloidosis teams in the Midwest. Each case is reviewed collaboratively, ensuring no organ system is managed in isolation.*',
+  },
+  {
+    label: 'Advanced Cardiac Imaging for Precise Diagnosis',
+    text: 'The programme offers state-of-the-art cardiac MRI, CT, and echocardiography for accurate early detection and ongoing evaluation of cardiac amyloidosis, hypertrophic cardiomyopathy, and cardiac sarcoidosis. Advanced imaging is used not only to diagnose but to guide and monitor treatment response over time.*',
+  },
+  {
+    label: 'CAR T-Cell Therapy & Stem Cell Transplantation for AL Amyloidosis',
+    text: 'Patients with AL amyloidosis have access to innovative haematological treatments including CAR T-cell therapy and autologous stem cell transplantation. The programme\'s research focus includes minimal residual disease (MRD) assessment, strategies to improve long-term outcomes, and addressing racial disparities in AL amyloidosis care.*',
+  },
+  {
+    label: 'Hereditary ATTR: Genetic Counselling & Family Screening',
+    text: 'A licensed cardiovascular genetic counsellor works alongside the clinical team to provide hereditary ATTR testing, pedigree analysis, and personalised guidance for patients and at-risk family members. The programme sees patients through the Cardiovascular Genetics Clinic and the dedicated Amyloidosis Clinic.*',
+  },
+  {
+    label: 'Kidney Transplantation in Amyloidosis',
+    text: 'For patients with amyloid-related kidney disease, the programme offers specialist nephrology care including evaluation for kidney and pancreas transplantation, onco-nephrology, and management of complex glomerular diseases — helping patients navigate organ involvement beyond the heart.*',
+  },
+  {
+    label: 'Active in Landmark Clinical Research',
+    text: 'The programme participates in the ACT-EARLY Phase 3 prevention trial (acoramidis in asymptomatic TTR carriers) and the MaesTTRo global observational study (real-world outcomes with eplontersen) — giving patients access to emerging therapies and contributing to the global evidence base for amyloidosis treatment.*',
+  },
+];
 
 export const HighlightsSection: React.FC = () => {
   return (
@@ -22,42 +48,65 @@ export const HighlightsSection: React.FC = () => {
             textTransform: 'uppercase' as const,
             letterSpacing: '1px',
             color: '#8B1F2D',
-            marginBottom: '8px',
+            marginBottom: '24px',
             fontFamily: FONT,
           }}
         >
           Programme Highlights
         </div>
 
-        {/* ⚠ Content needed from UoC */}
-        <div
+        {/* Highlight cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          {highlights.map((h) => (
+            <div
+              key={h.label}
+              style={{
+                borderLeft: '3px solid #8B1F2D',
+                paddingLeft: '16px',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  color: '#000000',
+                  fontFamily: FONT,
+                  marginBottom: '4px',
+                  textTransform: 'uppercase' as const,
+                  letterSpacing: '0.5px',
+                }}
+              >
+                {h.label}
+              </div>
+              <p
+                style={{
+                  fontSize: '15px',
+                  fontWeight: 300,
+                  color: '#000000',
+                  lineHeight: 1.7,
+                  margin: 0,
+                  fontFamily: FONT,
+                }}
+              >
+                {h.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Asterisk disclaimer */}
+        <p
           style={{
-            background: '#FFFBEB',
-            border: '1px dashed #D97706',
-            borderRadius: '6px',
-            padding: '20px 24px',
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: '14px',
+            fontSize: '12px',
+            color: '#9CA3AF',
+            marginTop: '24px',
+            marginBottom: 0,
+            fontFamily: FONT,
+            fontStyle: 'italic',
           }}
         >
-          <Edit3 size={18} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
-          <div>
-            <div style={{ fontSize: '12px', fontWeight: 700, color: '#92400E', fontFamily: FONT, marginBottom: '8px', textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
-              Content needed from University of Chicago
-            </div>
-            <p style={{ fontSize: '14px', color: '#92400E', margin: '0 0 12px 0', fontFamily: FONT, lineHeight: 1.6 }}>
-              Please provide the programme's key highlights, recent accomplishments, and notable publications. Suggested content to include:
-            </p>
-            <ul style={{ fontSize: '14px', color: '#92400E', margin: 0, paddingLeft: '18px', fontFamily: FONT, lineHeight: 1.7 }}>
-              <li>Any designations or accreditations the programme has received (e.g. Centre of Excellence status)</li>
-              <li>Recent publications or research milestones</li>
-              <li>Clinical trial enrolment figures or notable study outcomes</li>
-              <li>New services or clinics launched (e.g. genetic screening, multidisciplinary clinics)</li>
-              <li>Awards, conference presentations, or media recognition</li>
-            </ul>
-          </div>
-        </div>
+          * Content generated for review purposes. Requires authentication and approval from University of Chicago Medicine before publication.
+        </p>
       </div>
     </section>
   );

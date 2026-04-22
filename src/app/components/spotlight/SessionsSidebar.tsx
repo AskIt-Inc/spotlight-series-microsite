@@ -154,9 +154,6 @@ const SidebarSessionRow: React.FC<{ session: Session }> = ({ session }) => {
 };
 
 export const SessionsSidebar: React.FC = () => {
-  const upcomingCount = sessions.filter((s) => s.status === 'upcoming').length;
-  const completedCount = sessions.filter((s) => s.status === 'completed').length;
-
   const sorted = [...sessions].sort((a, b) => {
     const monthOrder: Record<string, number> = { MAY: 0, JUN: 1, JUL: 2, AUG: 3 };
     const mo = (monthOrder[a.month] ?? 99) - (monthOrder[b.month] ?? 99);
@@ -190,23 +187,12 @@ export const SessionsSidebar: React.FC = () => {
             fontFamily: FONT,
           }}
         >
-          Sessions
-        </div>
-        <div
-          style={{
-            fontSize: '12px',
-            color: 'rgba(255,255,255,0.75)',
-            marginTop: '2px',
-            fontFamily: FONT,
-          }}
-        >
-          {upcomingCount} upcoming
-          {completedCount > 0 ? ` · ${completedCount} completed` : ''}
+          Upcoming Sessions
         </div>
       </div>
 
-      {/* Session rows */}
-      <div>
+      {/* Session rows — scrollable on mobile only via CSS class */}
+      <div className="sessions-list">
         {sorted.map((session) => (
           <SidebarSessionRow key={session.id} session={session} />
         ))}

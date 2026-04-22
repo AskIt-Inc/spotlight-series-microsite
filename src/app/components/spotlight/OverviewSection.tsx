@@ -1,5 +1,4 @@
 import React from 'react';
-import { Globe } from 'lucide-react';
 
 const FONT = 'gotham, sans-serif';
 
@@ -51,29 +50,33 @@ export const OverviewSection: React.FC = () => {
           African-Americans have a higher risk for hereditary TTR amyloidosis.
         </p>
 
-        {/* ⚠ Content needed from UoC */}
-        <div
+        <p
           style={{
-            marginTop: '24px',
-            background: '#FFFBEB',
-            border: '1px dashed #D97706',
-            borderRadius: '6px',
-            padding: '16px 20px',
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: '12px',
+            fontSize: '16px',
+            fontWeight: 300,
+            color: '#000000',
+            lineHeight: 1.7,
+            marginTop: '20px',
+            marginBottom: 0,
+            fontFamily: FONT,
           }}
         >
-          <Globe size={16} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
-          <div>
-            <div style={{ fontSize: '12px', fontWeight: 700, color: '#92400E', fontFamily: FONT, marginBottom: '4px', textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
-              Content needed from University of Chicago
-            </div>
-            <p style={{ fontSize: '14px', color: '#92400E', margin: 0, fontFamily: FONT, lineHeight: 1.6 }}>
-              Please provide an additional paragraph here about the programme — for example, what makes the UoC Amyloidosis Program unique, its research focus, or its patient care philosophy. This will appear directly below the programme overview text.
-            </p>
-          </div>
-        </div>
+          What sets the UChicago Medicine Amyloidosis Program apart is its integrated, whole-patient approach. Rather than treating each organ system in isolation, our multidisciplinary team — spanning cardiology, haematology, nephrology, neurology, gastroenterology, and orthopaedic surgery — collaborates closely to ensure every patient receives a coordinated care plan tailored to their specific type and stage of amyloidosis. We are also committed to advancing the science: our clinicians actively participate in clinical trials and translational research, giving patients access to emerging therapies not yet widely available.*
+        </p>
+
+        {/* Asterisk disclaimer */}
+        <p
+          style={{
+            fontSize: '12px',
+            color: '#9CA3AF',
+            marginTop: '16px',
+            marginBottom: 0,
+            fontFamily: FONT,
+            fontStyle: 'italic',
+          }}
+        >
+          * Content generated for review purposes. Requires authentication and approval from University of Chicago Medicine before publication.
+        </p>
       </div>
     </section>
   );
