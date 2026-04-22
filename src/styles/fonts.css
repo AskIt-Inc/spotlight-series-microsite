@@ -1,0 +1,22 @@
+/* Gotham is a licensed typeface — load via your CDN or @font-face below.
+   Uncomment and update the src paths once the font files are available.
+
+@font-face {
+  font-family: 'gotham';
+  src: url('/fonts/Gotham-Book.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'gotham';
+  src: url('/fonts/Gotham-Medium.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'gotham';
+  src: url('/fonts/Gotham-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+*/

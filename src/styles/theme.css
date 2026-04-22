@@ -1,0 +1,184 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --font-body: gotham, sans-serif;
+
+  /* OAV Brand Design System */
+
+  /* Backgrounds */
+  --oav-page-bg: #F5F5F5;
+  --oav-card-bg: #ffffff;
+  --oav-utility-bg: #FBF0F1;
+  --oav-icon-bg: #F5F5F5;
+  --oav-input-bg: #ffffff;
+  --oav-stripe-row: #fafafa;
+
+  /* Text */
+  --oav-text-primary: #000000;
+  --oav-text-secondary: #000000;
+  --oav-text-muted: #9CA3AF;
+
+  /* Borders */
+  --oav-border: #E5E5E5;
+  --oav-border-light: #EEEEEE;
+  --oav-utility-border: #F0D0D3;
+
+  /* Brand tokens */
+  --oav-brand: #8B1F2D;
+  --oav-brand-hover: #6E1A24;
+  --oav-brand-light: #FBF0F1;
+
+  /* Accent (links) */
+  --oav-accent: #005EB8;
+  --oav-accent-hover: #004A93;
+
+  /* Structural */
+  --oav-header-bg: #ffffff;
+  --oav-footer-bg: #ffffff;
+  --oav-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  /* Typography scale */
+  --text-h1: 40px;
+  --text-h2: 28px;
+  --text-h3: 20px;
+  --text-base: 16px;
+  --text-small: 14px;
+
+  --lh-h1: 1.2;
+  --lh-h2: 1.3;
+  --lh-h3: 1.4;
+  --lh-body: 1.7;
+  --lh-small: 1.5;
+
+  --fw-body: 300;
+  --fw-heading-section: 400;
+  --fw-heading-page: 700;
+
+  /* Legacy aliases (keep so shadcn tokens still resolve) */
+  --sttt-page-bg: var(--oav-page-bg);
+  --sttt-card-bg: var(--oav-card-bg);
+  --sttt-utility-bg: var(--oav-utility-bg);
+  --sttt-icon-bg: var(--oav-icon-bg);
+  --sttt-input-bg: var(--oav-input-bg);
+  --sttt-stripe-row: var(--oav-stripe-row);
+  --sttt-text-primary: var(--oav-text-primary);
+  --sttt-text-secondary: var(--oav-text-secondary);
+  --sttt-text-muted: var(--oav-text-muted);
+  --sttt-border: var(--oav-border);
+  --sttt-border-light: var(--oav-border-light);
+  --sttt-utility-border: var(--oav-utility-border);
+  --sttt-brand: var(--oav-brand);
+  --sttt-brand-hover: var(--oav-brand-hover);
+  --sttt-brand-light: var(--oav-brand-light);
+  --sttt-header-bg: var(--oav-header-bg);
+  --sttt-footer-bg: var(--oav-footer-bg);
+  --sttt-card-shadow: var(--oav-card-shadow);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply outline-ring/50;
+  }
+
+  body {
+    font-family: gotham, sans-serif;
+    font-weight: var(--fw-body);
+    background: var(--oav-page-bg);
+    color: var(--oav-text-primary);
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    font-weight: var(--fw-heading-page);
+    line-height: var(--lh-h1);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    font-weight: var(--fw-heading-section);
+    line-height: var(--lh-h2);
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    font-weight: var(--fw-heading-section);
+    line-height: var(--lh-h3);
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--fw-heading-section);
+    line-height: var(--lh-body);
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--lh-body);
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--lh-body);
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--lh-body);
+  }
+}
+
+/* Responsive utility for SpotlightLayout nav */
+@media (max-width: 900px) {
+  .hidden-mobile-nav {
+    display: none !important;
+  }
+}
