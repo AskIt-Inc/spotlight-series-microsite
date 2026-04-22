@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from 'react-router';
+import { createHashRouter, Navigate } from 'react-router';
 import { Layout } from './components/Layout';
 import { SpotlightLayout } from './components/SpotlightLayout';
 import { DashboardPage } from './pages/DashboardPage';
@@ -24,30 +24,27 @@ const PlaceholderPage = ({ title }: { title: string }) => (
   </div>
 );
 
-export const router = createBrowserRouter(
-  [
-    {
-      path: '/',
-      element: <Navigate to="/dashboard" replace />,
-    },
-    // ── Portal shell (tab nav) ──
-    {
-      path: '/dashboard',
-      Component: Layout,
-      children: [
-        { index: true, Component: DashboardPage },
-        { path: 'sessions', element: <PlaceholderPage title="Sessions" /> },
-        { path: 'marketing', element: <PlaceholderPage title="Marketing" /> },
-        { path: 'submissions', element: <PlaceholderPage title="Submissions" /> },
-        { path: 'reporting', element: <PlaceholderPage title="Reporting" /> },
-      ],
-    },
-    // ── Public microsite shell (STTT public header + footer) ──
-    {
-      path: '/dashboard/spotlight',
-      Component: SpotlightLayout,
-      children: [{ index: true, Component: SpotlightPage }],
-    },
-  ],
-  { basename: '/spotlight-series-microsite' }
-);
+export const router = createHashRouter([
+  {
+    path: '/',
+    element: <Navigate to="/dashboard" replace />,
+  },
+  // ── Portal shell (tab nav) ──
+  {
+    path: '/dashboard',
+    Component: Layout,
+    children: [
+      { index: true, Component: DashboardPage },
+      { path: 'sessions', element: <PlaceholderPage title="Sessions" /> },
+      { path: 'marketing', element: <PlaceholderPage title="Marketing" /> },
+      { path: 'submissions', element: <PlaceholderPage title="Submissions" /> },
+      { path: 'reporting', element: <PlaceholderPage title="Reporting" /> },
+    ],
+  },
+  // ── Public microsite shell (STTT public header + footer) ──
+  {
+    path: '/dashboard/spotlight',
+    Component: SpotlightLayout,
+    children: [{ index: true, Component: SpotlightPage }],
+  },
+]);
