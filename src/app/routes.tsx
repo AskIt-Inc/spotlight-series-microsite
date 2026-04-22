@@ -1,4 +1,4 @@
-import { createHashRouter, Navigate } from 'react-router';
+import { createHashRouter } from 'react-router';
 import { Layout } from './components/Layout';
 import { SpotlightLayout } from './components/SpotlightLayout';
 import { DashboardPage } from './pages/DashboardPage';
@@ -25,13 +25,9 @@ const PlaceholderPage = ({ title }: { title: string }) => (
 );
 
 export const router = createHashRouter([
+  // ── Portal shell (tab nav) — index renders Dashboard ──
   {
     path: '/',
-    element: <Navigate to="/dashboard" replace />,
-  },
-  // ── Portal shell (tab nav) ──
-  {
-    path: '/dashboard',
     Component: Layout,
     children: [
       { index: true, Component: DashboardPage },
@@ -41,9 +37,9 @@ export const router = createHashRouter([
       { path: 'reporting', element: <PlaceholderPage title="Reporting" /> },
     ],
   },
-  // ── Public microsite shell (STTT public header + footer) ──
+  // ── Public microsite shell ──
   {
-    path: '/dashboard/spotlight',
+    path: '/spotlight',
     Component: SpotlightLayout,
     children: [{ index: true, Component: SpotlightPage }],
   },

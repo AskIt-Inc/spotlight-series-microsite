@@ -5,12 +5,12 @@ import { Sun, Moon, Monitor, HelpCircle, LogOut, Menu, User } from 'lucide-react
 type Theme = 'light' | 'dark' | 'system';
 
 const NAV_ITEMS = [
-  { label: 'Dashboard', path: '/dashboard' },
-  { label: 'Sessions', path: '/dashboard/sessions' },
-  { label: 'Marketing', path: '/dashboard/marketing' },
-  { label: 'Submissions', path: '/dashboard/submissions' },
-  { label: 'Reporting', path: '/dashboard/reporting' },
-  { label: 'Spotlight', path: '/dashboard/spotlight' },
+  { label: 'Dashboard', path: '/' },
+  { label: 'Sessions', path: '/sessions' },
+  { label: 'Marketing', path: '/marketing' },
+  { label: 'Submissions', path: '/submissions' },
+  { label: 'Reporting', path: '/reporting' },
+  { label: 'Spotlight', path: '/spotlight' },
 ];
 
 export const Layout: React.FC = () => {
@@ -136,7 +136,7 @@ export const Layout: React.FC = () => {
               <NavLink
                 key={item.path}
                 to={item.path}
-                end={item.path === '/dashboard'}
+                end={item.path === '/'}
                 style={({ isActive }) => ({
                   fontSize: '14px',
                   fontWeight: isActive ? 500 : 400,
