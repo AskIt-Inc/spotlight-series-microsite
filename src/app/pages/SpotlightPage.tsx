@@ -9,7 +9,7 @@ import { SessionsSidebar } from '../components/spotlight/SessionsSidebar';
 export const SpotlightPage: React.FC = () => {
   return (
     <div>
-      {/* Programme Hero — full width */}
+      {/* Program Hero — full width */}
       <HeroSection />
 
       {/* Two-column content area.

@@ -197,7 +197,7 @@ export const Layout: React.FC = () => {
             }}
           >
             The information presented is for educational purposes only and does not constitute medical advice.
-            STTT is a registered 501(c)(3) non-profit organisation.
+            STTT is a registered 501(c)(3) non-profit organization.
           </p>
         </div>
       </footer>

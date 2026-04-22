@@ -8,7 +8,7 @@ const tiles = [
   {
     icon: Zap,
     title: 'Spotlight Series',
-    description: 'View the University of Chicago Amyloidosis Programme microsite for June 2025.',
+    description: 'View the University of Chicago Amyloidosis Program microsite for June 2025.',
     cta: 'View Microsite',
     path: '/spotlight',
     accent: '#8B1F2D',

@@ -3,7 +3,7 @@ export interface Clinician {
   name: string;
   credentials: string;
   title: string;
-  speciality: string;
+  specialty: string;
   type: string;
   photo: string;
   bio: string;
@@ -39,7 +39,7 @@ export const clinicians: Clinician[] = [
     name: 'Dr. Nitasha Sarswat',
     credentials: 'MD',
     title: 'Assistant Professor of Medicine · Director, Amyloidosis Program',
-    speciality: 'Advanced Heart Failure · Cardiac Transplantation · Cardiac Amyloidosis',
+    specialty: 'Advanced Heart Failure · Cardiac Transplantation · Cardiac Amyloidosis',
     type: 'Medical Doctor',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2025-10/Nitasha%20Sarswat_circle.png',
     bio: 'Dr. Nitasha Sarswat is an assistant professor of medicine specializing in advanced heart failure and cardiac transplantation with expertise in cardiac amyloidosis, and the Director of the Amyloidosis Program at the University of Chicago Medicine.',
@@ -53,7 +53,7 @@ export const clinicians: Clinician[] = [
     name: 'Dr. Jeremy A. Slivnick',
     credentials: 'MD',
     title: 'Assistant Professor of Medicine',
-    speciality: 'Cardiac Imaging · MRI · CT · Echocardiography',
+    specialty: 'Cardiac Imaging · MRI · CT · Echocardiography',
     type: 'Medical Doctor',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-04/Jeremy-slivnick.webp',
     bio: 'Dr. Jeremy A. Slivnick is an assistant professor of medicine and cardiologist specializing in cardiac imaging. Dr. Slivnick uses advanced imaging, such as cardiac MRI, computed tomography (CT), and echocardiography, to accurately evaluate and diagnose a wide range of heart and vascular diseases. He has particular interest in using cardiac imaging to improve the diagnosis and evaluation of heart failure including cardiac amyloidosis, hypertrophic cardiomyopathy, and cardiac sarcoidosis.',
@@ -67,7 +67,7 @@ export const clinicians: Clinician[] = [
     name: 'Dr. Ben Derman',
     credentials: 'MD',
     title: 'Assistant Professor of Medicine',
-    speciality: 'Hematology & Oncology · Plasma Cell Disorders · AL Amyloidosis',
+    specialty: 'Hematology & Oncology · Plasma Cell Disorders · AL Amyloidosis',
     type: 'Medical Doctor',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-04/derman-ben-bio-261x347.webp',
     bio: 'Dr. Ben Derman is an assistant professor of medicine specializing in hematology and oncology. He is an expert in plasma cell disorders, including amyloidosis, multiple myeloma, monoclonal gammopathy of unknown significance (MGUS), plasmacytoma, and POEMS syndrome. Dr. Derman uses innovative techniques including CAR T-cell therapy and stem cell transplantation, and his research focuses on minimal residual disease (MRD), strategies to improve outcomes and quality of life, and the impact of racial disparities.',
@@ -81,7 +81,7 @@ export const clinicians: Clinician[] = [
     name: 'Dr. Kourosh Rezania',
     credentials: 'MD',
     title: 'Professor of Neurology',
-    speciality: 'Neuromuscular Diseases · Peripheral Neuropathy · Amyloidosis PN',
+    specialty: 'Neuromuscular Diseases · Peripheral Neuropathy · Amyloidosis PN',
     type: 'Medical Doctor',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-04/rezania-kourosh-bio-261x347.webp',
     bio: 'Dr. Kourosh Rezania is a professor of neurology and an expert in neuromuscular diseases. He is particularly interested in the evaluation and treatment of peripheral neuropathies, myopathies, myasthenia gravis, and amyotrophic lateral sclerosis (ALS). Dr. Rezania is also an active researcher and teacher, currently conducting clinical trials on chronic inflammatory demyelinating polyneuropathy.',
@@ -95,7 +95,7 @@ export const clinicians: Clinician[] = [
     name: 'Dr. Marco Bonilla',
     credentials: 'MD',
     title: 'Assistant Professor of Medicine, Nephrology',
-    speciality: 'Nephrology · Onconephrology · Glomerular Disease · Amyloidosis',
+    specialty: 'Nephrology · Onconephrology · Glomerular Disease · Amyloidosis',
     type: 'Medical Doctor',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-04/marco-bonilla.webp',
     bio: 'Dr. Marco Bonilla is an assistant professor of medicine in nephrology who specializes in onconephrology — diagnosing kidney disease in cancer patients — and glomerular diseases, such as diabetic kidney disease, autoimmune diseases, amyloidosis, and genetic disorders. Dr. Bonilla sees patients at the satellite glomerular clinic at UChicago Medicine River East.',
@@ -109,7 +109,7 @@ export const clinicians: Clinician[] = [
     name: 'Dr. Beatrice Concepcion',
     credentials: 'MD',
     title: 'Professor of Medicine, Nephrology',
-    speciality: 'Transplant Nephrology · Kidney Transplant · Amyloidosis',
+    specialty: 'Transplant Nephrology · Kidney Transplant · Amyloidosis',
     type: 'Medical Doctor',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-04/concepcion-beatrice-bio-261x347.webp',
     bio: 'Dr. Beatrice Concepcion is a professor of medicine in nephrology who specializes in transplant nephrology. She provides comprehensive, compassionate care to patients who have received kidney and pancreas transplants. Dr. Concepcion personalizes care with expertise in managing immunosuppressive medication, controlling post-transplant complications, and improving quality of life.',
@@ -123,7 +123,7 @@ export const clinicians: Clinician[] = [
     name: 'Dr. Edwin K. McDonald IV',
     credentials: 'MD',
     title: 'Assistant Professor of Medicine, Gastroenterology',
-    speciality: 'Gastroenterology · Small Bowel Disease · Nutrition',
+    specialty: 'Gastroenterology · Small Bowel Disease · Nutrition',
     type: 'Medical Doctor',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-04/edwin-macdonald.webp',
     bio: 'Dr. Edwin K. McDonald IV is an assistant professor of medicine specializing in gastroenterology with interest in improving the health of individuals and communities through nutrition education. He works with patients with small bowel diseases, obesity, and other conditions affecting the digestive system.',
@@ -137,7 +137,7 @@ export const clinicians: Clinician[] = [
     name: 'Dr. Jennifer Moriatis Wolf',
     credentials: 'MD, PhD',
     title: 'Professor of Orthopedic Surgery and Rehabilitation Medicine',
-    speciality: 'Orthopedic Surgery · Hand, Wrist & Elbow · Amyloidosis Complications',
+    specialty: 'Orthopedic Surgery · Hand, Wrist & Elbow · Amyloidosis Complications',
     type: 'Medical Doctor',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-04/wolf-jennifer-bio-261x347.webp',
     bio: 'Dr. Jennifer Moriatis Wolf (MD, PhD) is a professor of orthopedic surgery and rehabilitation medicine specializing in the surgical and non-surgical treatment of bone, nerve, tendon, and ligament injuries caused by trauma or overuse. She conducts basic and clinical research investigating strategies to improve patient outcomes in orthopedic hand, wrist, and elbow care.',
@@ -151,8 +151,8 @@ export const clinicians: Clinician[] = [
     name: 'Rachel Campagna',
     credentials: 'MS, CGC',
     title: 'Licensed, Certified Genetic Counselor — Cardiology',
-    speciality: 'Hereditary ATTR · Cardiovascular Genetics · Genetic Testing',
-    type: 'Genetic Counsellor',
+    specialty: 'Hereditary ATTR · Cardiovascular Genetics · Genetic Testing',
+    type: 'Genetic Counselor',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-04/2025-headshot-2.jpg',
     bio: 'Rachel Campagna is a licensed, certified genetic counselor at the University of Chicago Medicine specializing in cardiovascular genetics and hereditary ATTR amyloidosis. She sees patients in the Cardiovascular Genetics Clinic and the Amyloidosis Clinic, as well as at-risk family members, providing personalized guidance on the implications of genetic testing for personal health decisions.',
     hasVideo: true,
@@ -167,7 +167,7 @@ export const trials: Trial[] = [
     id: 'NCT06563895',
     title: 'ACT-EARLY: Acoramidis Transthyretin Amyloidosis Prevention Trial in the Young',
     status: 'Recruiting',
-    description: 'A Phase 3, randomised, double-blind, placebo-controlled study evaluating whether acoramidis — a TTR protein stabiliser — can prevent or delay the onset of ATTR cardiomyopathy or polyneuropathy in asymptomatic adults aged 18–75 who carry a known pathogenic TTR gene variant. Treatment begins before any symptoms develop, with the goal of halting disease progression entirely. Sponsored by Eidos Therapeutics, a BridgeBio company.',
+    description: 'A Phase 3, randomized, double-blind, placebo-controlled study evaluating whether acoramidis — a TTR protein stabilizer — can prevent or delay the onset of ATTR cardiomyopathy or polyneuropathy in asymptomatic adults aged 18–75 who carry a known pathogenic TTR gene variant. Treatment begins before any symptoms develop, with the goal of halting disease progression entirely. Sponsored by Eidos Therapeutics, a BridgeBio company.',
     phase: 'Phase 3',
   },
   {

@@ -118,7 +118,7 @@ const ClinicianCard: React.FC<ClinicianCardProps> = ({ clinician }) => {
               marginTop: '2px',
             }}
           >
-            {clinician.speciality}
+            {clinician.specialty}
           </div>
 
           {/* Clinician type badge */}
@@ -313,7 +313,7 @@ export const TeamSection: React.FC = () => {
               lineHeight: 1.5,
             }}
           >
-            The multidisciplinary team behind the University of Chicago Amyloidosis Programme
+            The multidisciplinary team behind the University of Chicago Amyloidosis Program
           </p>
         </div>
 

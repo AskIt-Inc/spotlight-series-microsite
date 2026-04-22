@@ -4,28 +4,28 @@ const FONT = 'gotham, sans-serif';
 
 const highlights = [
   {
-    label: 'One Programme, Nine Specialists',
-    text: 'The UChicago Medicine Amyloidosis Program brings together nine dedicated specialists across cardiology, haematology and oncology, nephrology, neurology, gastroenterology, orthopaedic surgery, and cardiovascular genetics — one of the most comprehensive amyloidosis teams in the Midwest. Each case is reviewed collaboratively, ensuring no organ system is managed in isolation.*',
+    label: 'One Program, Nine Specialists',
+    text: 'The UChicago Medicine Amyloidosis Program brings together nine dedicated specialists across cardiology, hematology and oncology, nephrology, neurology, gastroenterology, orthopedic surgery, and cardiovascular genetics — one of the most comprehensive amyloidosis teams in the Midwest. Each case is reviewed collaboratively, ensuring no organ system is managed in isolation.*',
   },
   {
     label: 'Advanced Cardiac Imaging for Precise Diagnosis',
-    text: 'The programme offers state-of-the-art cardiac MRI, CT, and echocardiography for accurate early detection and ongoing evaluation of cardiac amyloidosis, hypertrophic cardiomyopathy, and cardiac sarcoidosis. Advanced imaging is used not only to diagnose but to guide and monitor treatment response over time.*',
+    text: 'The program offers state-of-the-art cardiac MRI, CT, and echocardiography for accurate early detection and ongoing evaluation of cardiac amyloidosis, hypertrophic cardiomyopathy, and cardiac sarcoidosis. Advanced imaging is used not only to diagnose but to guide and monitor treatment response over time.*',
   },
   {
     label: 'CAR T-Cell Therapy & Stem Cell Transplantation for AL Amyloidosis',
-    text: 'Patients with AL amyloidosis have access to innovative haematological treatments including CAR T-cell therapy and autologous stem cell transplantation. The programme\'s research focus includes minimal residual disease (MRD) assessment, strategies to improve long-term outcomes, and addressing racial disparities in AL amyloidosis care.*',
+    text: 'Patients with AL amyloidosis have access to innovative hematological treatments including CAR T-cell therapy and autologous stem cell transplantation. The program\'s research focus includes minimal residual disease (MRD) assessment, strategies to improve long-term outcomes, and addressing racial disparities in AL amyloidosis care.*',
   },
   {
-    label: 'Hereditary ATTR: Genetic Counselling & Family Screening',
-    text: 'A licensed cardiovascular genetic counsellor works alongside the clinical team to provide hereditary ATTR testing, pedigree analysis, and personalised guidance for patients and at-risk family members. The programme sees patients through the Cardiovascular Genetics Clinic and the dedicated Amyloidosis Clinic.*',
+    label: 'Hereditary ATTR: Genetic Counseling & Family Screening',
+    text: 'A licensed cardiovascular genetic counselor works alongside the clinical team to provide hereditary ATTR testing, pedigree analysis, and personalized guidance for patients and at-risk family members. The program sees patients through the Cardiovascular Genetics Clinic and the dedicated Amyloidosis Clinic.*',
   },
   {
     label: 'Kidney Transplantation in Amyloidosis',
-    text: 'For patients with amyloid-related kidney disease, the programme offers specialist nephrology care including evaluation for kidney and pancreas transplantation, onco-nephrology, and management of complex glomerular diseases — helping patients navigate organ involvement beyond the heart.*',
+    text: 'For patients with amyloid-related kidney disease, the program offers specialist nephrology care including evaluation for kidney and pancreas transplantation, onco-nephrology, and management of complex glomerular diseases — helping patients navigate organ involvement beyond the heart.*',
   },
   {
     label: 'Active in Landmark Clinical Research',
-    text: 'The programme participates in the ACT-EARLY Phase 3 prevention trial (acoramidis in asymptomatic TTR carriers) and the MaesTTRo global observational study (real-world outcomes with eplontersen) — giving patients access to emerging therapies and contributing to the global evidence base for amyloidosis treatment.*',
+    text: 'The program participates in the ACT-EARLY Phase 3 prevention trial (acoramidis in asymptomatic TTR carriers) and the MaesTTRo global observational study (real-world outcomes with eplontersen) — giving patients access to emerging therapies and contributing to the global evidence base for amyloidosis treatment.*',
   },
 ];
 
@@ -52,7 +52,7 @@ export const HighlightsSection: React.FC = () => {
             fontFamily: FONT,
           }}
         >
-          Programme Highlights
+          Program Highlights
         </div>
 
         {/* Highlight cards */}

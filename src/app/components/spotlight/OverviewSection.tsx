@@ -24,7 +24,7 @@ export const OverviewSection: React.FC = () => {
             fontFamily: FONT,
           }}
         >
-          About the Programme
+          About the Program
         </div>
 
         {/* Body text */}
@@ -61,7 +61,7 @@ export const OverviewSection: React.FC = () => {
             fontFamily: FONT,
           }}
         >
-          What sets the UChicago Medicine Amyloidosis Program apart is its integrated, whole-patient approach. Rather than treating each organ system in isolation, our multidisciplinary team — spanning cardiology, haematology, nephrology, neurology, gastroenterology, and orthopaedic surgery — collaborates closely to ensure every patient receives a coordinated care plan tailored to their specific type and stage of amyloidosis. We are also committed to advancing the science: our clinicians actively participate in clinical trials and translational research, giving patients access to emerging therapies not yet widely available.*
+          What sets the UChicago Medicine Amyloidosis Program apart is its integrated, whole-patient approach. Rather than treating each organ system in isolation, our multidisciplinary team — spanning cardiology, hematology, nephrology, neurology, gastroenterology, and orthopedic surgery — collaborates closely to ensure every patient receives a coordinated care plan tailored to their specific type and stage of amyloidosis. We are also committed to advancing the science: our clinicians actively participate in clinical trials and translational research, giving patients access to emerging therapies not yet widely available.*
         </p>
 
         {/* Asterisk disclaimer */}
