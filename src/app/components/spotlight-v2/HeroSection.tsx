@@ -102,11 +102,11 @@ const SeriesStrip: React.FC = () => (
         </div>
         <div
           style={{
-            fontSize: '13px',
-            fontWeight: 400,
-            color: '#6B7280',
-            marginTop: '3px',
-            letterSpacing: '0.02em',
+            fontSize: '14px',
+            fontWeight: 600,
+            color: '#8B1F2D',
+            marginTop: '4px',
+            letterSpacing: '0.04em',
           }}
         >
           June 2026
