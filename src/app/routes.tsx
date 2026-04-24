@@ -3,6 +3,7 @@ import { Layout } from './components/Layout';
 import { SpotlightLayout } from './components/SpotlightLayout';
 import { DashboardPage } from './pages/DashboardPage';
 import { SpotlightPage } from './pages/SpotlightPage';
+import { SpotlightPageV2 } from './pages/SpotlightPageV2';
 
 // Placeholder for routes not yet built
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -37,10 +38,16 @@ export const router = createHashRouter([
       { path: 'reporting', element: <PlaceholderPage title="Reporting" /> },
     ],
   },
-  // ── Public microsite shell ──
+  // ── Public microsite shell — v1 (original, untouched) ──
   {
     path: '/spotlight',
     Component: SpotlightLayout,
     children: [{ index: true, Component: SpotlightPage }],
+  },
+  // ── Public microsite shell — v2 (client feedback applied) ──
+  {
+    path: '/spotlight-v2',
+    Component: SpotlightLayout,
+    children: [{ index: true, Component: SpotlightPageV2 }],
   },
 ]);

@@ -280,6 +280,20 @@
     grid-template-columns: 1fr !important;
   }
 
+  /* v2: Overview pillars → single column on mobile */
+  .overview-pillars {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* v2: Compact card CTAs → flow inline below identity on mobile */
+  .compact-card-ctas {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    margin-top: 8px !important;
+  }
+
   /* Dashboard tile grid → single column */
   .dashboard-tile-grid {
     grid-template-columns: 1fr !important;
