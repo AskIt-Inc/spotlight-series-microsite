@@ -35,6 +35,7 @@ const highlights = [
 
 export const HighlightsSection: React.FC = () => (
   <section
+    className="v2-section"
     style={{
       background: 'var(--oav-card-bg)',
       borderTop: '1px solid var(--oav-border)',

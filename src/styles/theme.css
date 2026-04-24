@@ -205,43 +205,6 @@
 }
 
 @media (max-width: 768px) {
-  /* Series strip — center on mobile, hide left accent bar */
-  .series-strip-inner {
-    justify-content: center !important;
-  }
-
-  .series-strip-accent {
-    display: none !important;
-  }
-
-  /* v2: swap desktop breadcrumb → mobile stacked block */
-  .series-strip-desktop {
-    display: none !important;
-  }
-  .series-strip-mobile {
-    display: block !important;
-  }
-
-  /* v2: on mobile, stack logo below the text, everything centred */
-  .series-strip-inner {
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 12px !important;
-  }
-
-  .series-strip-mobile {
-    text-align: center !important;
-  }
-
-  /* logo moves below, centred, scaled down */
-  .series-strip-logo {
-    display: block !important;
-  }
-  .series-strip-logo img {
-    height: 51px !important;
-    margin: 0 auto !important;
-  }
-
   /* Hero left column — center text on mobile */
   .hero-left-col {
     align-items: center !important;
@@ -280,18 +243,18 @@
     gap: 8px !important;
   }
 
-  /* Scale down UoC logo on mobile — keep visible but compact */
+  /* UoC logo on mobile — keep visible and legible, not squished */
   .hero-logo-col {
     display: block !important;
   }
 
   .hero-logo-col img {
-    height: 18px !important;
+    height: 38px !important;
   }
 
   .hero-logo-col > div {
     min-width: unset !important;
-    padding: 4px 10px !important;
+    padding: 8px 16px !important;
   }
 
   /* Hero h1 scale */

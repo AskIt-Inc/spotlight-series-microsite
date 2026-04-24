@@ -208,6 +208,7 @@ const CompactCard: React.FC<CompactCardProps> = ({ clinician }) => {
   return (
     <>
       <div
+        className="compact-card"
         style={{
           background: 'var(--oav-card-bg)',
           border: '1px solid var(--oav-border)',

@@ -27,6 +27,7 @@ const pillars = [
 
 export const OverviewSection: React.FC = () => (
   <section
+    className="v2-section"
     style={{
       background: 'var(--oav-card-bg)',
       borderBottom: '1px solid var(--oav-border)',
