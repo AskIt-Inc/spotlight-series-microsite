@@ -34,6 +34,7 @@ const OAVLogo: React.FC = () => {
     </span>
   ) : (
     <img
+      className="oav-logo-img"
       src={OAV_LOGO_URL}
       alt="oneAMYLOIDOSISvoice"
       style={{ display: 'block', height: '72px', width: 'auto' }}
@@ -60,6 +61,7 @@ const SiteHeader: React.FC = () => {
         }}
       >
         <div
+          className="site-header-inner"
           style={{
             maxWidth: '1400px',
             margin: '0 auto',
@@ -72,7 +74,7 @@ const SiteHeader: React.FC = () => {
           }}
         >
           {/* Logo */}
-          <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+          <a href="#" className="oav-logo-link" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
             <OAVLogo />
           </a>
 
@@ -244,7 +246,7 @@ const SponsorLogo: React.FC<{ name: string; img: string; height?: number }> = ({
     <img
       src={img}
       alt={name}
-      style={{ height: `${height}px`, width: 'auto', display: 'block', objectFit: 'contain' }}
+      style={{ height: `${height}px`, width: 'auto', maxWidth: '160px', display: 'block', objectFit: 'contain' }}
       onError={() => setFailed(true)}
     />
   );
@@ -409,11 +411,14 @@ export const SpotlightLayout: React.FC = () => {
         flexDirection: 'column',
         background: 'var(--oav-page-bg)',
         fontFamily: FONT,
+        width: '100%',
+        maxWidth: '100vw',
+        overflowX: 'hidden',
       }}
     >
       <SiteHeader />
 
-      <main style={{ flex: 1 }}>
+      <main style={{ flex: 1, width: '100%', minWidth: 0 }}>
         <Outlet />
       </main>
 

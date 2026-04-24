@@ -218,10 +218,36 @@ html, body {
     display: flex !important;
   }
 
+  /* ── Header: tighten padding + shrink OAV logo ──────────────────────────────── */
+  /* ROOT CAUSE OF HORIZONTAL OVERFLOW: OAV SVG logo at 72px height renders       */
+  /* ~250-300px wide. With flexShrink:0, gap:24px, padding:48px, and buttons,     */
+  /* header totals 360px+ on a 360px viewport → entire page layout shifts right.  */
+  .site-header-inner {
+    padding: 0 16px !important;
+    gap: 12px !important;
+    height: 64px !important;
+  }
+
+  /* Logo link: allow it to shrink so it can't push the header wider than viewport */
+  .oav-logo-link {
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
+    overflow: hidden;
+  }
+
+  /* Logo img: cap at 140px wide, scale down height proportionally */
+  .oav-logo-img {
+    height: 44px !important;
+    max-width: 140px !important;
+    width: auto !important;
+    object-fit: contain !important;
+  }
+
   /* ── Page grid: two-column → single column ──────────────────────────────────── */
   /* Zero horizontal padding — each child section carries its own 16px h-padding */
   .spotlight-content-grid {
     flex-direction: column !important;
+    align-items: stretch !important;   /* fix: flex-start causes children to size to max-content width */
     padding: 0 0 48px !important;
     gap: 0 !important;
     max-width: 100% !important;
