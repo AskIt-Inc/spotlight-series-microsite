@@ -24,7 +24,7 @@ const UoCLogo = () => {
         <img
           src={UOC_LOGO_URL}
           alt="University of Chicago Medicine"
-          style={{ height: '24px', width: 'auto', display: 'block' }}
+          style={{ height: '32px', width: 'auto', display: 'block' }}
           onError={() => setImgFailed(true)}
         />
       ) : (
@@ -189,30 +189,29 @@ export const HeroSection: React.FC = () => (
             gap: '10px',
           }}
         >
-          {/* "featuring" label — prominent, unique treatment */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0',
-          }}>
-            {/* Left accent pip */}
-            <div style={{
-              width: '3px',
-              height: '22px',
-              background: 'rgba(255,255,255,0.5)',
-              borderRadius: '2px',
-              marginRight: '10px',
-              flexShrink: 0,
-            }} />
+          {/* "featuring" label — spotlight light rays icon + warm cream text */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFE8A3" strokeWidth="2" strokeLinecap="round" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="10" r="3"/>
+              <line x1="12" y1="1" x2="12" y2="4"/>
+              <line x1="4.22" y1="3.22" x2="6.34" y2="5.34"/>
+              <line x1="1" y1="10" x2="4" y2="10"/>
+              <line x1="19.78" y1="3.22" x2="17.66" y2="5.34"/>
+              <line x1="23" y1="10" x2="20" y2="10"/>
+              <path d="M7 17l1.5-4h7L17 17"/>
+              <line x1="5" y1="21" x2="19" y2="21"/>
+              <line x1="8" y1="21" x2="8" y2="17"/>
+              <line x1="16" y1="21" x2="16" y2="17"/>
+            </svg>
             <span style={{
-              fontSize: '15px',
-              fontWeight: 300,
-              fontStyle: 'italic',
-              color: '#ffffff',
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              letterSpacing: '1px',
+              fontSize: '12px',
+              fontWeight: 700,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase' as const,
+              color: '#FFE8A3',
+              fontFamily: FONT,
             }}>
-              featuring
+              FEATURING
             </span>
           </div>
 
