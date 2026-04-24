@@ -250,7 +250,7 @@ const CompactCard: React.FC<CompactCardProps> = ({ clinician }) => {
         </div>
 
         {/* Identity — flex-grows to fill space */}
-        <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="compact-card-identity" style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: '15px', fontWeight: 700, color: '#000000', fontFamily: FONT }}>
             {clinician.name}
           </div>
@@ -386,7 +386,7 @@ export const TeamSection: React.FC = () => (
       padding: '48px 0',
     }}
   >
-    <div>
+    <div className="team-section-inner">
       {/* Section heading */}
       <div style={{ marginBottom: '24px' }}>
         <h2

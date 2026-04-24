@@ -37,6 +37,7 @@ const TrialCard: React.FC<TrialCardProps> = ({ trial }) => {
     <div>
       {/* Trial card */}
       <div
+        className="trial-card"
         style={{
           background: 'var(--oav-card-bg)',
           border: '1px solid var(--oav-border)',
@@ -363,7 +364,7 @@ export const TrialsSection: React.FC = () => {
         padding: '56px 0',
       }}
     >
-      <div>
+      <div className="trials-section-inner">
         {/* Section heading */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap' as const, gap: '8px' }}>
           <div>

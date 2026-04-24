@@ -182,6 +182,13 @@
   }
 }
 
+/* ── Prevent horizontal scroll at the document level ──────────────────────── */
+/* Correct place: html/body, NOT a wrapper div (which creates a clipping BFC) */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* ── Responsive breakpoints ─────────────────────────────────────────────────── */
 
 /* Nav collapse at 900px (existing) */
@@ -205,47 +212,90 @@
 }
 
 @media (max-width: 768px) {
-  /* Hero left column — center text on mobile */
-  .hero-left-col {
-    align-items: center !important;
-    text-align: center;
-  }
 
-  /* Mobile: fixed height scroll */
-  .sessions-list {
-    max-height: 360px;
-    overflow-y: auto;
-  }
-
-  /* Show hamburger */
+  /* ── Show hamburger ─────────────────────────────────────────────────────────── */
   .mobile-menu-btn {
     display: flex !important;
   }
 
-  /* Spotlight two-column → single column */
+  /* ── Page grid: two-column → single column ──────────────────────────────────── */
+  /* Zero horizontal padding — each child section carries its own 16px h-padding */
   .spotlight-content-grid {
     flex-direction: column !important;
-    padding: 0 16px 48px !important;
-    gap: 24px !important;
+    padding: 0 0 48px !important;
+    gap: 0 !important;
+    max-width: 100% !important;
   }
 
-  /* Sidebar: unstick and go full-width, float above content */
+  /* Sidebar: unstick, full-width, floats above main content */
+  /* Give sidebar its own 16px side padding to match sections below */
   .spotlight-sidebar-wrapper {
     width: 100% !important;
     position: static !important;
     align-self: auto !important;
     order: -1;
+    padding: 16px 16px 0 !important;
+    box-sizing: border-box !important;
   }
 
-  /* Hero row → stacked column */
+  /* Sessions list: fixed height on mobile */
+  .sessions-list {
+    max-height: 360px;
+    overflow-y: auto;
+  }
+
+  /* ── Series strip (upper hero band) ────────────────────────────────────────── */
+  /* Stack: logo centred on top, program name + date below */
+  .series-strip-row {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+    text-align: center;
+  }
+
+  /* Hide vertical rule — makes no sense when stacked */
+  .series-strip-divider {
+    display: none !important;
+  }
+
+  /* Scale logo down slightly on mobile */
+  .series-strip-logo-img {
+    height: 42px !important;
+  }
+
+  /* Allow title to wrap + reduce font */
+  .series-strip-title {
+    font-size: 16px !important;
+    white-space: normal !important;
+    text-align: center;
+  }
+
+  /* ── Hero maroon band ───────────────────────────────────────────────────────── */
+  /* Stack: text column above UoC logo */
   .hero-content-row {
     flex-direction: column !important;
-    gap: 8px !important;
+    align-items: center !important;
+    gap: 16px !important;
+    text-align: center;
   }
 
-  /* UoC logo on mobile — keep visible and legible, not squished */
+  /* Center the FEATURING row and h1 */
+  .hero-left-col {
+    align-items: center !important;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Scale h1 down */
+  .hero-h1 {
+    font-size: 22px !important;
+  }
+
+  /* UoC logo: legible size, centred pill */
   .hero-logo-col {
-    display: block !important;
+    display: flex !important;
+    justify-content: center;
+    width: 100%;
   }
 
   .hero-logo-col img {
@@ -254,41 +304,91 @@
 
   .hero-logo-col > div {
     min-width: unset !important;
-    padding: 8px 16px !important;
+    padding: 8px 20px !important;
   }
 
-  /* Hero h1 scale */
-  .hero-h1 {
-    font-size: 24px !important;
+  /* ── v2 sections: reduce horizontal padding on mobile ─────────────────────── */
+  .v2-section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
   }
 
-  /* Team grid → single column */
-  .team-card-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* v2: Overview pillars → single column on mobile */
+  /* ── Overview section ───────────────────────────────────────────────────────── */
+  /* Pillars: 3-col grid → single column */
   .overview-pillars {
     grid-template-columns: 1fr !important;
   }
 
-  /* v2: Compact card CTAs → flow inline below identity on mobile */
+  /* ── Team cards ─────────────────────────────────────────────────────────────── */
+  /* Allow CTAs to wrap to a new row beneath photo + identity */
+  .compact-card {
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+  }
+
+  /* Identity fills its row naturally with photo */
+  .compact-card-identity {
+    flex: 1 !important;
+    min-width: 0;
+  }
+
+  /* CTAs: full-width new row, horizontal flow, left-aligned */
   .compact-card-ctas {
     flex-direction: row !important;
     flex-wrap: wrap !important;
     align-items: center !important;
     justify-content: flex-start !important;
+    width: 100% !important;
     margin-top: 8px !important;
+    padding-top: 10px !important;
+    border-top: 1px solid var(--oav-border) !important;
   }
 
-  /* Dashboard tile grid → single column */
+  /* ── v1 team grid (portrait cards) → single column ─────────────────────────── */
+  .team-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Dashboard tiles → single column ───────────────────────────────────────── */
   .dashboard-tile-grid {
     grid-template-columns: 1fr !important;
   }
 
-  /* Section inner padding */
+  /* ── Section inner padding (v1 generic) ─────────────────────────────────────── */
   .section-inner {
     padding-left: 16px !important;
     padding-right: 16px !important;
+  }
+
+  /* ── TeamSection + TrialsSection: add horizontal padding (no v2-section class) */
+  /* These sections have padding: 0 horizontal inline — add on mobile so cards   */
+  /* don't go edge-to-edge with zero breathing room                               */
+  .team-section-inner,
+  .trials-section-inner {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* ── TrialCard: stack button below content on mobile ───────────────────────── */
+  .trial-card {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* Express Interest button goes full-width when stacked */
+  .trial-card > div:last-child {
+    width: 100%;
+  }
+
+  .trial-card > div:last-child button {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ── Prevent images from overflowing ───────────────────────────────────────── */
+  img {
+    max-width: 100%;
   }
 }
