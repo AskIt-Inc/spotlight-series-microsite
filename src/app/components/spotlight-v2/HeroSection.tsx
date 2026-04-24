@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const FONT = 'gotham, sans-serif';
+const STTT_LOGO_URL = 'https://somebodytotalkto.com/sites/default/files/STTT%20Logo%20Basic.png';
 const UOC_LOGO_URL =
   'https://edge.sitecorecloud.io/unichicagomc-81nbqnb3/media/images/ucmc/landing-pages/ucm-logo-horizontal.png';
 
@@ -12,7 +13,7 @@ const UoCLogo = () => {
       style={{
         background: '#ffffff',
         borderRadius: '8px',
-        padding: '16px 24px',
+        padding: '6px 16px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -23,7 +24,7 @@ const UoCLogo = () => {
         <img
           src={UOC_LOGO_URL}
           alt="University of Chicago Medicine"
-          style={{ height: '56px', width: 'auto', display: 'block' }}
+          style={{ height: '24px', width: 'auto', display: 'block' }}
           onError={() => setImgFailed(true)}
         />
       ) : (
@@ -44,11 +45,8 @@ const UoCLogo = () => {
 };
 
 // ─── Series strip ─────────────────────────────────────────────────────────────
-// Client-approved format (2026-04-24):
-//   SomeBodyToTalkTo › Spotlight Series › Amyloidosis › University of Chicago · June 2026
-// Single breadcrumb line, bigger than before.
-const SEP = <span style={{ color: '#C0A0A4', fontWeight: 300, margin: '0 8px' }}>›</span>;
-
+// Desktop (client-approved): single breadcrumb line with › separators at 20px
+// Mobile: stacked two-row identity block via CSS class swap (series-strip-desktop / series-strip-mobile)
 const SeriesStrip: React.FC = () => (
   <div
     style={{
@@ -64,58 +62,89 @@ const SeriesStrip: React.FC = () => (
         margin: '0 auto',
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '16px',
       }}
     >
-      {/* Left accent bar — hidden on mobile */}
-      <div
-        className="series-strip-accent"
-        style={{
-          width: '4px',
-          alignSelf: 'stretch',
-          background: '#8B1F2D',
-          borderRadius: '2px',
-          flexShrink: 0,
-          marginRight: '18px',
-        }}
-      />
+      {/* Left: accent bar + text content */}
+      <div style={{ display: 'flex', alignItems: 'center', flex: 1, minWidth: 0, gap: '18px' }}>
 
-      {/* Single breadcrumb row */}
-      <div
-        className="series-strip-text"
-        style={{
-          fontSize: '20px',
-          fontFamily: FONT,
-          lineHeight: 1.3,
-          display: 'flex',
-          flexWrap: 'wrap' as const,
-          alignItems: 'center',
-        }}
-      >
-        {/* Tier 1 — brand owner, dominant */}
-        <span style={{ fontWeight: 700, color: '#8B1F2D', letterSpacing: '-0.3px' }}>
-          SomeBodyToTalkTo
-        </span>
+        {/* Left accent bar — hidden on mobile */}
+        <div
+          className="series-strip-accent"
+          style={{
+            width: '4px',
+            alignSelf: 'stretch',
+            background: '#8B1F2D',
+            borderRadius: '2px',
+            flexShrink: 0,
+          }}
+        />
 
-        {SEP}
+        {/* ── DESKTOP: single breadcrumb line ── */}
+        <div
+          className="series-strip-desktop"
+          style={{
+            fontFamily: FONT,
+            fontSize: '20px',
+            display: 'flex',
+            alignItems: 'baseline',
+            flexWrap: 'nowrap' as const,
+            gap: 0,
+          }}
+        >
+          <span style={{ fontWeight: 700, color: '#8B1F2D', letterSpacing: '-0.3px', whiteSpace: 'nowrap' as const }}>
+            SomeBodyToTalkTo
+          </span>
+          <span style={{ color: '#C0A0A4', fontWeight: 300, margin: '0 8px' }}>›</span>
+          <span style={{ fontWeight: 600, color: '#8B1F2D', whiteSpace: 'nowrap' as const }}>
+            Spotlight Series
+          </span>
+          <span style={{ color: '#C0A0A4', fontWeight: 300, margin: '0 8px' }}>›</span>
+          <span style={{ fontWeight: 400, color: '#111111', whiteSpace: 'nowrap' as const }}>
+            Amyloidosis
+          </span>
+          <span style={{ color: '#C0A0A4', fontWeight: 300, margin: '0 8px' }}>›</span>
+          <span style={{ fontWeight: 300, color: '#6B7280', whiteSpace: 'nowrap' as const }}>
+            University of Chicago · June 2026
+          </span>
+        </div>
 
-        {/* Tier 2 — series */}
-        <span style={{ fontWeight: 600, color: '#8B1F2D' }}>
-          Spotlight Series
-        </span>
+        {/* ── MOBILE: stacked two-row identity block ── */}
+        <div
+          className="series-strip-mobile"
+          style={{ fontFamily: FONT, display: 'none' }}
+        >
+          {/* Row 1: brand + series */}
+          <div style={{ lineHeight: 1.2 }}>
+            <span style={{ fontSize: '22px', fontWeight: 700, color: '#8B1F2D', letterSpacing: '-0.3px' }}>
+              SomeBodyToTalkTo
+            </span>
+            <span style={{ fontSize: '17px', fontWeight: 600, color: '#8B1F2D', marginLeft: '8px', opacity: 0.8 }}>
+              Spotlight Series
+            </span>
+          </div>
+          {/* Row 2: indication + institution/date */}
+          <div style={{ marginTop: '5px', lineHeight: 1.3 }}>
+            <span style={{ fontSize: '17px', fontWeight: 500, color: '#1a1a1a' }}>
+              Amyloidosis
+            </span>
+            <span style={{ fontSize: '15px', fontWeight: 300, color: '#6B7280', marginLeft: '8px' }}>
+              University of Chicago · June 2026
+            </span>
+          </div>
+        </div>
 
-        {SEP}
+      </div>
 
-        {/* Tier 3 — indication */}
-        <span style={{ fontWeight: 400, color: '#111111' }}>
-          Amyloidosis
-        </span>
-
-        {SEP}
-
-        {/* Tier 4 — institution + period, lighter */}
-        <span style={{ fontWeight: 300, color: '#6B7280' }}>
-          University of Chicago · June 2026
-        </span>
+      {/* Right: STTT logo — hidden on mobile */}
+      <div className="series-strip-logo" style={{ flexShrink: 0 }}>
+        <img
+          src={STTT_LOGO_URL}
+          alt="SomeBodyToTalkTo"
+          style={{ height: '71px', width: 'auto', display: 'block' }}
+          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+        />
       </div>
     </div>
   </div>
@@ -147,7 +176,7 @@ export const HeroSection: React.FC = () => (
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '48px',
+          gap: '16px',
         }}
       >
         {/* Left column */}
@@ -160,28 +189,31 @@ export const HeroSection: React.FC = () => (
             gap: '10px',
           }}
         >
-          {/* "featuring" connector — client: bolder, brighter white, larger */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-            }}
-          >
-            <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.4)' }} />
-            <span
-              style={{
-                fontSize: '14px',
-                fontWeight: 600,
-                color: '#ffffff',
-                fontFamily: FONT,
-                letterSpacing: '3px',
-                textTransform: 'uppercase' as const,
-              }}
-            >
+          {/* "featuring" label — prominent, unique treatment */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0',
+          }}>
+            {/* Left accent pip */}
+            <div style={{
+              width: '3px',
+              height: '22px',
+              background: 'rgba(255,255,255,0.5)',
+              borderRadius: '2px',
+              marginRight: '10px',
+              flexShrink: 0,
+            }} />
+            <span style={{
+              fontSize: '15px',
+              fontWeight: 300,
+              fontStyle: 'italic',
+              color: '#ffffff',
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              letterSpacing: '1px',
+            }}>
               featuring
             </span>
-            <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.4)' }} />
           </div>
 
           {/* H1 — featured institution */}
