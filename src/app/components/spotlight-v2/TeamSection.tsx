@@ -251,16 +251,16 @@ const CompactCard: React.FC<CompactCardProps> = ({ clinician }) => {
 
         {/* Identity — flex-grows to fill space */}
         <div className="compact-card-identity" style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: '15px', fontWeight: 700, color: '#000000', fontFamily: FONT }}>
+          <div style={{ fontSize: '16px', fontWeight: 700, color: '#000000', fontFamily: FONT }}>
             {clinician.name}
           </div>
           <div
             style={{
-              fontSize: '12px',
+              fontSize: '14px',
               fontWeight: 300,
               color: '#000000',
               fontFamily: FONT,
-              marginTop: '1px',
+              marginTop: '3px',
               whiteSpace: 'nowrap' as const,
               overflow: 'hidden',
               textOverflow: 'ellipsis',

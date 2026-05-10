@@ -71,14 +71,14 @@ const SeriesStrip: React.FC = () => (
         className="series-strip-logo-img"
         src={STTT_LOGO_URL}
         alt="SomeBodyToTalkTo"
-        style={{ height: '52px', width: 'auto', display: 'block', flexShrink: 0 }}
+        style={{ height: '42px', width: 'auto', display: 'block', flexShrink: 0 }}
         onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
       />
 
       {/* Vertical rule — hidden on mobile */}
       <div
         className="series-strip-divider"
-        style={{ width: '1px', height: '44px', background: '#DDD0D2', flexShrink: 0 }}
+        style={{ width: '1px', height: '42px', background: '#DDD0D2', flexShrink: 0 }}
       />
 
       {/* Program identity: disease-first name + date */}
@@ -86,11 +86,11 @@ const SeriesStrip: React.FC = () => (
         <div
           className="series-strip-title"
           style={{
-            fontSize: '18px',
+            fontSize: '28px',
             fontWeight: 700,
             color: '#8B1F2D',
             letterSpacing: '-0.2px',
-            lineHeight: 1.2,
+            lineHeight: 1.1,
           }}
         >
           Amyloidosis Program Spotlight Series
