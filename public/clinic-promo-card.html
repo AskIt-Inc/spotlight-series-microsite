@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amyloidosis Program Spotlight Series — Clinic Promo Card</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 
   /* ── Screen preview ── */
@@ -371,6 +372,7 @@
   <button id="btn-3x5" onclick="setSize('3x5')">3×5 inch</button>
   <span style="margin-left:8px; color:#888;">|</span>
   <button onclick="window.print()" style="background:#8B1F2D; color:#fff; border-color:#8B1F2D;">🖨 Print</button>
+  <button id="btn-download" onclick="downloadPNG()" style="background:#005EB8; color:#fff; border-color:#005EB8;">⬇ Download PNG</button>
 </div>
 
 <div class="print-note">
@@ -476,6 +478,35 @@
 </div>
 
 <script>
+  function downloadPNG() {
+    const btn = document.getElementById('btn-download');
+    const card = document.getElementById('the-card');
+    const size = card.classList.contains('size-3x5') ? '3x5' : '4x6';
+
+    btn.textContent = '⏳ Generating…';
+    btn.disabled = true;
+
+    html2canvas(card, {
+      scale: 3,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: '#ffffff',
+      logging: false,
+    }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = `amyloidosis-spotlight-promo-card-${size}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      btn.textContent = '⬇ Download PNG';
+      btn.disabled = false;
+    }).catch(err => {
+      console.error('PNG export failed:', err);
+      btn.textContent = '⬇ Download PNG';
+      btn.disabled = false;
+      alert('PNG export failed — try Print → Save as PDF instead.');
+    });
+  }
+
   function setSize(size) {
     const card = document.getElementById('the-card');
     const label = document.getElementById('size-label');
