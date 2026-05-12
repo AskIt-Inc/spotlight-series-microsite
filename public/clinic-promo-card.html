@@ -62,17 +62,6 @@ body {
 }
 .controls button.active { background: #8B1F2D; color: #fff; }
 
-.print-note {
-  font-size: 13px;
-  color: #666;
-  background: #fff8e1;
-  border: 1px solid #ffe082;
-  padding: 10px 16px;
-  border-radius: 6px;
-  max-width: 600px;
-  text-align: center;
-  line-height: 1.5;
-}
 
 .preview-wrapper {
   display: flex;
@@ -344,7 +333,6 @@ body {
     display: block !important;
   }
   .controls,
-  .print-note,
   .card-label { display: none !important; }
 
   .preview-wrapper {
@@ -405,11 +393,6 @@ body {
   <button onclick="handlePrint()" style="background:#8B1F2D; color:#fff; border-color:#8B1F2D;">🖨 Print</button>
   <button id="btn-download-png" onclick="downloadPNG()" style="background:#005EB8; color:#fff; border-color:#005EB8;">⬇ PNG</button>
   <button id="btn-download-pdf" onclick="downloadPDF()" style="background:#2E7D32; color:#fff; border-color:#2E7D32;">⬇ PDF</button>
-</div>
-
-<div class="print-note">
-  <strong>Before printing:</strong> Replace the QR code placeholder and subscribe URL below with the actual link once confirmed.
-  Print at actual size (no scaling). Use card stock 80–110 lb for clinic use.
 </div>
 
 <div class="preview-wrapper">
