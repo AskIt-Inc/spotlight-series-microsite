@@ -431,6 +431,11 @@ html, body {
     text-align: center;
   }
 
+  /* Fix justified text on mobile - force left align for readability */
+  ul, ol, p, li {
+    text-align: left !important;
+  }
+
   /* ── Prevent images from overflowing ───────────────────────────────────────── */
   img {
     max-width: 100%;
@@ -509,7 +514,13 @@ html, body {
   .director-profile-row {
     flex-direction: column !important;
     align-items: center !important;
-    text-align: center;
+    text-align: center !important;
+  }
+
+  /* Prevent justified/centered text in body content on mobile */
+  .director-profile-row ~ ul,
+  .director-profile-row ~ ul li {
+    text-align: left !important;
   }
 
   .director-profile-row img {

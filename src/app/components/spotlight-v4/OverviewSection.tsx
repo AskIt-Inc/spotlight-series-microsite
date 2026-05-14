@@ -232,19 +232,9 @@ export const OverviewSection: React.FC = () => (
               padding: '20px',
             }}
           >
-            <div style={{ fontSize: '24px', marginBottom: '8px' }}>{p.icon}</div>
-            <div
-              style={{
-                fontSize: '13px',
-                fontWeight: 700,
-                textTransform: 'uppercase' as const,
-                letterSpacing: '0.5px',
-                color: MAROON,
-                fontFamily: FONT,
-                marginBottom: '6px',
-              }}
-            >
-              {p.label}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+              <span style={{ fontSize: '20px', lineHeight: 1 }}>{p.icon}</span>
+              <span style={{ fontSize: '13px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.5px', color: MAROON, fontFamily: FONT }}>{p.label}</span>
             </div>
             <p
               style={{
