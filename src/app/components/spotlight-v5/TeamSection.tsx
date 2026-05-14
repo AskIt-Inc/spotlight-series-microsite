@@ -164,7 +164,7 @@ export const TeamSection: React.FC = () => {
         </div>
 
         {/* Tabs */}
-        <div style={{ display:'flex', gap:0, marginBottom:'24px', borderBottom:'2px solid #E5E7EB' }}>
+        <div className="team-tabs-bar" style={{ display:'flex', gap:0, marginBottom:'24px', borderBottom:'2px solid #E5E7EB' }}>
           <button
             onClick={() => setActiveTab('uchicago')}
             style={{
