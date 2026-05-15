@@ -11,14 +11,14 @@ const highlights = [
   'Steering committees: ActEarly, Cleopattra, Triton-CM, ATTRibute-CM, HELIOS-B',
   '117+ peer-reviewed publications including N Engl J Med (APOLLO-B, HELIOS-B)',
   'Keynote speaker: AHA, ACC, HFSA, ESC, ISA international meetings',
-  '10+ years with the Amyloidosis Support Group; Amyloidosis Research Consortium',
+  '10+ years of deep community advocacy and patient support initiatives',
   'Chief Medical Advisor, Amyloidosis Connect — patient education app',
   'Featured with Morgan Freeman in USA Today / AARP ATTR-CM awareness campaign (2026)',
 ];
 
 const expandedBio = [
   'Dr. Sarswat leads constant educational activities for patients, trainees, and physicians through HFSA, ACC, AHA, ESC, as well as third-party platforms including WebMD, PeerView, Reach MD, and MedScape.',
-  'She directs both the Amyloidosis Clinical Fellowship and the Amyloidosis Research Fellowship at UChicago, and leads fellowship organization efforts nationally through the Amyloidosis Research Consortium (ARC).',
+  'She directs both the Amyloidosis Clinical Fellowship and the Amyloidosis Research Fellowship at UChicago, and leads fellowship organization efforts at the national level.',
   'Dr. Sarswat serves on the ISA Education Committee and the Amyloidosis Forum Prognostic Factors Working Group. She delivers C-suite targeted educational talks on amyloidosis systems of care.',
   'She is the focal point and leader connecting two health systems — University of Chicago Medicine and Endeavor Health — making the Amyloid Center truly multi-institutional.',
   'Co-founder of Chicago Amyloidosis Rounds. Alliance for Patient Access Rare Disease Working Group member. Advisor to Mackenzie\'s Mission / Amyloidosis Speakers Bureau.',
@@ -219,7 +219,7 @@ export const OverviewSection: React.FC = () => (
             fontFamily: FONT,
           }}
         >
-          "The University of Chicago Multi-Institutional Amyloid Center of Excellence brings together world-class specialists across cardiology, hematology, neurology, nephrology, gastroenterology, genetics, and orthopedics — providing seamless, coordinated care for patients with all forms of amyloidosis. With active involvement in landmark clinical trials, cutting-edge AI-based diagnostics, and deep community advocacy through the Amyloidosis Support Group and Research Consortium, our program represents one of the most comprehensive amyloidosis centers in the Midwest."
+          "The University of Chicago Multi-Institutional Amyloid Center of Excellence brings together world-class specialists across cardiology, hematology, neurology, nephrology, gastroenterology, genetics, and orthopedics — providing seamless, coordinated care for patients with all forms of amyloidosis. Spanning multiple sites across two health systems, our program offers active involvement in landmark clinical trials, cutting-edge AI-based diagnostics, genetic testing and counseling, and deep community support — making it one of the most comprehensive amyloidosis centers in the Midwest."
         </p>
       </blockquote>
 
