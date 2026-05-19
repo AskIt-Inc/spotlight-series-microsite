@@ -27,11 +27,11 @@ const pillars = [
   },
 ];
 
-// Program description — sourced from cityofhope.org/clinical-program/amyloidosis
+// Program description — sourced from cityofhope.org/locations/los-angeles/los-angeles-clinical-programs/amyloidosis
 const PROGRAM_ABOUT_PARAGRAPHS = [
-  `Amyloidosis is a protein deposition disease in which proteins made in the body become abnormal, then misfold to form insoluble fibrils that deposit in and damage tissues and organs. Organs including the heart, kidney, liver, intestine, and peripheral nerves are most commonly involved. Light chain amyloidosis (AL) is caused by defective plasma cells in the bone marrow, similar to multiple myeloma. Transthyretin (TTR) amyloidosis occurs due to misfolding of TTR, a protein made in the liver, either through a genetic mutation (hATTR) or advanced age (wtATTR).`,
-  `City of Hope is committed to providing superb care for all patients with amyloidosis, as well as research to improve understanding of the disease and discovery of new treatments. Our team offers a full array of therapies for all forms of amyloidosis — including chemotherapy, immunotherapy, stem cell transplantation, protein stabilizers, and RNA silencing medications — alongside an array of clinical trials exploring next-generation approaches.`,
-  `As a founding member of the National Comprehensive Cancer Network and one of the few facilities designated a comprehensive cancer center by the National Cancer Institute, City of Hope's amyloidosis physicians help develop and improve evidence-based treatment guidelines nationwide. Our Department of Hematology & Hematopoietic Cell Transplantation physicians are leading experts who understand that a unique treatment plan tailored to the individual is critical to achieving the best possible outcomes.`,
+  `City of Hope® Cancer Center Duarte is a nationally recognized center of excellence in amyloidosis care, dedicated to providing patients across Southern California with access to leading-edge diagnostic and treatment options for AL, ATTR, and other forms of the disease.`,
+  `What sets the program apart: a dedicated outpatient amyloidosis clinic offering comprehensive care and a wide range of treatment options including stem cell transplantation and cellular therapy; state-of-the-art diagnostic imaging including echocardiography, cardiac MRI, and nuclear medicine scans; Congo Red staining (the gold standard for amyloid detection in tissue); and a partnership with Mayo Clinic for biopsy tissue subtyping using liquid chromatography.`,
+  `The multidisciplinary care team brings together hematologists, cardiologists, nephrologists, and neurologists — specialists who work together seamlessly for every patient. As a founding member of the National Comprehensive Cancer Network and a U.S. News & World Report Top 10 "Best Hospital" for cancer (2025–26), City of Hope is ideally placed to combine clinical excellence with leading-edge research.`,
 ];
 
 const AboutProgramAccordion: React.FC = () => {

@@ -50,7 +50,7 @@ export const clinicians: Clinician[] = [
     id: 1,
     name: 'Dr. Michael Rosenzweig',
     credentials: 'MD',
-    title: 'Associate Professor, Hematology & Hematopoietic Cell Transplantation · Director, COH Amyloidosis Program',
+    title: 'Chief, Division of Multiple Myeloma · Director, COH Amyloidosis Program · Hematology & HCT',
     specialty: 'Plasma Cell Disorders · Multiple Myeloma · Waldenström · POEMS · Amyloidosis Program Director',
     type: 'Medical Doctor',
     photo: 'https://cdn.cityofhope.org/media/bios/96842f25-1673-4f19-afc8-38c46b9d9560/default/rosenzweig-michael.jpg',
