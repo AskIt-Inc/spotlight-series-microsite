@@ -58,7 +58,7 @@ const TrialCard: React.FC<TrialCardProps> = ({ trial }) => {
               fontSize: '11px',
               fontWeight: 700,
               fontFamily: 'monospace',
-              color: '#9CA3AF',
+              color: '#4B5563',
               marginBottom: '4px',
               letterSpacing: '0.05em',
             }}
@@ -119,7 +119,7 @@ const TrialCard: React.FC<TrialCardProps> = ({ trial }) => {
           <div
             style={{
               fontSize: '12px',
-              color: '#9CA3AF',
+              color: '#4B5563',
               marginTop: '6px',
               fontFamily: FONT,
             }}
@@ -274,7 +274,7 @@ const TrialCard: React.FC<TrialCardProps> = ({ trial }) => {
             <p
               style={{
                 fontSize: '12px',
-                color: '#9CA3AF',
+                color: '#4B5563',
                 margin: '0 0 12px 0',
                 fontFamily: FONT,
               }}
@@ -310,7 +310,7 @@ const TrialCard: React.FC<TrialCardProps> = ({ trial }) => {
                 onClick={() => setFormState('idle')}
                 style={{
                   fontSize: '12px',
-                  color: '#9CA3AF',
+                  color: '#4B5563',
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
@@ -383,7 +383,7 @@ export const TrialsSection: React.FC = () => {
             <p
               style={{
                 fontSize: '14px',
-                color: '#9CA3AF',
+                color: '#4B5563',
                 marginTop: '8px',
                 marginBottom: 0,
                 fontFamily: FONT,
@@ -432,7 +432,7 @@ export const TrialsSection: React.FC = () => {
               <p
                 style={{
                   fontSize: '12px',
-                  color: '#9CA3AF',
+                  color: '#4B5563',
                   margin: '8px 0 0 0',
                   fontFamily: FONT,
                   fontStyle: 'italic',

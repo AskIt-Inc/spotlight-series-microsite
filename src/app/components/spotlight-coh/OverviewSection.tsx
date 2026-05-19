@@ -27,10 +27,12 @@ const pillars = [
   },
 ];
 
-// Placeholder copy — awaiting City of Hope to provide approved program description.
-const PROGRAM_ABOUT_PLACEHOLDER = `City of Hope's Amyloidosis Program brings together experts across hematology, cardiology, nephrology, and neurology to provide multidisciplinary care for patients with all forms of amyloidosis. The program spans multiple sites across Southern California and Arizona, making expert amyloidosis care accessible across the region.
-
-[City of Hope to provide: program history, team focus, goals, and what makes this program unique — including the significance of operating across multiple sites.]`;
+// Program description — sourced from cityofhope.org/clinical-program/amyloidosis
+const PROGRAM_ABOUT_PARAGRAPHS = [
+  `Amyloidosis is a protein deposition disease in which proteins made in the body become abnormal, then misfold to form insoluble fibrils that deposit in and damage tissues and organs. Organs including the heart, kidney, liver, intestine, and peripheral nerves are most commonly involved. Light chain amyloidosis (AL) is caused by defective plasma cells in the bone marrow, similar to multiple myeloma. Transthyretin (TTR) amyloidosis occurs due to misfolding of TTR, a protein made in the liver, either through a genetic mutation (hATTR) or advanced age (wtATTR).`,
+  `City of Hope is committed to providing superb care for all patients with amyloidosis, as well as research to improve understanding of the disease and discovery of new treatments. Our team offers a full array of therapies for all forms of amyloidosis — including chemotherapy, immunotherapy, stem cell transplantation, protein stabilizers, and RNA silencing medications — alongside an array of clinical trials exploring next-generation approaches.`,
+  `As a founding member of the National Comprehensive Cancer Network and one of the few facilities designated a comprehensive cancer center by the National Cancer Institute, City of Hope's amyloidosis physicians help develop and improve evidence-based treatment guidelines nationwide. Our Department of Hematology & Hematopoietic Cell Transplantation physicians are leading experts who understand that a unique treatment plan tailored to the individual is critical to achieving the best possible outcomes.`,
+];
 
 const AboutProgramAccordion: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -92,16 +94,15 @@ const AboutProgramAccordion: React.FC = () => {
             background: 'var(--oav-page-bg)',
           }}
         >
-          {PROGRAM_ABOUT_PLACEHOLDER.split('\n\n').map((para, i) => (
+          {PROGRAM_ABOUT_PARAGRAPHS.map((para, i) => (
             <p
               key={i}
               style={{
                 fontSize: '14px',
                 fontWeight: 300,
-                color: i === 1 ? '#9CA3AF' : '#000000',
-                fontStyle: i === 1 ? 'italic' : 'normal',
+                color: '#000000',
                 lineHeight: 1.7,
-                margin: i === 0 ? '0 0 14px 0' : 0,
+                margin: i < PROGRAM_ABOUT_PARAGRAPHS.length - 1 ? '0 0 14px 0' : 0,
                 fontFamily: FONT,
               }}
             >

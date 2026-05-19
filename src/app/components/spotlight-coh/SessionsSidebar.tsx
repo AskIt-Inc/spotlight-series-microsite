@@ -56,7 +56,7 @@ const SidebarSessionRow: React.FC<{ session: Session }> = ({ session }) => {
         <div
           style={{
             fontSize: '9px',
-            color: '#9CA3AF',
+            color: '#4B5563',
             lineHeight: 1,
             marginTop: '2px',
             fontFamily: FONT,
@@ -71,7 +71,7 @@ const SidebarSessionRow: React.FC<{ session: Session }> = ({ session }) => {
         <div
           style={{
             fontSize: '11px',
-            color: '#9CA3AF',
+            color: '#4B5563',
             marginBottom: '3px',
             fontFamily: FONT,
           }}
@@ -114,7 +114,7 @@ const SidebarSessionRow: React.FC<{ session: Session }> = ({ session }) => {
             fontFamily: FONT,
           }}
         >
-          <User size={11} color="#9CA3AF" style={{ flexShrink: 0 }} />
+          <User size={11} color="#4B5563" style={{ flexShrink: 0 }} />
           {session.presenter}
         </div>
 

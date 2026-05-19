@@ -48,7 +48,7 @@ export const HighlightsSection: React.FC = () => (
           fontFamily: FONT,
         }}
       >
-        Program Highlights
+        July Session Topics
       </div>
 
       {/* Highlight rows — compact */}
@@ -96,7 +96,7 @@ export const HighlightsSection: React.FC = () => (
       <p
         style={{
           fontSize: '12px',
-          color: '#9CA3AF',
+          color: '#4B5563',
           marginTop: '20px',
           marginBottom: 0,
           fontFamily: FONT,

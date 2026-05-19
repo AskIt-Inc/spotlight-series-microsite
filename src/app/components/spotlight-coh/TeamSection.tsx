@@ -111,7 +111,7 @@ const BioModal: React.FC<BioModalProps> = ({ clinician, onClose }) => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#9CA3AF',
+              color: '#4B5563',
             }}
             aria-label="Close"
           >
@@ -184,7 +184,7 @@ const BioModal: React.FC<BioModalProps> = ({ clinician, onClose }) => {
               }}
             >
               Schedule an appointment
-              <ExternalLink size={13} color="#9CA3AF" />
+              <ExternalLink size={13} color="#4B5563" />
             </a>
           </div>
         </div>
@@ -427,7 +427,7 @@ export const TeamSection: React.FC = () => (
         <p
           style={{
             fontSize: '14px',
-            color: '#9CA3AF',
+            color: '#4B5563',
             marginTop: '6px',
             marginBottom: 0,
             fontFamily: FONT,
@@ -461,7 +461,7 @@ export const TeamSection: React.FC = () => (
         <p
           style={{
             fontSize: '14px',
-            color: '#9CA3AF',
+            color: '#4B5563',
             margin: '0 0 20px 0',
             fontFamily: FONT,
           }}
