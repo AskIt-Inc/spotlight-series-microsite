@@ -241,7 +241,7 @@ export const endeavorProviders: ClinicianV4[] = [
     name: 'Dr. Nitasha Sarswat',
     credentials: 'MD',
     title: 'Associate Professor of Medicine · Director, Multi-Institutional Amyloid Center of Excellence',
-    specialty: 'Cardiology · Cardiac Amyloidosis',
+    specialty: 'Advanced Heart Failure · Cardiac Transplantation · Cardiac Amyloidosis',
     specialtyGroup: 'cardiology',
     site: 'both',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2025-10/Nitasha%20Sarswat_circle.png',
