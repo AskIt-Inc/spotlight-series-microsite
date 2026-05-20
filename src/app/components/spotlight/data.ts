@@ -97,7 +97,7 @@ export const clinicians: Clinician[] = [
     title: 'Assistant Professor of Neurology',
     specialty: 'Neuromuscular Medicine · EMG · Amyloidosis',
     type: 'Medical Doctor',
-    photo: 'lara-carlos-bio-261x347.png',
+    photo: `${import.meta.env.BASE_URL}lara-carlos-bio-261x347.png`,
     bio: 'Dr. Carlos Lara is an assistant professor of neurology who specializes in the diagnosis and treatment of a broad spectrum of neurological conditions, including amyloidosis, muscular dystrophies, myopathies, myasthenia gravis, hereditary neuropathies, chronic inflammatory demyelinating polyneuropathy, and neuromuscular medicine. He is recognized for his work with neuromuscular ultrasound and electromyography (EMG), which help diagnose and manage complex neuromuscular disorders. His approach is rooted in understanding the complexities of the nervous system and delivering personalized, compassionate treatment.',
     hasVideo: false,
     hasSession: false,

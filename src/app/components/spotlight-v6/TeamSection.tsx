@@ -79,13 +79,6 @@ const PresenterModal: React.FC<{ c: ClinicianV4; onClose: () => void }> = ({ c, 
 };
 
 // ─── Compact Card ───────────────────────────────────────────────────────────
-// Returns the first sentence of a bio string, capped at 120 characters with ellipsis.
-function bioSnippet(bio: string | undefined): string {
-  if (!bio) return '';
-  const firstSentence = bio.split(/(?<=[.!?])\s+/)[0] ?? bio;
-  return firstSentence.length > 120 ? firstSentence.slice(0, 120).trimEnd() + '…' : firstSentence;
-}
-
 const CompactCard: React.FC<{ c: ClinicianV4 }> = ({ c }) => {
   const [imgErr, setImgErr] = useState(false);
   const [open, setOpen] = useState(false);
@@ -101,7 +94,7 @@ const CompactCard: React.FC<{ c: ClinicianV4 }> = ({ c }) => {
         </div>
         <div style={{ flex:1, minWidth:0 }}>
           <div style={{ fontSize:'16px', fontWeight:700, color:'#000', fontFamily:FONT }}>{c.name}</div>
-          <div style={{ fontSize:'13px', fontWeight:300, color:'#4B5563', fontFamily:FONT, marginTop:'3px', lineHeight:1.4 }}>{bioSnippet(c.bio)}</div>
+          <div style={{ fontSize:'14px', fontWeight:300, color:'#000', fontFamily:FONT, marginTop:'3px', whiteSpace:'nowrap' as const, overflow:'hidden', textOverflow:'ellipsis' }}>{c.specialty}</div>
           {c.hasSession && (
             <div style={{ fontSize:'12px', color:MAROON, fontFamily:FONT, marginTop:'4px', display:'flex', alignItems:'center', gap:'4px' }}>
               <Calendar size={11} color={MAROON} />
