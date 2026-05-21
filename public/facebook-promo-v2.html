@@ -790,13 +790,15 @@ function populateCard(row) {
   // Presenter identity
   const presenter  = (row.presenters || [])[0] || {};
   const presNameEl = document.getElementById('presenter-name');
-  const suffix     = presenter.name_suffix || '';
-  const baseName   = [presenter.first_name, presenter.last_name].filter(Boolean).join(' ');
-  presNameEl.innerHTML = suffix
-    ? escapeHtml(baseName) + ',<br>' + escapeHtml(suffix)
-    : escapeHtml(baseName || presenter.display_name || '');
+  const titleVal   = (presenter.title || '').trim();
+  const baseName   = [presenter.first_name, presenter.last_name].filter(Boolean).join(' ') || presenter.display_name || '';
+  const suffix     = (presenter.name_suffix || '').trim();
+  // field_taxo_title -> prefix before full name; name_suffix -> suffix after full name
+  const prefixed   = titleVal ? titleVal + ' ' + baseName : baseName;
+  const displayName = suffix ? prefixed + ', ' + suffix : prefixed;
+  presNameEl.innerHTML = escapeHtml(displayName);
 
-  document.getElementById('presenter-cred').textContent = presenter.title || '';
+  document.getElementById('presenter-cred').textContent = '';
   document.getElementById('presenter-role').textContent = (row.partner || '').trim();
 
   // Date
