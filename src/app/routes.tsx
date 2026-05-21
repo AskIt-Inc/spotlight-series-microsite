@@ -7,6 +7,7 @@ import { SpotlightPageV2 } from './pages/SpotlightPageV2';
 import { SpotlightPageV3 } from './pages/SpotlightPageV3';
 import { SpotlightPageV4 } from './pages/SpotlightPageV4';
 import { SpotlightPageV5 } from './pages/SpotlightPageV5';
+import { SpotlightPageV6 } from './pages/SpotlightPageV6';
 import { SpotlightPageCOH } from './pages/SpotlightPageCOH';
 
 // Placeholder for routes not yet built
@@ -71,6 +72,12 @@ export const router = createHashRouter([
     path: '/spotlight-v5',
     Component: SpotlightLayout,
     children: [{ index: true, Component: SpotlightPageV5 }],
+  },
+  // ── Public microsite shell — v6 (provider cards: bio snippet on face) ──
+  {
+    path: '/spotlight-v6',
+    Component: SpotlightLayout,
+    children: [{ index: true, Component: SpotlightPageV6 }],
   },
   // ── City of Hope microsite — versioned clean URL ──
   {
