@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { User, Calendar, Download } from 'lucide-react';
-import { sessions, type Session } from './data';
+import { User, Calendar, Download, AlertCircle, Loader } from 'lucide-react';
+import { useSpotlightSessions, type NormalizedSession } from './useSpotlightSessions';
 
 const FONT = 'gotham, sans-serif';
 
-const SidebarSessionRow: React.FC<{ session: Session }> = ({ session }) => {
+const SidebarSessionRow: React.FC<{ session: NormalizedSession }> = ({ session }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -104,8 +104,11 @@ const SidebarSessionRow: React.FC<{ session: Session }> = ({ session }) => {
           {session.presenter}
         </div>
 
-        {session.status === 'upcoming' && (
-          <button
+        {session.status === 'upcoming' && session.regUrl && (
+          <a
+            href={session.regUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             style={{
@@ -123,11 +126,12 @@ const SidebarSessionRow: React.FC<{ session: Session }> = ({ session }) => {
               gap: '5px',
               fontFamily: FONT,
               transition: 'background 0.15s ease',
+              textDecoration: 'none',
             }}
           >
             <Calendar size={11} color="#ffffff" style={{ flexShrink: 0 }} />
             Register
-          </button>
+          </a>
         )}
 
         {session.status === 'completed' && (
@@ -154,12 +158,7 @@ const SidebarSessionRow: React.FC<{ session: Session }> = ({ session }) => {
 };
 
 export const SessionsSidebar: React.FC = () => {
-  const sorted = [...sessions].sort((a, b) => {
-    const monthOrder: Record<string, number> = { MAR: 0, APR: 1, MAY: 2, JUN: 3, JUL: 4, AUG: 5, TBD: 99 };
-    const mo = (monthOrder[a.month] ?? 99) - (monthOrder[b.month] ?? 99);
-    if (mo !== 0) return mo;
-    return parseInt(a.day) - parseInt(b.day);
-  });
+  const { sessions, loading, error } = useSpotlightSessions();
 
   return (
     <div
@@ -191,9 +190,21 @@ export const SessionsSidebar: React.FC = () => {
         </div>
       </div>
 
-      {/* Session rows — scrollable on mobile only via CSS class */}
+      {/* Session rows — live from STTT API */}
       <div className="sessions-list">
-        {sorted.map((session) => (
+        {loading && (
+          <div style={{ padding: '24px 16px', display: 'flex', alignItems: 'center', gap: '10px', color: '#6B7280', fontFamily: FONT, fontSize: '13px' }}>
+            <Loader size={14} style={{ animation: 'spin 1s linear infinite' }} />
+            Loading sessions…
+          </div>
+        )}
+        {!loading && error && (
+          <div style={{ padding: '12px 16px', display: 'flex', alignItems: 'flex-start', gap: '8px', background: '#FFFBEB', borderBottom: '1px solid #FDE68A' }}>
+            <AlertCircle size={14} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
+            <span style={{ fontSize: '12px', color: '#92400E', fontFamily: FONT }}>{error}</span>
+          </div>
+        )}
+        {!loading && sessions.map((session) => (
           <SidebarSessionRow key={session.id} session={session} />
         ))}
       </div>
