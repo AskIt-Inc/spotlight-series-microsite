@@ -26,6 +26,9 @@ export interface SupportStaff {
   name: string;
   role: string;
   site: 'main' | 'endeavor';
+  department?: string;
+  email?: string;
+  phone?: string;
 }
 
 export interface TrialV4 {
@@ -188,11 +191,11 @@ export const mainSiteProviders: ClinicianV4[] = [
     site: 'main',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-04/concepcion-beatrice-bio-261x347.webp',
     bio: 'Beatrice Concepcion is a transplant nephrologist specializing in kidney and pancreas transplantation. She provides personalized, compassionate care focused on immunosuppressive management, post-transplant complications, and improving long-term quality of life for patients with complex medical needs, including amyloidosis-related kidney disease.',
-    hasSession: true,
-    sessionDate: 'TBD (Swing)',
-    sessionTitle: 'When to Consider Kidney Transplantation in Patients with Amyloidosis',
-    sessionDescription: 'In this session, Dr. Concepcion will present the current indications and considerations when evaluating patients with Amyloidosis for kidney transplantation — what is currently known.',
-    hasVideo: true,
+    hasSession: false,
+    sessionDate: '',
+    sessionTitle: '',
+    sessionDescription: '',
+    hasVideo: false,
     appointmentUrl: 'https://www.uchicagomedicine.org',
   },
   // ── GASTROENTEROLOGY ──
@@ -241,7 +244,7 @@ export const endeavorProviders: ClinicianV4[] = [
     name: 'Dr. Nitasha Sarswat',
     credentials: 'MD',
     title: 'Associate Professor of Medicine · Director, Multi-Institutional Amyloid Center of Excellence',
-    specialty: 'Cardiology · Cardiac Amyloidosis',
+    specialty: 'Advanced Heart Failure · Cardiac Transplantation · Cardiac Amyloidosis',
     specialtyGroup: 'cardiology',
     site: 'both',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2025-10/Nitasha%20Sarswat_circle.png',
@@ -354,9 +357,28 @@ export const endeavorProviders: ClinicianV4[] = [
 
 // ─── Support Staff ──────────────────────────────────────────────────────────
 export const supportStaff: SupportStaff[] = [
-  { id: 1, name: 'Elizabeth Hushka', role: 'Advanced Heart Failure NP', site: 'main' },
-  { id: 2, name: 'Samantha de Santiago', role: 'Advanced Heart Failure / Amyloid RN', site: 'main' },
-  { id: 3, name: 'Tracey Silverstein', role: 'Amyloid Navigator RN · Trial Coordinator', site: 'endeavor' },
+  {
+    id: 1,
+    name: 'Elizabeth Hushka',
+    role: 'Advanced Practice Nurse — Advanced Heart Failure',
+    department: 'Advanced Heart Failure & Cardiac Transplant',
+    site: 'main',
+  },
+  {
+    id: 2,
+    name: 'Samantha de Santiago',
+    role: 'Registered Nurse — Advanced Heart Failure / Amyloidosis',
+    department: 'Advanced Heart Failure & Cardiac Transplant',
+    site: 'main',
+  },
+  // TODO: Add UChicago research coordinator / research nurse coordinator once confirmed by UChicago Medicine
+  {
+    id: 3,
+    name: 'Tracey Silverstein',
+    role: 'Amyloid Navigator RN · Clinical Trial Coordinator',
+    department: 'Amyloidosis Program',
+    site: 'endeavor',
+  },
 ];
 
 // ─── Clinical Trials ────────────────────────────────────────────────────────

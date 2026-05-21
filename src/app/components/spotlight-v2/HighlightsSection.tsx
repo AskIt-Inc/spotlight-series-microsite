@@ -8,8 +8,8 @@ const FONT = 'gotham, sans-serif';
 
 const highlights = [
   {
-    label: 'One Program, Nine Specialists',
-    text: 'Nine specialists across cardiology, hematology, neurology, nephrology, GI, orthopaedics, and cardiovascular genetics — one of the Midwest\'s most comprehensive amyloidosis teams.*',
+    label: 'One Program, 7 Specialties',
+    text: 'Seven specialties — cardiology, hematology, neurology, nephrology, gastroenterology, orthopedics, and cardiovascular genetics — one of the Midwest\'s most comprehensive amyloidosis teams.*',
   },
   {
     label: 'Advanced Cardiac Imaging',

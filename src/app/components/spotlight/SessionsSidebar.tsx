@@ -206,8 +206,12 @@ export const SessionsSidebar: React.FC = () => {
           background: 'var(--oav-page-bg)',
         }}
       >
+        {/* TODO: Replace href with actual PDF URL once provided by Stacey/David */}
         <a
-          href="#"
+          href="https://somebodytotalkto.com/sites/default/files/spotlight/uchicago-amyloidosis-spotlight-calendar-june-2026.pdf"
+          download="UChicago-Amyloidosis-Spotlight-June-2026.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             fontSize: '13px',
             color: '#005EB8',

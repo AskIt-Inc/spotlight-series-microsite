@@ -29,7 +29,7 @@ const pillars = [
   {
     icon: '🫀',
     label: 'Multidisciplinary Care',
-    text: 'Nine specialties across cardiology, hematology, neurology, nephrology, GI, orthopaedics & genetics — one coordinated care plan.',
+    text: 'Seven specialties across cardiology, hematology, neurology, nephrology, gastroenterology, orthopedics, and cardiovascular genetics — one coordinated care plan.',
   },
   {
     icon: '🧬',

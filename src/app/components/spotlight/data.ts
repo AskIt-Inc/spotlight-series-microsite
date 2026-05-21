@@ -127,9 +127,9 @@ export const clinicians: Clinician[] = [
     type: 'Medical Doctor',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-04/concepcion-beatrice-bio-261x347.webp',
     bio: 'Dr. Beatrice Concepcion is a professor of medicine in nephrology who specializes in transplant nephrology. She provides comprehensive, compassionate care to patients who have received kidney and pancreas transplants. Dr. Concepcion personalizes care with expertise in managing immunosuppressive medication, controlling post-transplant complications, and improving quality of life.',
-    hasVideo: true,
-    hasSession: true,
-    sessionLabel: 'Register: When to Consider Kidney Transplantation in Patients with Amyloidosis',
+    hasVideo: false,
+    hasSession: false,
+    sessionLabel: '',
     appointmentUrl: 'https://www.uchicagomedicine.org',
   },
   {
