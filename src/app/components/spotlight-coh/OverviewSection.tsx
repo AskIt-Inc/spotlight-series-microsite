@@ -12,18 +12,18 @@ const FONT = 'gotham, sans-serif';
 const pillars = [
   {
     icon: '01',
-    label: 'AL Amyloidosis Treatment',
-    text: 'Second-line treatment options for relapsed/refractory disease, including City of Hope experience with venetoclax and bispecific antibodies.',
+    label: 'Dedicated Outpatient Program',
+    text: 'A comprehensive outpatient amyloidosis clinic offering the full spectrum of care — from definitive diagnosis through stem cell transplantation and cellular therapy — for AL, ATTR, and all other forms of the disease.',
   },
   {
     icon: '02',
-    label: 'Earlier Diagnosis',
-    text: 'A dedicated July session on the SAVE trial and how new findings may support earlier diagnosis of AL amyloidosis.',
+    label: 'Advanced Diagnostics',
+    text: 'State-of-the-art imaging (echocardiography, cardiac MRI, nuclear medicine), Congo Red staining (the gold standard for amyloid detection), and a unique partnership with Mayo Clinic for definitive protein subtyping via liquid chromatography.',
   },
   {
     icon: '03',
-    label: 'Cardiac Amyloidosis + SCT',
-    text: 'Current AI diagnostic tools for cardiac amyloidosis and the evolving role of upfront autologous SCT in primary AL amyloidosis.',
+    label: 'Research & Clinical Trials',
+    text: 'Access to breakthrough clinical trials and novel therapeutics — including CAR-T therapy, bispecific antibodies, and targeted inhibitors — led by a team that has driven pivotal advances in AL and TTR amyloidosis research.',
   },
 ];
 
@@ -143,8 +143,7 @@ export const OverviewSection: React.FC = () => (
             fontFamily: FONT,
           }}
         >
-          "A July spotlight series featuring City of Hope presenters on AL amyloidosis treatment,
-          earlier diagnosis, cardiac amyloidosis diagnostics, and upfront autologous SCT."
+          "City of Hope is a nationally recognized center of excellence in amyloidosis — bringing together hematologists, cardiologists, nephrologists, and neurologists under one dedicated multidisciplinary program to provide every patient with the right diagnosis and the best available treatment."
         </p>
       </blockquote>
 

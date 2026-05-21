@@ -2,26 +2,26 @@ import React from 'react';
 
 const FONT = 'gotham, sans-serif';
 
-// ─── Highlights v2 ────────────────────────────────────────────────────────────
-// Client feedback: "reduce by 75%" — AI-generated text is too verbose.
-// Each entry is trimmed to 1–2 tight sentences.
+// ─── Highlights — Programme accomplishments ───────────────────────────────────
+// Source: cityofhope.org/locations/los-angeles/los-angeles-clinical-programs/amyloidosis
+//         + Dr. Rosenzweig profile awards & publications
 
 const highlights = [
   {
-    label: 'Second-Line AL Amyloidosis Treatment',
-    text: 'Two sessions focus on relapsed/refractory AL amyloidosis, including the City of Hope experience with venetoclax and bispecific antibodies.',
+    label: 'NCCN Founding Member',
+    text: 'City of Hope is a founding member of the National Comprehensive Cancer Network (NCCN), helping define national treatment standards for amyloidosis and cancer care that benefit patients nationwide.',
   },
   {
-    label: 'SAVE Trial and Earlier Diagnosis',
-    text: 'Dr. Lisa Lee reviews the SAVE trial and how results may point toward earlier AL amyloidosis diagnosis.',
+    label: 'U.S. News Top 10 Cancer Hospital (2025–26)',
+    text: 'Ranked among America\'s top 10 "Best Hospitals" for cancer by U.S. News & World Report, reflecting institutional excellence in oncology and rare disease care.',
   },
   {
-    label: 'AI Tools for Cardiac Amyloidosis',
-    text: 'Dr. Faizi Jamal covers current and evolving AI tools for cardiac amyloidosis diagnosis.',
+    label: 'Pioneering Amyloidosis Research',
+    text: 'The COH team has led transformational research in amyloidosis diagnosis and treatment — including participation in the pivotal ANDROMEDA trial and receipt of the 2021 IDEA (Improving Detection of AL Amyloidosis) Grant.',
   },
   {
-    label: 'Upfront Autologous SCT',
-    text: 'Dr. Tibor Kovacsovics discusses the past, present, and future role of upfront autologous SCT for primary AL amyloidosis.',
+    label: 'Mayo Clinic Diagnostic Alliance',
+    text: 'A unique partnership with Mayo Clinic ensures definitive amyloid protein subtyping via liquid chromatography evaluation — the gold standard for differentiating AL from ATTR and directing the correct treatment path for every patient.',
   },
 ];
 
@@ -48,7 +48,7 @@ export const HighlightsSection: React.FC = () => (
           fontFamily: FONT,
         }}
       >
-        July Session Topics
+        Programme Highlights
       </div>
 
       {/* Highlight rows — compact */}
@@ -92,7 +92,7 @@ export const HighlightsSection: React.FC = () => (
         ))}
       </div>
 
-      {/* Asterisk disclaimer */}
+      {/* Source note */}
       <p
         style={{
           fontSize: '12px',
@@ -103,7 +103,7 @@ export const HighlightsSection: React.FC = () => (
           fontStyle: 'italic',
         }}
       >
-        * Session summaries are based on the supplied City of Hope July session document. Presenter intros and final publication copy still require client approval.
+        Source: City of Hope Amyloidosis Program — cityofhope.org
       </p>
     </div>
   </section>
