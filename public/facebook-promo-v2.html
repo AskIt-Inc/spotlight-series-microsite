@@ -631,6 +631,7 @@ const btnSearch     = document.getElementById('btn-search');
 const searchStatus  = document.getElementById('search-status');
 const searchResults = document.getElementById('search-results');
 let debounce = null;
+let searchToken = 0;   // incremented on every new search; stale responses check before rendering
 
 function setStatus(msg, isError = false) {
   searchStatus.textContent = msg;
@@ -644,12 +645,14 @@ function clearResults() {
 async function runSearch() {
   const q = searchInput.value.trim();
   if (q.length < 2) { setStatus('Type at least 2 characters.'); clearResults(); return; }
+  const token = ++searchToken;   // claim this request slot
   setStatus('Searching…'); clearResults();
   btnSearch.disabled = true;
   try {
     const res  = await fetch(`${SEARCH_API}?q=${encodeURIComponent(q)}`, { headers: { Accept: 'application/json' } });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const json = await res.json();
+    if (token !== searchToken) return;   // a newer request already claimed the slot — discard
     const rows = json.data || [];
     if (!rows.length) { setStatus('No upcoming sessions found.'); return; }
     if (rows.length === 1) { populateCard(rows[0]); setStatus('Session loaded.'); return; }
@@ -663,9 +666,10 @@ async function runSearch() {
       searchResults.appendChild(item);
     });
   } catch(e) {
+    if (token !== searchToken) return;   // stale error — swallow silently
     setStatus('Search failed: ' + e.message, true);
   } finally {
-    btnSearch.disabled = false;
+    if (token === searchToken) btnSearch.disabled = false;
   }
 }
 
@@ -673,7 +677,10 @@ searchInput.addEventListener('input', () => {
   clearTimeout(debounce);
   debounce = setTimeout(() => { if (searchInput.value.trim().length >= 3) runSearch(); }, 400);
 });
-btnSearch.addEventListener('click', runSearch);
+btnSearch.addEventListener('click', () => {
+  clearTimeout(debounce);   // prevent debounce from firing a duplicate after button click
+  runSearch();
+});
 searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
 
 function escapeHtml(str) {
