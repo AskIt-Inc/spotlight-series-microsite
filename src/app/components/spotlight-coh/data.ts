@@ -58,7 +58,7 @@ export const clinicians: Clinician[] = [
     hasVideo: false,
     hasSession: true,
     sessionLabel: 'Register: Second-line options for relapsed/refractory disease — the COH experience with venetoclax for AL amyloidosis',
-    appointmentUrl: CITY_OF_HOPE_URL,
+    appointmentUrl: 'https://www.cityofhope.org/patients/find-a-doctor/michael-rosenzweig',
     appointmentLabel: 'Schedule with Dr. Rosenzweig',
   },
   {
@@ -73,7 +73,7 @@ export const clinicians: Clinician[] = [
     hasVideo: false,
     hasSession: true,
     sessionLabel: 'Register: SAVE trial — towards earlier diagnosis of AL amyloidosis',
-    appointmentUrl: CITY_OF_HOPE_URL,
+    appointmentUrl: 'https://www.cityofhope.org/patients/find-a-doctor/lisa-lee',
     appointmentLabel: 'Schedule with Dr. Lisa Lee',
   },
   {
@@ -88,7 +88,7 @@ export const clinicians: Clinician[] = [
     hasVideo: false,
     hasSession: true,
     sessionLabel: 'Register: Second-line treatment options — the COH experience with bispecific antibodies for AL amyloidosis',
-    appointmentUrl: CITY_OF_HOPE_URL,
+    appointmentUrl: 'https://www.cityofhope.org/patients/find-a-doctor/sarah-lee',
     appointmentLabel: 'Schedule with Dr. Sarah Lee',
   },
   {
@@ -103,7 +103,7 @@ export const clinicians: Clinician[] = [
     hasVideo: false,
     hasSession: true,
     sessionLabel: 'Register: AI tools for the diagnosis of cardiac amyloidosis',
-    appointmentUrl: CITY_OF_HOPE_URL,
+    appointmentUrl: 'https://www.cityofhope.org/patients/find-a-doctor/faizi-jamal',
     appointmentLabel: 'Schedule with Dr. Jamal',
   },
   {
@@ -118,7 +118,7 @@ export const clinicians: Clinician[] = [
     hasVideo: false,
     hasSession: true,
     sessionLabel: 'Register: The role of upfront autologous SCT for primary AL amyloidosis',
-    appointmentUrl: CITY_OF_HOPE_URL,
+    appointmentUrl: 'https://www.cityofhope.org/patients/find-a-doctor/tibor-kovacsovics',
     appointmentLabel: 'Schedule with Dr. Kovacsovics',
   },
 ];
@@ -171,7 +171,36 @@ export const supportStaff: SupportStaff[] = [
   },
 ];
 
-export const trials: Trial[] = [];
+export const trials: Trial[] = [
+  {
+    id: 'NCT06097832',
+    title: 'Study of NXC-201 CAR-T in Patients With Light Chain (AL) Amyloidosis (NEXICART-2)',
+    status: 'Recruiting',
+    description: 'Open-label Phase 1b dose escalation/expansion study of NXC-201 CAR-T cell therapy in patients with relapsed or refractory light chain (AL) amyloidosis. City of Hope (Duarte) is an active enrolling site.',
+    phase: 'Phase 1b',
+  },
+  {
+    id: 'NCT06292780',
+    title: 'Linvoseltamab in Adults With Relapsed or Refractory Systemic Light Chain Amyloidosis (LINKER-AL2)',
+    status: 'Recruiting',
+    description: 'Phase 1/2 study of linvoseltamab (an anti-BCMA bispecific antibody by Regeneron) in adults with AL amyloidosis that has returned or failed prior therapies. City of Hope (Duarte) is actively enrolling.',
+    phase: 'Phase 1/2',
+  },
+  {
+    id: 'NCT06022939',
+    title: 'Dara-VCD Chemotherapy ± Stem Cell Transplant for Newly Diagnosed AL Amyloidosis',
+    status: 'Recruiting',
+    description: 'Phase 3 randomized trial (SWOG Cancer Research Network) comparing daratumumab + cyclophosphamide + bortezomib + dexamethasone (Dara-VCD) with or without autologous stem cell transplantation in newly diagnosed AL amyloidosis.',
+    phase: 'Phase 3',
+  },
+  {
+    id: 'NCT05652335',
+    title: 'Study of JNJ-79635322 in Relapsed/Refractory Multiple Myeloma or Previously Treated AL Amyloidosis',
+    status: 'Recruiting',
+    description: 'Phase 1 first-in-human dose escalation study of JNJ-79635322, a novel trispecific antibody (Janssen), in participants with relapsed or refractory multiple myeloma or previously treated amyloid light-chain (AL) amyloidosis. City of Hope (Duarte) is an active site.',
+    phase: 'Phase 1',
+  },
+];
 
 export const sessions: Session[] = [
   {
