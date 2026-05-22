@@ -7,11 +7,21 @@
     <script>
       (() => {
         const targetOrigin = 'https://uchicago.oneamyloidosisvoice.com';
+        const cityOfHopeOrigin = 'https://cityofhope.oneamyloidosisvoice.com';
+        const isGitHubPagesProject =
+          window.location.hostname === 'askit-inc.github.io' &&
+          window.location.pathname.startsWith('/spotlight-series-microsite');
+        const isCohLegacyRoute = window.location.hash === '#/spotlight/coh/v1';
 
         if (
-          window.location.hostname === 'askit-inc.github.io' &&
-          window.location.pathname.startsWith('/spotlight-series-microsite')
+          isCohLegacyRoute &&
+          (isGitHubPagesProject || window.location.origin === targetOrigin)
         ) {
+          window.location.replace(`${cityOfHopeOrigin}/`);
+          return;
+        }
+
+        if (isGitHubPagesProject) {
           window.location.replace(`${targetOrigin}/`);
           return;
         }
