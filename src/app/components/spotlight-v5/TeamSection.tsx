@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useSpotlightSessions, buildRegUrlMap } from '../spotlight/useSpotlightSessions';
 import { Calendar, X, Users } from 'lucide-react';
 import {
   mainSiteProviders,
@@ -78,8 +79,22 @@ const PresenterModal: React.FC<{ c: ClinicianV4; onClose: () => void }> = ({ c, 
   );
 };
 
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+const CRED_TOKENS = new Set(['md', 'phd', 'ms', 'cgc', 'do', 'jr', 'sr', 'ii', 'iii', 'iv']);
+
+/** Extract lowercase last name from a clinician name like "Dr. Jeremy A. Slivnick" → "slivnick" */
+function extractLastName(fullName: string): string {
+  const clean = fullName.replace(/^dr\.?\s+/i, '').trim();
+  const words = clean.split(/\s+/);
+  for (let i = words.length - 1; i >= 0; i--) {
+    const w = words[i].replace(/[.,]/g, '').toLowerCase();
+    if (!CRED_TOKENS.has(w)) return w;
+  }
+  return clean.toLowerCase();
+}
+
 // ─── Compact Card ───────────────────────────────────────────────────────────
-const CompactCard: React.FC<{ c: ClinicianV4 }> = ({ c }) => {
+const CompactCard: React.FC<{ c: ClinicianV4; regUrl?: string }> = ({ c, regUrl }) => {
   const [imgErr, setImgErr] = useState(false);
   const [open, setOpen] = useState(false);
   return (
@@ -104,10 +119,15 @@ const CompactCard: React.FC<{ c: ClinicianV4 }> = ({ c }) => {
         </div>
         <div style={{ flexShrink:0, display:'flex', flexDirection:'column' as const, gap:'6px', alignItems:'flex-end' }}>
           <button onClick={() => setOpen(true)} style={{ fontSize:'12px', fontWeight:300, color:'#005EB8', background:'none', border:'none', padding:0, cursor:'pointer', fontFamily:FONT, textDecoration:'underline' }}>View more</button>
-          {c.hasSession && (
-            <button style={{ display:'inline-flex', alignItems:'center', gap:'5px', padding:'5px 12px', background:MAROON, color:'#fff', border:'none', borderRadius:'4px', fontSize:'12px', fontWeight:300, cursor:'pointer', fontFamily:FONT }}>
+          {c.hasSession && regUrl && (
+            <a
+              href={regUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display:'inline-flex', alignItems:'center', gap:'5px', padding:'5px 12px', background:MAROON, color:'#fff', borderRadius:'4px', fontSize:'12px', fontWeight:300, cursor:'pointer', fontFamily:FONT, textDecoration:'none' }}
+            >
               <Calendar size={11} color="#fff" /> Register
-            </button>
+            </a>
           )}
         </div>
       </div>
@@ -169,6 +189,8 @@ const StaffList: React.FC<{ site: 'main' | 'endeavor' }> = ({ site }) => {
 // ─── Team Section v5 — Tabbed Interface ─────────────────────────────────────
 export const TeamSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'uchicago' | 'endeavor'>('uchicago');
+  const { sessions } = useSpotlightSessions();
+  const regUrlMap = useMemo(() => buildRegUrlMap(sessions), [sessions]);
 
   return (
     <section style={{ background:'var(--oav-page-bg)', padding:'48px 0' }}>
@@ -235,7 +257,7 @@ export const TeamSection: React.FC = () => {
               University of Chicago Medicine — the multidisciplinary team behind the Amyloidosis Program
             </p>
             <div style={{ display:'flex', flexDirection:'column' as const, gap:'12px' }}>
-              {mainSiteProviders.map(c => <CompactCard key={c.id} c={c} />)}
+              {mainSiteProviders.map(c => <CompactCard key={c.id} c={c} regUrl={regUrlMap.get(extractLastName(c.name))} />)}
             </div>
             <StaffList site="main" />
           </div>
@@ -247,7 +269,7 @@ export const TeamSection: React.FC = () => {
               Endeavor Health — Amyloidosis Program team members
             </p>
             <div style={{ display:'flex', flexDirection:'column' as const, gap:'12px' }}>
-              {endeavorProviders.map(c => c.bio ? <CompactCard key={c.id} c={c} /> : <PlaceholderCard key={c.id} c={c} />)}
+              {endeavorProviders.map(c => c.bio ? <CompactCard key={c.id} c={c} regUrl={regUrlMap.get(extractLastName(c.name))} /> : <PlaceholderCard key={c.id} c={c} />)}
             </div>
             <StaffList site="endeavor" />
           </div>

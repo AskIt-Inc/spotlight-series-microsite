@@ -40,14 +40,28 @@ export interface ApiSession {
 // ─── Normalised shape used by SessionsSidebar ─────────────────────────────────
 export interface NormalizedSession {
   id: string;
-  month: string;       // 3-letter uppercase: "JUN"
-  day: string;         // day of month: "3"
-  dayOfWeek: string;   // 3-letter: "Tue"
-  time: string;        // "5:00 PM CT"
+  month: string;           // 3-letter uppercase: "JUN"
+  day: string;             // day of month: "3"
+  dayOfWeek: string;       // 3-letter: "Tue"
+  time: string;            // "5:00 PM CT"
   title: string;
   presenter: string;
+  presenterLastName: string; // trimmed lowercase — used for team card reg-link lookup
   status: 'upcoming' | 'completed';
   regUrl: string;
+}
+
+// ─── Reg-URL lookup map ───────────────────────────────────────────────────────
+// Returns Map<presenterLastName (lowercase, trimmed) → regUrl>
+// Use this in TeamSection to wire Register buttons without adding regUrl to data.ts.
+export function buildRegUrlMap(sessions: NormalizedSession[]): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const s of sessions) {
+    if (s.presenterLastName && s.regUrl) {
+      map.set(s.presenterLastName, s.regUrl);
+    }
+  }
+  return map;
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -73,8 +87,10 @@ function normalise(s: ApiSession): NormalizedSession {
   const time   = ctTime ? `${ctTime} CT` : s.time;
 
   // Presenter: first presenter display_name, collapse double-spaces
-  const presenterRaw = s.presenters?.[0]?.display_name ?? '';
-  const presenter    = presenterRaw.replace(/\s{2,}/g, ' ').trim();
+  const presenterRaw  = s.presenters?.[0]?.display_name ?? '';
+  const presenter     = presenterRaw.replace(/\s{2,}/g, ' ').trim();
+  // Last name from the structured field — trim whitespace (some entries have leading space)
+  const presenterLastName = (s.presenters?.[0]?.last_name ?? '').trim().toLowerCase();
 
   // Status: completed if timestamp is in the past
   const status: 'upcoming' | 'completed' =
@@ -88,6 +104,7 @@ function normalise(s: ApiSession): NormalizedSession {
     time,
     title:     s.title,
     presenter,
+    presenterLastName,
     status,
     regUrl:    s.reg_link?.url ?? '',
   };
@@ -123,15 +140,16 @@ export function useSpotlightSessions() {
         console.error('[useSpotlightSessions] fetch failed:', err);
         // Fallback: convert static sessions to NormalizedSession shape
         const fallback: NormalizedSession[] = staticSessions.map(s => ({
-          id:        String(s.id),
-          month:     s.month,
-          day:       s.day,
-          dayOfWeek: s.dayOfWeek,
-          time:      s.time,
-          title:     s.title,
-          presenter: s.presenter,
-          status:    s.status === 'cancelled' ? 'completed' : s.status,
-          regUrl:    '',
+          id:                String(s.id),
+          month:             s.month,
+          day:               s.day,
+          dayOfWeek:         s.dayOfWeek,
+          time:              s.time,
+          title:             s.title,
+          presenter:         s.presenter,
+          presenterLastName: '',
+          status:            s.status === 'cancelled' ? 'completed' : s.status,
+          regUrl:            '',
         }));
         setSessions(fallback);
         setError('Live schedule unavailable — showing cached data.');
