@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useSpotlightSessions, buildRegUrlMap } from '../spotlight/useSpotlightSessions';
+import { useSpotlightProfiles } from '../spotlight/useSpotlightProfiles';
 import { Calendar, X, Users } from 'lucide-react';
 import {
   mainSiteProviders,
@@ -21,7 +22,7 @@ function getInitials(name: string): string {
 }
 
 // ─── Presenter Detail Modal ─────────────────────────────────────────────────
-const PresenterModal: React.FC<{ c: ClinicianV4; onClose: () => void }> = ({ c, onClose }) => {
+const PresenterModal: React.FC<{ c: ClinicianV4; onClose: () => void; bio?: string }> = ({ c, onClose, bio }) => {
   const [imgErr, setImgErr] = useState(false);
   return (
     <div
@@ -45,7 +46,7 @@ const PresenterModal: React.FC<{ c: ClinicianV4; onClose: () => void }> = ({ c, 
           <button onClick={onClose} style={{ background:'none', border:'none', cursor:'pointer', padding:'4px', color:'#4B5563' }} aria-label="Close"><X size={20}/></button>
         </div>
         <div style={{ padding:'24px' }}>
-          {c.bio && <p style={{ fontSize:'15px', fontWeight:300, color:'#000', lineHeight:1.7, margin:'0 0 16px 0', fontFamily:FONT, whiteSpace:'pre-line' as const }}>{c.bio}</p>}
+          {(bio || c.bio) && <p style={{ fontSize:'15px', fontWeight:300, color:'#000', lineHeight:1.7, margin:'0 0 16px 0', fontFamily:FONT, whiteSpace:'pre-line' as const }}>{bio || c.bio}</p>}
           {c.education && (
             <details style={{ marginBottom:'16px' }}>
               <summary style={{ fontSize:'13px', fontWeight:700, color:MAROON, fontFamily:FONT, cursor:'pointer', marginBottom:'6px' }}>
@@ -94,7 +95,7 @@ function extractLastName(fullName: string): string {
 }
 
 // ─── Compact Card ───────────────────────────────────────────────────────────
-const CompactCard: React.FC<{ c: ClinicianV4; regUrl?: string }> = ({ c, regUrl }) => {
+const CompactCard: React.FC<{ c: ClinicianV4; regUrl?: string; bio?: string }> = ({ c, regUrl, bio }) => {
   const [imgErr, setImgErr] = useState(false);
   const [open, setOpen] = useState(false);
   return (
@@ -131,7 +132,7 @@ const CompactCard: React.FC<{ c: ClinicianV4; regUrl?: string }> = ({ c, regUrl 
           )}
         </div>
       </div>
-      {open && <PresenterModal c={c} onClose={() => setOpen(false)} />}
+      {open && <PresenterModal c={c} onClose={() => setOpen(false)} bio={bio} />}
     </>
   );
 };
@@ -191,6 +192,7 @@ export const TeamSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'uchicago' | 'endeavor'>('uchicago');
   const { sessions } = useSpotlightSessions();
   const regUrlMap = useMemo(() => buildRegUrlMap(sessions), [sessions]);
+  const { bioMap } = useSpotlightProfiles();
 
   return (
     <section style={{ background:'var(--oav-page-bg)', padding:'48px 0' }}>
@@ -257,7 +259,7 @@ export const TeamSection: React.FC = () => {
               University of Chicago Medicine — the multidisciplinary team behind the Amyloidosis Program
             </p>
             <div style={{ display:'flex', flexDirection:'column' as const, gap:'12px' }}>
-              {mainSiteProviders.map(c => <CompactCard key={c.id} c={c} regUrl={regUrlMap.get(extractLastName(c.name))} />)}
+              {mainSiteProviders.map(c => <CompactCard key={c.id} c={c} regUrl={regUrlMap.get(extractLastName(c.name))} bio={bioMap.get(extractLastName(c.name))?.bio} />)}
             </div>
             <StaffList site="main" />
           </div>
@@ -269,7 +271,7 @@ export const TeamSection: React.FC = () => {
               Endeavor Health — Amyloidosis Program team members
             </p>
             <div style={{ display:'flex', flexDirection:'column' as const, gap:'12px' }}>
-              {endeavorProviders.map(c => c.bio ? <CompactCard key={c.id} c={c} regUrl={regUrlMap.get(extractLastName(c.name))} /> : <PlaceholderCard key={c.id} c={c} />)}
+              {endeavorProviders.map(c => c.bio ? <CompactCard key={c.id} c={c} regUrl={regUrlMap.get(extractLastName(c.name))} bio={bioMap.get(extractLastName(c.name))?.bio} /> : <PlaceholderCard key={c.id} c={c} />)}
             </div>
             <StaffList site="endeavor" />
           </div>
