@@ -5,7 +5,10 @@ const STTT_LOGO_URL = 'https://somebodytotalkto.com/sites/default/files/STTT%20L
 const UOC_LOGO_URL =
   'https://edge.sitecorecloud.io/unichicagomc-81nbqnb3/media/images/ucmc/landing-pages/ucm-logo-horizontal.png';
 
-// ─── UoC logo — white pill, bigger to avoid squishing ────────────────────────
+// Endeavor Health logo — served from public/
+const ENDEAVOR_LOGO_URL = '/endeavor-logo.png';
+
+// ─── UoC logo (unchanged from original) ──────────────────────────────────────
 const UoCLogo = () => {
   const [imgFailed, setImgFailed] = useState(false);
   return (
@@ -45,9 +48,47 @@ const UoCLogo = () => {
   );
 };
 
+// ─── Endeavor Health logo ─────────────────────────────────────────────────────
+const EndeavorLogo = () => {
+  const [imgFailed, setImgFailed] = useState(false);
+  return (
+    <div
+      style={{
+        background: '#ffffff',
+        borderRadius: '10px',
+        padding: '10px 24px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minWidth: '240px',
+      }}
+    >
+      {!imgFailed ? (
+        <img
+          src={ENDEAVOR_LOGO_URL}
+          alt="Endeavor Health"
+          style={{ height: '38px', width: 'auto', display: 'block' }}
+          onError={() => setImgFailed(true)}
+        />
+      ) : (
+        <span
+          style={{
+            fontSize: '15px',
+            fontWeight: 700,
+            color: '#004B87',
+            fontFamily: FONT,
+            textAlign: 'center' as const,
+            lineHeight: 1.3,
+          }}
+        >
+          Endeavor Health
+        </span>
+      )}
+    </div>
+  );
+};
+
 // ─── Series strip (upper band — 40% of total hero height) ────────────────────
-// Format: [STTT logo] | [Amyloidosis Program Spotlight Series] [June 2026]
-// Disease-first naming enables: "Sickle Cell Disease Program Spotlight Series" etc.
 const SeriesStrip: React.FC = () => (
   <div
     style={{
@@ -161,25 +202,47 @@ export const HeroSection: React.FC = () => (
             </span>
           </div>
 
-          {/* H1 */}
-          <h1
-            className="hero-h1"
-            style={{
-              fontSize: '34px',
-              fontWeight: 700,
-              color: '#ffffff',
-              margin: 0,
-              lineHeight: 1.2,
-              fontFamily: FONT,
-            }}
-          >
-            University of Chicago Amyloidosis Program
-          </h1>
+          {/* H1 — Option B: institutions + gold bar + program name */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+            <h1
+              className="hero-h1"
+              style={{
+                fontSize: '37px',
+                fontWeight: 700,
+                color: '#ffffff',
+                margin: '0 0 10px 0',
+                lineHeight: 1.2,
+                fontFamily: FONT,
+              }}
+            >
+              University of Chicago &amp; Endeavor Health
+            </h1>
+            {/* Gold accent bar */}
+            <div style={{ width: '45px', height: '3px', background: '#FFE8A3', borderRadius: '2px', marginBottom: '10px' }} />
+            {/* Program name */}
+            <p
+              style={{
+                fontSize: '1.5rem',
+                fontWeight: 700,
+                color: 'rgba(255,255,255,0.85)',
+                margin: 0,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase' as const,
+                fontFamily: FONT,
+              }}
+            >
+              Amyloidosis Program
+            </p>
+          </div>
         </div>
 
-        {/* Right column — UoC logo */}
-        <div className="hero-logo-col" style={{ flexShrink: 0 }}>
+        {/* Right column — stacked logos */}
+        <div
+          className="hero-logo-col"
+          style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}
+        >
           <UoCLogo />
+          <EndeavorLogo />
         </div>
       </div>
     </section>
