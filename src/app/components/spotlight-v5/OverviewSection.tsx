@@ -226,6 +226,61 @@ export const OverviewSection: React.FC = () => (
       {/* Meet the Director */}
       <DirectorSection />
 
+      {/* Fellowship Training — featured banner */}
+      <div
+        style={{
+          background: 'linear-gradient(135deg, #8B1F2D 0%, #6E1A24 100%)',
+          borderRadius: '8px',
+          padding: '20px 24px',
+          marginBottom: '16px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '20px',
+        }}
+      >
+        <span style={{ fontSize: '36px', flexShrink: 0, lineHeight: 1 }}>🎓</span>
+        <div>
+          <div
+            style={{
+              fontSize: '11px',
+              fontWeight: 700,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase' as const,
+              color: '#FFE8A3',
+              fontFamily: FONT,
+              marginBottom: '6px',
+            }}
+          >
+            Featured Program Strength
+          </div>
+          <div
+            style={{
+              fontSize: '17px',
+              fontWeight: 700,
+              color: '#ffffff',
+              fontFamily: FONT,
+              marginBottom: '6px',
+            }}
+          >
+            Fellowship Training
+          </div>
+          <p
+            style={{
+              fontSize: '14px',
+              color: 'rgba(255,255,255,0.85)',
+              fontFamily: FONT,
+              lineHeight: 1.6,
+              margin: 0,
+            }}
+          >
+            Training the next generation of amyloidosis experts — Dr. Sarswat directs both the
+            Amyloidosis Clinical Fellowship and Amyloidosis Research Fellowship at UChicago,
+            developing future specialists in cardiac and systemic amyloidosis clinical management
+            and research.
+          </p>
+        </div>
+      </div>
+
       {/* Three pillars */}
       <div
         className="overview-pillars"
