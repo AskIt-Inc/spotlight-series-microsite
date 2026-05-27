@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ExternalLink, FlaskConical, CheckCircle, AlertCircle } from 'lucide-react';
 import { trialsV4, type TrialV4 } from './data';
+import { useFormProtection } from '../../hooks/useFormProtection';
 
 const FONT = 'gotham, sans-serif';
 const MAROON = '#8B1F2D';
@@ -30,6 +31,7 @@ const TrialRow: React.FC<{ t: TrialV4 }> = ({ t }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const { honeypotProps, getProtectionPayload, isSuspicious, resetTimer } = useFormProtection();
 
   const inputStyle = (fieldName: string) => ({
     width: '100%',
@@ -58,7 +60,7 @@ const TrialRow: React.FC<{ t: TrialV4 }> = ({ t }) => {
           <span style={{ background: sc.bg, color: sc.text, border: `1px solid ${sc.border}`, borderRadius: '9999px', padding: '2px 10px', fontSize: '11px', fontWeight: 500, fontFamily: FONT, whiteSpace: 'nowrap' as const }}>{t.status}</span>
           {canExpress && formState === 'idle' && (
             <button
-              onClick={() => setFormState('open')}
+              onClick={() => { setFormState('open'); resetTimer(); }}
               style={{
                 padding: '5px 12px',
                 background: 'transparent',
@@ -94,6 +96,8 @@ const TrialRow: React.FC<{ t: TrialV4 }> = ({ t }) => {
             e.preventDefault();
             setFormState('submitting');
             try {
+              // Silently fake-succeed for suspected bots — no endpoint hit.
+              if (isSuspicious()) { setFormState('submitted'); return; }
               const res = await fetch(ENDPOINT, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -105,6 +109,7 @@ const TrialRow: React.FC<{ t: TrialV4 }> = ({ t }) => {
                   interest_type: 'clinical_trial',
                   trial_name: t.name,
                   microsite_url: MICROSITE_URL,
+                  ...getProtectionPayload(),
                 }),
               });
               if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -130,6 +135,10 @@ const TrialRow: React.FC<{ t: TrialV4 }> = ({ t }) => {
                 Phone number (optional)
               </label>
               <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} onFocus={() => setFocusedField('phone')} onBlur={() => setFocusedField(null)} placeholder="+1 (555) 000-0000" style={inputStyle('phone')} />
+            </div>
+            {/* Honeypot — hidden from real users, traps bots */}
+            <div style={{ position: 'absolute', left: '-9999px', overflow: 'hidden', opacity: 0, height: 0 }} aria-hidden="true">
+              <input {...honeypotProps} />
             </div>
             <p style={{ fontSize: '12px', color: '#4B5563', margin: '0 0 12px 0', fontFamily: FONT }}>
               Your details will only be shared with the University of Chicago research team.
