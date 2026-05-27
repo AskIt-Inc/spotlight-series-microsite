@@ -16,7 +16,10 @@ function getStatusStyle(status: string) {
   return statusColor[status] ?? statusColor.Pending;
 }
 
-type FormState = 'idle' | 'open' | 'submitted';
+const ENDPOINT = 'https://somebodytotalkto.com/api/spotlight/research-interest';
+const MICROSITE_URL = 'https://uchicago.oneamyloidosisvoice.com';
+
+type FormState = 'idle' | 'open' | 'submitting' | 'submitted' | 'error';
 
 // ─── Trial Row with Express Interest ────────────────────────────────────────
 const TrialRow: React.FC<{ t: TrialV4 }> = ({ t }) => {
@@ -87,7 +90,29 @@ const TrialRow: React.FC<{ t: TrialV4 }> = ({ t }) => {
           <p style={{ fontSize: '14px', color: '#000000', marginBottom: '16px', marginTop: '4px', fontFamily: FONT, lineHeight: 1.5 }}>
             A member of the research team will be in touch.
           </p>
-          <form onSubmit={(e) => { e.preventDefault(); setFormState('submitted'); }}>
+          <form onSubmit={async (e) => {
+            e.preventDefault();
+            setFormState('submitting');
+            try {
+              const res = await fetch(ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  submitter_email: email,
+                  submitter_name: name,
+                  submitter_phone: phone || undefined,
+                  indication: 'Amyloidosis',
+                  interest_type: 'clinical_trial',
+                  trial_name: t.name,
+                  microsite_url: MICROSITE_URL,
+                }),
+              });
+              if (!res.ok) throw new Error(`HTTP ${res.status}`);
+              setFormState('submitted');
+            } catch {
+              setFormState('error');
+            }
+          }}>
             <div style={{ marginBottom: '12px' }}>
               <label style={{ fontSize: '14px', fontWeight: 300, color: '#000000', fontFamily: FONT, display: 'block' }}>
                 Full name <span style={{ color: '#dc2626' }}>*</span>
@@ -111,11 +136,12 @@ const TrialRow: React.FC<{ t: TrialV4 }> = ({ t }) => {
             </p>
             <button
               type="submit"
-              style={{ width: '100%', padding: '10px 16px', background: MAROON, color: '#ffffff', border: 'none', borderRadius: '4px', fontSize: '14px', fontWeight: 400, cursor: 'pointer', fontFamily: FONT, transition: 'background 0.15s ease' }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = '#6E1A24'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = MAROON; }}
+              disabled={formState === 'submitting'}
+              style={{ width: '100%', padding: '10px 16px', background: formState === 'submitting' ? '#B05060' : MAROON, color: '#ffffff', border: 'none', borderRadius: '4px', fontSize: '14px', fontWeight: 400, cursor: formState === 'submitting' ? 'not-allowed' : 'pointer', fontFamily: FONT, transition: 'background 0.15s ease' }}
+              onMouseEnter={(e) => { if (formState !== 'submitting') (e.currentTarget as HTMLButtonElement).style.background = '#6E1A24'; }}
+              onMouseLeave={(e) => { if (formState !== 'submitting') (e.currentTarget as HTMLButtonElement).style.background = MAROON; }}
             >
-              Submit Interest
+              {formState === 'submitting' ? 'Submitting…' : 'Submit Interest'}
             </button>
             <div style={{ textAlign: 'center' as const, marginTop: '8px' }}>
               <button type="button" onClick={() => setFormState('idle')} style={{ fontSize: '12px', color: '#4B5563', background: 'none', border: 'none', cursor: 'pointer', fontFamily: FONT }}>
@@ -133,6 +159,18 @@ const TrialRow: React.FC<{ t: TrialV4 }> = ({ t }) => {
           <span style={{ fontSize: '14px', fontWeight: 300, color: '#000000', fontFamily: FONT }}>
             Thank you. The research team will be in touch soon.
           </span>
+        </div>
+      )}
+
+      {/* Error state */}
+      {formState === 'error' && (
+        <div style={{ background: '#FBF0F1', border: '1px solid #F0D0D3', borderTop: 'none', padding: '16px 24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <AlertCircle size={20} color={MAROON} style={{ flexShrink: 0 }} />
+          <span style={{ fontSize: '14px', fontWeight: 300, color: '#000000', fontFamily: FONT }}>
+            Something went wrong. Please try again or email{' '}
+            <a href="mailto:info@somebodytotalkto.com" style={{ color: MAROON }}>info@somebodytotalkto.com</a>.
+          </span>
+          <button onClick={() => setFormState('open')} style={{ marginLeft: 'auto', fontSize: '12px', color: MAROON, background: 'none', border: 'none', cursor: 'pointer', fontFamily: FONT, flexShrink: 0 }}>Try again</button>
         </div>
       )}
     </div>
