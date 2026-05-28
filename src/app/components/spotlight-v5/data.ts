@@ -375,7 +375,7 @@ export const supportStaff: SupportStaff[] = [
   {
     id: 3,
     name: 'Tracey Silverstein',
-    role: 'Amyloid Navigator RN · Clinical Trial Coordinator',
+    role: 'Amyloid Navigator and Clinical Trial Coordinator',
     department: 'Amyloidosis Program',
     site: 'endeavor',
   },
