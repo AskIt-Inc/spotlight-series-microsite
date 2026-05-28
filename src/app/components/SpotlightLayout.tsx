@@ -9,12 +9,11 @@ const NAV_LINKS = [
   { label: 'Home',                url: 'https://oneamyloidosisvoice.com/',                          dropdown: false },
   { label: 'Patient Care Center', url: 'https://pcc.oneamyloidosisvoice.com/',                      dropdown: false },
   { label: 'Clinical Trials',     url: 'https://oneamyloidosisvoice.com/clinical-trials',           dropdown: false },
-  { label: 'Providers',           url: 'https://oneamyloidosisvoice.com/providers',                 dropdown: true  },
-  { label: 'Community Center',    url: 'https://oneamyloidosisvoice.com/community-center',          dropdown: true  },
-  { label: 'News',                url: 'https://oneamyloidosisvoice.com/news',                      dropdown: true  },
-  { label: 'Trusted Resources',   url: 'https://oneamyloidosisvoice.com/trusted-resources',         dropdown: true  },
+  { label: 'Providers',           url: 'https://oneamyloidosisvoice.com/providers',                 dropdown: false },
+  { label: 'Community Center',    url: 'https://oneamyloidosisvoice.com/community-center',          dropdown: false },
+  { label: 'News',                url: 'https://oneamyloidosisvoice.com/news',                      dropdown: false },
+  { label: 'Trusted Resources',   url: 'https://oneamyloidosisvoice.com/trusted-resources',         dropdown: false },
   { label: 'Event Calendar',      url: 'https://oneamyloidosisvoice.com/event-calendar',            dropdown: false },
-  { label: 'Login',               url: 'https://oneamyloidosisvoice.com/user/login',                dropdown: false },
 ];
 
 const FOOTER_LINKS = [
@@ -199,7 +198,7 @@ const NavItem: React.FC<{ label: string; url: string; dropdown: boolean }> = ({ 
         alignItems: 'center',
         gap: '3px',
         padding: '8px 10px',
-        fontSize: '12px',
+        fontSize: '13px',
         fontWeight: 300,
         color: hovered ? '#8B1F2D' : '#000000',
         textDecoration: 'none',
