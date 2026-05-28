@@ -6,29 +6,29 @@ const FONT = 'gotham, sans-serif';
 
 // ─── Nav config ────────────────────────────────────────────────────────────────
 const NAV_LINKS = [
-  { label: 'Home',                  url: 'https://oneamyloidosisvoice.com/',                          dropdown: false },
-  { label: 'News',                  url: 'https://oneamyloidosisvoice.com/news',                      dropdown: false },
-  { label: 'Education',             url: 'https://oneamyloidosisvoice.com/education',                 dropdown: false },
-  { label: 'Community Center',      url: 'https://oneamyloidosisvoice.com/community-center',          dropdown: true  },
-  { label: 'Trusted Resources',     url: 'https://oneamyloidosisvoice.com/trusted-resources',         dropdown: true  },
-  { label: 'About',                 url: 'https://oneamyloidosisvoice.com/about-oneamyloidosisvoice', dropdown: false },
-  { label: 'Contact',               url: 'https://oneamyloidosisvoice.com/contact',                   dropdown: false },
-  { label: 'All Upcoming Sessions', url: 'https://oneamyloidosisvoice.com/all-upcoming-sessions',     dropdown: false },
+  { label: 'Home',                url: 'https://oneamyloidosisvoice.com/',                          dropdown: false },
+  { label: 'Patient Care Center', url: 'https://pcc.oneamyloidosisvoice.com/',                      dropdown: false },
+  { label: 'Clinical Trials',     url: 'https://oneamyloidosisvoice.com/clinical-trials',           dropdown: false },
+  { label: 'Providers',           url: 'https://oneamyloidosisvoice.com/providers',                 dropdown: true  },
+  { label: 'Community Center',    url: 'https://oneamyloidosisvoice.com/community-center',          dropdown: true  },
+  { label: 'News',                url: 'https://oneamyloidosisvoice.com/news',                      dropdown: true  },
+  { label: 'Trusted Resources',   url: 'https://oneamyloidosisvoice.com/trusted-resources',         dropdown: true  },
+  { label: 'Event Calendar',      url: 'https://oneamyloidosisvoice.com/event-calendar',            dropdown: false },
+  { label: 'Login',               url: 'https://oneamyloidosisvoice.com/user/login',                dropdown: false },
 ];
 
 const FOOTER_LINKS = [
-  { label: 'Home',                url: 'https://oneamyloidosisvoice.com/' },
-  { label: 'News',                url: 'https://oneamyloidosisvoice.com/news' },
-  { label: 'Education',          url: 'https://oneamyloidosisvoice.com/education' },
-  { label: 'Community Center',   url: 'https://oneamyloidosisvoice.com/community-center' },
-  { label: 'Trusted Resources',  url: 'https://oneamyloidosisvoice.com/trusted-resources' },
-  { label: 'About',              url: 'https://oneamyloidosisvoice.com/about-oneamyloidosisvoice' },
-  { label: 'Contact',            url: 'https://oneamyloidosisvoice.com/contact' },
-  { label: 'Privacy Policy',     url: 'https://oneamyloidosisvoice.com/privacy-policy' },
-  { label: 'Terms of Use',       url: 'https://oneamyloidosisvoice.com/terms-of-use' },
-  { label: 'Cookie Policy',      url: 'https://oneamyloidosisvoice.com/cookie-policy' },
-  { label: 'Patient Care Center',url: 'https://pcc.oneamyloidosisvoice.com/' },
-  { label: 'SomebodyToTalkTo.com', url: 'https://somebodytotalkto.com/' },
+  { label: 'Home',             url: 'https://oneamyloidosisvoice.com/' },
+  { label: 'About us',         url: 'https://oneamyloidosisvoice.com/about-oneamyloidosisvoice' },
+  { label: 'Video',            url: 'https://oneamyloidosisvoice.com/video' },
+  { label: 'Galleries',        url: 'https://oneamyloidosisvoice.com/galleries' },
+  { label: 'Contact',          url: 'https://oneamyloidosisvoice.com/contact' },
+  { label: 'Login',            url: 'https://oneamyloidosisvoice.com/user/login' },
+  { label: 'Privacy Policy',   url: 'https://oneamyloidosisvoice.com/privacy-policy' },
+  { label: 'Privacy Reminder', url: 'https://oneamyloidosisvoice.com/privacy-reminder' },
+  { label: 'Terms of use',     url: 'https://oneamyloidosisvoice.com/terms-of-use' },
+  { label: 'FAQ',              url: 'https://oneamyloidosisvoice.com/faq' },
+  { label: 'Code of Conduct',  url: 'https://oneamyloidosisvoice.com/code-of-conduct' },
 ];
 
 // ─── OAV Logo ─────────────────────────────────────────────────────────────────
