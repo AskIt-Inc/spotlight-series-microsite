@@ -237,31 +237,6 @@ const SOCIAL_LINKS = [
   { name: 'pinterest', color: '#E60023', bg: '#FFE8EA' },
 ];
 
-// ─── Sponsor logo with img fallback ───────────────────────────────────────────
-const SponsorLogo: React.FC<{ name: string; img: string; height?: number }> = ({ name, img, height = 32 }) => {
-  const [failed, setFailed] = useState(false);
-  return failed ? (
-    <span style={{ fontSize: '13px', fontWeight: 700, color: '#444444', fontFamily: FONT }}>{name}</span>
-  ) : (
-    <img
-      src={img}
-      alt={name}
-      style={{ height: `${height}px`, width: 'auto', maxWidth: '160px', display: 'block', objectFit: 'contain' }}
-      onError={() => setFailed(true)}
-    />
-  );
-};
-
-// Pharma sponsor logos
-const SPONSORS = [
-  { name: 'Alnylam',            img: 'https://oneamyloidosisvoice.com/sites/default/files/logos/alnylam.jpg' },
-  { name: 'Pfizer Rare Disease', img: 'https://oneamyloidosisvoice.com/sites/default/files/logos/Pfizer_1.png' },
-  { name: 'BRIDGEBIO',           img: 'https://oneamyloidosisvoice.com/sites/default/files/logos/bb-orange-logo.png' },
-  { name: 'attralus',            img: 'https://oneamyloidosisvoice.com/sites/default/files/logos/attralus_1.png' },
-  { name: 'prothena',            img: 'https://oneamyloidosisvoice.com/sites/default/files/logos/prothena.png' },
-];
-
-const AMYLOIDOSIS_FOUNDATION_LOGO = 'https://oneamyloidosisvoice.com/sites/default/files/logos/amyloidosis-foundation.png';
 
 const SiteFooter: React.FC = () => (
   <footer
@@ -353,51 +328,6 @@ const SiteFooter: React.FC = () => (
       </div>
     </div>
 
-    {/* ── Pharma sponsor logos ── */}
-    <div
-      style={{
-        padding: '20px 24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '0',
-        flexWrap: 'wrap' as const,
-        borderBottom: '1px solid #E5E5E5',
-      }}
-    >
-      {SPONSORS.map((s, i) => (
-        <React.Fragment key={s.name}>
-          <a
-            href="#"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              padding: '4px 16px',
-              textDecoration: 'none',
-            }}
-          >
-            <SponsorLogo name={s.name} img={s.img} />
-          </a>
-          {i < SPONSORS.length - 1 && (
-            <span style={{ color: '#CCCCCC', fontSize: '18px', lineHeight: 1 }}>◆</span>
-          )}
-        </React.Fragment>
-      ))}
-    </div>
-
-    {/* ── Amyloidosis Foundation ── */}
-    <div
-      style={{
-        padding: '16px 24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <a href="#" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
-        <SponsorLogo name="Amyloidosis Foundation" img={AMYLOIDOSIS_FOUNDATION_LOGO} height={40} />
-      </a>
-    </div>
   </footer>
 );
 
