@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Calendar, Download, AlertCircle, Loader } from 'lucide-react';
+import { User, Calendar, AlertCircle, Loader } from 'lucide-react';
 import { useSpotlightSessions, type NormalizedSession } from './useSpotlightSessions';
 
 const FONT = 'gotham, sans-serif';
@@ -209,36 +209,6 @@ export const SessionsSidebar: React.FC = () => {
         ))}
       </div>
 
-      {/* Footer */}
-      <div
-        style={{
-          padding: '12px 16px',
-          borderTop: '1px solid var(--oav-border)',
-          background: 'var(--oav-page-bg)',
-        }}
-      >
-        {/* TODO: Replace href with actual PDF URL once provided by Stacey/David */}
-        <a
-          href="https://somebodytotalkto.com/sites/default/files/spotlight/uchicago-amyloidosis-spotlight-calendar-june-2026.pdf"
-          download="UChicago-Amyloidosis-Spotlight-June-2026.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            fontSize: '13px',
-            color: '#005EB8',
-            textDecoration: 'none',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '5px',
-            fontFamily: FONT,
-          }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#004A93'; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#005EB8'; }}
-        >
-          <Download size={12} color="#005EB8" />
-          Download full calendar (PDF)
-        </a>
-      </div>
     </div>
   );
 };
