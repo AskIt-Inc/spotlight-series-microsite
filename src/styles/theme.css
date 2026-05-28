@@ -191,19 +191,25 @@ html, body {
 
 /* ── Responsive breakpoints ─────────────────────────────────────────────────── */
 
-/* Nav collapse at 900px (existing) */
-@media (max-width: 900px) {
+/* Nav collapse: the full OAV menu needs desktop width to avoid cramped labels. */
+@media (max-width: 1200px) {
   .hidden-mobile-nav {
+    display: none !important;
+  }
+
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+}
+
+/* Desktop hamburger button — hidden when full nav has enough room */
+@media (min-width: 1201px) {
+  .mobile-menu-btn {
     display: none !important;
   }
 }
 
-/* Mobile hamburger button — hidden on desktop, shown on mobile */
 @media (min-width: 769px) {
-  .mobile-menu-btn {
-    display: none !important;
-  }
-
   /* Desktop: sessions list expands to full height — no scroll */
   .sessions-list {
     max-height: none;
@@ -241,6 +247,10 @@ html, body {
     max-width: 140px !important;
     width: auto !important;
     object-fit: contain !important;
+  }
+
+  .mobile-nav-panel {
+    top: 64px !important;
   }
 
   /* ── Page grid: two-column → single column ──────────────────────────────────── */

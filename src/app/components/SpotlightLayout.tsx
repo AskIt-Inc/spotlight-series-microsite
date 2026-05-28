@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router';
-import { Search, ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 
 const FONT = 'gotham, sans-serif';
 
@@ -52,7 +52,6 @@ const OAVLogo: React.FC = () => {
 
 // ─── Main nav ──────────────────────────────────────────────────────────────────
 const SiteHeader: React.FC = () => {
-  const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -91,33 +90,20 @@ const SiteHeader: React.FC = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '2px',
+              gap: '4px',
               flex: 1,
               justifyContent: 'flex-end',
+              background: '#050505',
+              border: '1px solid #050505',
+              borderRadius: '4px',
+              padding: '8px 10px',
+              boxShadow: '0 10px 28px rgba(0, 0, 0, 0.12)',
             }}
           >
             {NAV_LINKS.map(({ label, url, dropdown }) => (
               <NavItem key={label} label={label} url={url} dropdown={dropdown} />
             ))}
           </nav>
-
-          {/* Search icon */}
-          <button
-            onClick={() => setSearchOpen(!searchOpen)}
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '4px',
-              color: '#000000',
-              display: 'flex',
-              alignItems: 'center',
-              flexShrink: 0,
-            }}
-            aria-label="Search"
-          >
-            <Search size={18} color="#000000" />
-          </button>
 
           {/* Hamburger — mobile only, hidden on desktop via CSS */}
           <button
@@ -146,6 +132,7 @@ const SiteHeader: React.FC = () => {
       {/* Mobile nav panel — full-width dropdown below header */}
       {mobileMenuOpen && (
         <div
+          className="mobile-nav-panel"
           style={{
             position: 'fixed',
             top: '88px',  /* header height */
@@ -187,6 +174,7 @@ const SiteHeader: React.FC = () => {
 
 const NavItem: React.FC<{ label: string; url: string; dropdown: boolean }> = ({ label, url, dropdown }) => {
   const [hovered, setHovered] = useState(false);
+  const isHome = label === 'Home';
 
   return (
     <a
@@ -197,19 +185,23 @@ const NavItem: React.FC<{ label: string; url: string; dropdown: boolean }> = ({ 
         display: 'inline-flex',
         alignItems: 'center',
         gap: '3px',
-        padding: '8px 10px',
-        fontSize: '13px',
-        fontWeight: 300,
-        color: hovered ? '#8B1F2D' : '#000000',
+        padding: '8px 11px',
+        fontSize: '14px',
+        fontWeight: 700,
+        color: '#ffffff',
+        background: 'transparent',
+        borderRadius: '3px',
         textDecoration: 'none',
         whiteSpace: 'nowrap' as const,
         fontFamily: FONT,
-        letterSpacing: '0.01em',
-        borderBottom: hovered ? '2px solid #8B1F2D' : '2px solid transparent',
-        transition: 'color 0.15s, border-color 0.15s',
+        letterSpacing: 0,
+        borderBottom: hovered || isHome ? '2px solid #8BC53F' : '2px solid transparent',
+        transition: 'background 0.15s, color 0.15s, border-color 0.15s',
       }}
     >
+      {isHome && <span style={{ color: '#8BC53F', fontWeight: 700 }}>[</span>}
       {label}
+      {isHome && <span style={{ color: '#8BC53F', fontWeight: 700 }}>]</span>}
       {dropdown && <ChevronDown size={11} style={{ opacity: 0.7 }} />}
     </a>
   );
