@@ -24,6 +24,7 @@ export interface ClinicianV4 {
 export interface SupportStaff {
   id: number;
   name: string;
+  credentials?: string;
   role: string;
   site: 'main' | 'endeavor';
   department?: string;
@@ -360,23 +361,29 @@ export const supportStaff: SupportStaff[] = [
   {
     id: 1,
     name: 'Elizabeth Hushka',
+    credentials: 'NP',
     role: 'Advanced Practice Nurse — Advanced Heart Failure',
-    department: 'Advanced Heart Failure & Cardiac Transplant',
     site: 'main',
   },
   {
     id: 2,
     name: 'Samantha de Santiago',
+    credentials: 'RN',
     role: 'Registered Nurse — Advanced Heart Failure / Amyloidosis',
-    department: 'Advanced Heart Failure & Cardiac Transplant',
     site: 'main',
   },
-  // TODO: Add UChicago research coordinator / research nurse coordinator once confirmed by UChicago Medicine
+  {
+    id: 4,
+    name: 'Martha Hodges',
+    credentials: 'RN',
+    role: 'Registered Nurse — Hematology',
+    site: 'main',
+  },
   {
     id: 3,
     name: 'Tracey Silverstein',
+    credentials: 'RN',
     role: 'Amyloid Navigator and Clinical Trial Coordinator',
-    department: 'Amyloidosis Program',
     site: 'endeavor',
   },
 ];

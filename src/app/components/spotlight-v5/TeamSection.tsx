@@ -168,17 +168,8 @@ const StaffList: React.FC<{ site: 'main' | 'endeavor' }> = ({ site }) => {
               <span style={{ fontSize:'15px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{s.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase()}</span>
             </div>
             <div>
-              <div style={{ fontSize:'15px', fontWeight:700, color:'#000', fontFamily:FONT }}>{s.name}</div>
+              <div style={{ fontSize:'15px', fontWeight:700, color:'#000', fontFamily:FONT }}>{s.name}{s.credentials ? `, ${s.credentials}` : ''}</div>
               <div style={{ fontSize:'13px', color:'#374151', fontFamily:FONT, marginTop:'2px' }}>{s.role}</div>
-              {s.department && (
-                <div style={{ fontSize:'12px', color:'#6B7280', fontFamily:FONT, marginTop:'2px' }}>{s.department}</div>
-              )}
-              {s.email && (
-                <a href={`mailto:${s.email}`} style={{ fontSize:'12px', color:'#005EB8', fontFamily:FONT, marginTop:'2px', display:'block' }}>{s.email}</a>
-              )}
-              {s.phone && (
-                <a href={`tel:${s.phone}`} style={{ fontSize:'12px', color:'#374151', fontFamily:FONT, marginTop:'2px', display:'block' }}>{s.phone}</a>
-              )}
             </div>
           </div>
         ))}

@@ -24,6 +24,7 @@ export interface ClinicianV4 {
 export interface SupportStaff {
   id: number;
   name: string;
+  credentials?: string;
   role: string;
   site: 'main' | 'endeavor';
 }
@@ -356,7 +357,7 @@ export const endeavorProviders: ClinicianV4[] = [
 export const supportStaff: SupportStaff[] = [
   { id: 1, name: 'Elizabeth Hushka', role: 'Advanced Heart Failure NP', site: 'main' },
   { id: 2, name: 'Samantha de Santiago', role: 'Advanced Heart Failure / Amyloid RN', site: 'main' },
-  { id: 3, name: 'Tracey Silverstein', role: 'Amyloid Navigator and Clinical Trial Coordinator', site: 'endeavor' },
+  { id: 3, name: 'Tracey Silverstein', credentials: 'RN', role: 'Amyloid Navigator and Clinical Trial Coordinator', site: 'endeavor' },
 ];
 
 // ─── Clinical Trials ────────────────────────────────────────────────────────

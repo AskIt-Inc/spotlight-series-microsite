@@ -377,25 +377,10 @@ const SupportStaffCard: React.FC<SupportStaffCardProps> = ({ staff }) => (
       gap: '4px',
     }}
   >
-    <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', flexWrap: 'wrap' as const }}>
-      <span style={{ fontSize: '15px', fontWeight: 700, color: '#000000', fontFamily: FONT }}>
-        {staff.name}
-      </span>
-      {staff.credentials && (
-        <span style={{ fontSize: '12px', fontWeight: 300, color: '#006E8E', fontFamily: FONT }}>
-          {staff.credentials}
-        </span>
-      )}
+    <div style={{ fontSize: '15px', fontWeight: 700, color: '#000000', fontFamily: FONT }}>
+      {staff.name}{staff.credentials ? `, ${staff.credentials}` : ''}
     </div>
-    <div
-      style={{
-        fontSize: '13px',
-        fontWeight: 300,
-        color: '#4B5563',
-        fontFamily: FONT,
-        lineHeight: 1.5,
-      }}
-    >
+    <div style={{ fontSize: '13px', fontWeight: 300, color: '#4B5563', fontFamily: FONT, lineHeight: 1.5 }}>
       {staff.role}
     </div>
   </div>
