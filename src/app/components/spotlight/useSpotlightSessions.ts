@@ -45,6 +45,7 @@ export interface NormalizedSession {
   dayOfWeek: string;       // 3-letter: "Tue"
   time: string;            // "5:00 PM CT"
   title: string;
+  description: string;     // session description from API; empty string if unavailable
   presenter: string;
   presenterLastName: string; // trimmed lowercase — used for team card reg-link lookup
   status: 'upcoming' | 'completed';
@@ -97,16 +98,17 @@ function normalise(s: ApiSession): NormalizedSession {
     s.timestamp < Date.now() / 1000 ? 'completed' : 'upcoming';
 
   return {
-    id:        s.uuid,
+    id:               s.uuid,
     month,
     day,
     dayOfWeek,
     time,
-    title:     s.title,
+    title:            s.title,
+    description:      s.description ?? '',
     presenter,
     presenterLastName,
     status,
-    regUrl:    s.reg_link?.url ?? '',
+    regUrl:           s.reg_link?.url ?? '',
   };
 }
 
@@ -146,6 +148,7 @@ export function useSpotlightSessions() {
           dayOfWeek:         s.dayOfWeek,
           time:              s.time,
           title:             s.title,
+          description:       '',
           presenter:         s.presenter,
           presenterLastName: '',
           status:            s.status === 'cancelled' ? 'completed' : s.status,
