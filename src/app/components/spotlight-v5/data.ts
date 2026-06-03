@@ -27,6 +27,10 @@ export interface SupportStaff {
   credentials?: string;
   role: string;
   site: 'main' | 'endeavor';
+  photo?: string;
+  bio?: string;
+  sessionDate?: string;
+  sessionTitle?: string;
   department?: string;
   email?: string;
   phone?: string;
@@ -58,7 +62,7 @@ export const mainSiteProviders: ClinicianV4[] = [
     sessionTitle: 'Cardiac Amyloidosis — Current Approaches to Disease-Modifying Therapy',
     sessionDescription: 'Join us for an insightful session on the role of advanced cardiac imaging in diagnosing and managing cardiac amyloidosis. Learn how clearer heart images can support better treatment decisions, hear about new developments in the field, and bring your questions for our experts in a supportive, caring environment for patients and families.',
     hasVideo: true,
-    appointmentUrl: 'https://www.uchicagomedicine.org',
+    appointmentUrl: 'https://www.uchicagomedicine.org/find-a-physician/physician/nitasha-sarswat',
   },
   {
     id: 2,
@@ -75,7 +79,7 @@ export const mainSiteProviders: ClinicianV4[] = [
     sessionTitle: 'Advanced Cardiac Imaging in Amyloidosis Diagnosis',
     sessionDescription: 'Join us for an empowering session focused on understanding and managing cardiac amyloidosis. Learn directly from healthcare professionals about the latest treatment options, how they work, and what you can expect during your treatment journey. This session will also provide practical tips for living with the condition and maintaining heart health.',
     hasVideo: true,
-    appointmentUrl: 'https://www.uchicagomedicine.org',
+    appointmentUrl: 'https://www.uchicagomedicine.org/find-a-physician/physician/jeremy-a-slivnick',
   },
   {
     id: 11,
@@ -92,7 +96,7 @@ export const mainSiteProviders: ClinicianV4[] = [
     sessionTitle: '90-Minute Extended Session: TTR Inheritance, Genetic Testing & ACT-EARLY Trial',
     sessionDescription: 'This 90-minute extended session will help patients and families better understand how TTR gene mutations are inherited, what genetic counselors do, and how genetic testing works. The program will also include an overview of the ACT-EARLY clinical trial and the importance of identifying hereditary ATTR amyloidosis as early as possible.',
     hasVideo: true,
-    appointmentUrl: 'https://www.uchicagomedicine.org',
+    appointmentUrl: 'https://www.uchicagomedicine.org/conditions-services/heart-vascular/cardiac-amyloidosis/physicians',
   },
   // ── HEMATOLOGY ──
   {
@@ -110,7 +114,7 @@ export const mainSiteProviders: ClinicianV4[] = [
     sessionTitle: 'What is the Role of Maintenance Treatment in AL Amyloidosis?',
     sessionDescription: "Join us to learn about the crucial role of maintenance therapy in managing AL amyloidosis and how it can help stabilize the disease and improve quality of life. This session will cover what maintenance therapy involves, why it's important, and how it fits into the overall treatment plan. We'll also discuss tips for managing side effects and maintaining your health during treatment.",
     hasVideo: true,
-    appointmentUrl: 'https://www.uchicagomedicine.org',
+    appointmentUrl: 'https://www.uchicagomedicine.org/find-a-physician/physician/benjamin-derman',
   },
   {
     id: 10,
@@ -127,7 +131,7 @@ export const mainSiteProviders: ClinicianV4[] = [
     sessionTitle: '',
     sessionDescription: '',
     hasVideo: false,
-    appointmentUrl: 'https://www.uchicagomedicine.org',
+    appointmentUrl: 'https://www.uchicagomedicine.org/find-a-physician/physician/jennifer-cooperrider',
   },
   // ── NEUROLOGY ──
   {
@@ -145,7 +149,7 @@ export const mainSiteProviders: ClinicianV4[] = [
     sessionTitle: '',
     sessionDescription: '',
     hasVideo: true,
-    appointmentUrl: 'https://www.uchicagomedicine.org',
+    appointmentUrl: 'https://www.uchicagomedicine.org/find-a-physician/physician/kourosh-rezania',
   },
   {
     id: 5,
@@ -180,7 +184,7 @@ export const mainSiteProviders: ClinicianV4[] = [
     sessionTitle: '',
     sessionDescription: '',
     hasVideo: true,
-    appointmentUrl: 'https://www.uchicagomedicine.org',
+    appointmentUrl: 'https://www.uchicagomedicine.org/find-a-physician/physician/marco-bonilla-arevalo',
   },
   {
     id: 7,
@@ -197,7 +201,7 @@ export const mainSiteProviders: ClinicianV4[] = [
     sessionTitle: '',
     sessionDescription: '',
     hasVideo: false,
-    appointmentUrl: 'https://www.uchicagomedicine.org',
+    appointmentUrl: 'https://www.uchicagomedicine.org/find-a-physician/physician/beatrice-concepcion',
   },
   // ── GASTROENTEROLOGY ──
   {
@@ -215,7 +219,7 @@ export const mainSiteProviders: ClinicianV4[] = [
     sessionTitle: '',
     sessionDescription: '',
     hasVideo: true,
-    appointmentUrl: 'https://www.uchicagomedicine.org',
+    appointmentUrl: 'https://www.uchicagomedicine.org/find-a-physician/physician/edwin-k-mcdonald-iv',
   },
   // ── ORTHOPEDIC SURGERY ──
   {
@@ -233,7 +237,7 @@ export const mainSiteProviders: ClinicianV4[] = [
     sessionTitle: '',
     sessionDescription: '',
     hasVideo: true,
-    appointmentUrl: 'https://www.uchicagomedicine.org',
+    appointmentUrl: 'https://www.uchicagomedicine.org/find-a-physician/physician/jennifer-moriatis-wolf',
   },
 ];
 
@@ -251,7 +255,7 @@ export const endeavorProviders: ClinicianV4[] = [
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2025-10/Nitasha%20Sarswat_circle.png',
     bio: 'Dr. Nitasha Sarswat is a cardiologist at UChicago Medicine specializing in advanced heart failure, transplantation, and cardiac amyloidosis. She combines clinical expertise with research to help patients better understand and manage the impact of amyloidosis on the heart.',
     hasSession: false, sessionDate: '', sessionTitle: '', sessionDescription: '',
-    hasVideo: false, appointmentUrl: 'https://www.uchicagomedicine.org',
+    hasVideo: false, appointmentUrl: 'https://www.uchicagomedicine.org/find-a-physician/physician/nitasha-sarswat',
   },
   {
     id: 108,
@@ -361,9 +365,13 @@ export const supportStaff: SupportStaff[] = [
   {
     id: 1,
     name: 'Elizabeth Hushka',
-    credentials: 'NP',
+    credentials: 'MSN, FNP-BC',
     role: 'Advanced Practice Nurse — Advanced Heart Failure',
     site: 'main',
+    photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-06/elizabeth%20hushka.png',
+    sessionDate: 'Jun 8',
+    sessionTitle: 'What is a care team and how to build one that works for you?',
+    bio: 'Elizabeth Hushka is an advanced practice nurse supporting patients through the University of Chicago amyloidosis and advanced heart failure care team. Her featured session focuses on helping patients organize the people, information, and contacts involved in their care.',
   },
   {
     id: 2,
@@ -371,20 +379,26 @@ export const supportStaff: SupportStaff[] = [
     credentials: 'RN',
     role: 'Registered Nurse — Advanced Heart Failure / Amyloidosis',
     site: 'main',
+    bio: 'Samantha de Santiago is a registered nurse supporting advanced heart failure and amyloidosis care. She helps patients coordinate care needs, understand next steps, and stay connected with the clinical team.',
   },
   {
     id: 4,
     name: 'Martha Hodges',
-    credentials: 'RN',
-    role: 'Registered Nurse — Hematology',
+    credentials: 'MSN',
+    role: 'Nurse Practitioner — Hematology and Oncology',
     site: 'main',
+    photo: 'https://edge.sitecorecloud.io/unichicagomc-81nbqnb3/media/images/ucmc/physician-photos/g-i/gorski-hodges-martha-bio-522x694.jpg',
+    bio: 'Martha Hodges is a UChicago Medicine nurse practitioner specializing in hematology and oncology. She supports patients with blood disorders and related care needs, including coordination around complex treatment plans.',
   },
   {
     id: 3,
     name: 'Tracey Silverstein',
     credentials: 'RN',
     role: 'Amyloid Navigator and Clinical Trial Coordinator',
-    site: 'endeavor',
+    site: 'main',
+    sessionDate: 'Jun 1',
+    sessionTitle: 'Your Medical Notebook: Labs, Meds, Questions, Contacts & Care Info',
+    bio: 'Tracey Silverstein is an amyloid navigator and clinical trial coordinator. Her featured session helps patients build a practical medical notebook for labs, medications, questions, contacts, and care information.',
   },
 ];
 

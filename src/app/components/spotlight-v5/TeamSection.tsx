@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { useSpotlightSessions, buildRegUrlMap } from '../spotlight/useSpotlightSessions';
 import { useSpotlightProfiles } from '../spotlight/useSpotlightProfiles';
-import { Calendar, X, Users } from 'lucide-react';
+import { Calendar, ExternalLink, X, Users } from 'lucide-react';
 import {
   mainSiteProviders,
   endeavorProviders,
   supportStaff,
   type ClinicianV4,
+  type SupportStaff,
 } from './data';
 
 const FONT = 'gotham, sans-serif';
@@ -74,6 +75,18 @@ const PresenterModal: React.FC<{ c: ClinicianV4; onClose: () => void; bio?: stri
               <p style={{ fontSize:'14px', color:'#000', lineHeight:1.6, margin:0, fontFamily:FONT }}>{c.sessionDescription}</p>
             </div>
           )}
+          {c.appointmentUrl && (
+            <div style={{ borderTop:'1px solid #E8E8E8', paddingTop:'16px', marginTop:'16px' }}>
+              <a
+                href={c.appointmentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', gap:'8px', width:'100%', boxSizing:'border-box' as const, padding:'10px 16px', background:MAROON, color:'#fff', borderRadius:'5px', fontSize:'14px', fontWeight:400, fontFamily:FONT, textDecoration:'none' }}
+              >
+                Schedule an appointment <ExternalLink size={14} color="#fff" />
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -110,7 +123,12 @@ const CompactCard: React.FC<{ c: ClinicianV4; regUrl?: string; bio?: string }> =
         </div>
         <div style={{ flex:1, minWidth:0 }}>
           <div style={{ fontSize:'16px', fontWeight:700, color:'#000', fontFamily:FONT }}>{c.name}</div>
-          <div style={{ fontSize:'14px', fontWeight:300, color:'#000', fontFamily:FONT, marginTop:'3px', whiteSpace:'nowrap' as const, overflow:'hidden', textOverflow:'ellipsis' }}>{c.specialty}</div>
+          {c.credentials && (
+            <div style={{ fontSize:'13px', color:'#000', fontFamily:FONT, marginTop:'3px', whiteSpace:'nowrap' as const, overflow:'hidden', textOverflow:'ellipsis' }}>
+              {c.credentials} · {c.title}
+            </div>
+          )}
+          <div style={{ fontSize:'13px', fontWeight:300, color:MAROON, fontFamily:FONT, marginTop:'3px', whiteSpace:'nowrap' as const, overflow:'hidden', textOverflow:'ellipsis' }}>{c.specialty}</div>
           {c.hasSession && (
             <div style={{ fontSize:'12px', color:MAROON, fontFamily:FONT, marginTop:'4px', display:'flex', alignItems:'center', gap:'4px' }}>
               <Calendar size={11} color={MAROON} />
@@ -119,7 +137,13 @@ const CompactCard: React.FC<{ c: ClinicianV4; regUrl?: string; bio?: string }> =
           )}
         </div>
         <div style={{ flexShrink:0, display:'flex', flexDirection:'column' as const, gap:'6px', alignItems:'flex-end' }}>
-          <button onClick={() => setOpen(true)} style={{ fontSize:'12px', fontWeight:300, color:'#005EB8', background:'none', border:'none', padding:0, cursor:'pointer', fontFamily:FONT, textDecoration:'underline' }}>View more</button>
+          <button
+            onClick={() => setOpen(true)}
+            aria-label={`View more about ${c.name}`}
+            style={{ fontSize:'12px', fontWeight:300, color:'#005EB8', background:'none', border:'none', padding:0, cursor:'pointer', fontFamily:FONT, textDecoration:'underline' }}
+          >
+            View more
+          </button>
           {c.hasSession && regUrl && (
             <a
               href={regUrl}
@@ -151,6 +175,74 @@ const PlaceholderCard: React.FC<{ c: ClinicianV4 }> = ({ c }) => (
   </div>
 );
 
+// ─── Support Staff Detail Modal ──────────────────────────────────────────────
+const StaffModal: React.FC<{ staff: SupportStaff; onClose: () => void }> = ({ staff, onClose }) => {
+  const [imgErr, setImgErr] = useState(false);
+  return (
+    <div
+      style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.55)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:1000, padding:'24px' }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div style={{ background:'#fff', borderRadius:'12px', maxWidth:'560px', width:'100%', maxHeight:'80vh', overflowY:'auto', boxShadow:'0 20px 60px rgba(0,0,0,0.25)' }}>
+        <div style={{ display:'flex', alignItems:'center', gap:'16px', padding:'20px 24px', borderBottom:'1px solid #E8E8E8' }}>
+          <div style={{ width:'72px', height:'72px', borderRadius:'50%', border:`3px solid ${MAROON}`, overflow:'hidden', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background:(staff.photo && !imgErr) ? '#F3F4F6' : MAROON }}>
+            {staff.photo && !imgErr ? (
+              <img src={staff.photo} alt={staff.name} onError={() => setImgErr(true)} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
+            ) : (
+              <span style={{ fontSize:'24px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{getInitials(staff.name)}</span>
+            )}
+          </div>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:'17px', fontWeight:700, color:'#000', fontFamily:FONT }}>{staff.name}{staff.credentials ? `, ${staff.credentials}` : ''}</div>
+            <div style={{ fontSize:'13px', color:MAROON, fontFamily:FONT, marginTop:'2px' }}>{staff.role}</div>
+          </div>
+          <button onClick={onClose} style={{ background:'none', border:'none', cursor:'pointer', padding:'4px', color:'#4B5563' }} aria-label="Close"><X size={20}/></button>
+        </div>
+        <div style={{ padding:'24px' }}>
+          {staff.bio && <p style={{ fontSize:'15px', fontWeight:300, color:'#000', lineHeight:1.7, margin:'0 0 16px 0', fontFamily:FONT }}>{staff.bio}</p>}
+          {staff.sessionTitle && (
+            <div style={{ background:'#FBF0F1', border:'1px solid #F0D0D3', borderRadius:'8px', padding:'16px' }}>
+              <div style={{ fontSize:'11px', fontWeight:700, textTransform:'uppercase' as const, letterSpacing:'0.1em', color:MAROON, fontFamily:FONT, marginBottom:'4px' }}>Featured Session{staff.sessionDate ? `: ${staff.sessionDate}` : ''}</div>
+              <div style={{ fontSize:'15px', fontWeight:700, color:'#000', fontFamily:FONT }}>{staff.sessionTitle}</div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const StaffCard: React.FC<{ staff: SupportStaff }> = ({ staff }) => {
+  const [imgErr, setImgErr] = useState(false);
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <div style={{ background:'var(--oav-card-bg)', border:'1px solid var(--oav-border)', borderRadius:'8px', padding:'14px 20px', display:'flex', alignItems:'center', gap:'14px' }}>
+        <div style={{ width:'44px', height:'44px', borderRadius:'50%', background:(staff.photo && !imgErr) ? '#F3F4F6' : MAROON, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, overflow:'hidden' }}>
+          {staff.photo && !imgErr ? (
+            <img src={staff.photo} alt={staff.name} onError={() => setImgErr(true)} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
+          ) : (
+            <span style={{ fontSize:'15px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{getInitials(staff.name)}</span>
+          )}
+        </div>
+        <div style={{ flex:1, minWidth:0 }}>
+          <div style={{ fontSize:'15px', fontWeight:700, color:'#000', fontFamily:FONT }}>{staff.name}{staff.credentials ? `, ${staff.credentials}` : ''}</div>
+          <div style={{ fontSize:'13px', color:'#374151', fontFamily:FONT, marginTop:'2px' }}>{staff.role}</div>
+          {staff.sessionDate && <div style={{ fontSize:'12px', color:MAROON, fontFamily:FONT, marginTop:'4px' }}>{staff.sessionDate}</div>}
+        </div>
+        <button
+          onClick={() => setOpen(true)}
+          aria-label={`View more about ${staff.name}`}
+          style={{ fontSize:'12px', fontWeight:300, color:'#005EB8', background:'none', border:'none', padding:0, cursor:'pointer', fontFamily:FONT, textDecoration:'underline', flexShrink:0 }}
+        >
+          View more
+        </button>
+      </div>
+      {open && <StaffModal staff={staff} onClose={() => setOpen(false)} />}
+    </>
+  );
+};
+
 // ─── Staff Cards ────────────────────────────────────────────────────────────
 const StaffList: React.FC<{ site: 'main' | 'endeavor' }> = ({ site }) => {
   const staff = supportStaff.filter(s => s.site === site);
@@ -163,15 +255,7 @@ const StaffList: React.FC<{ site: 'main' | 'endeavor' }> = ({ site }) => {
       </div>
       <div style={{ display:'flex', flexDirection:'column' as const, gap:'10px' }}>
         {staff.map(s => (
-          <div key={s.id} style={{ background:'var(--oav-card-bg)', border:'1px solid var(--oav-border)', borderRadius:'8px', padding:'14px 20px', display:'flex', alignItems:'center', gap:'14px' }}>
-            <div style={{ width:'44px', height:'44px', borderRadius:'50%', background:MAROON, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-              <span style={{ fontSize:'15px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{s.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase()}</span>
-            </div>
-            <div>
-              <div style={{ fontSize:'15px', fontWeight:700, color:'#000', fontFamily:FONT }}>{s.name}{s.credentials ? `, ${s.credentials}` : ''}</div>
-              <div style={{ fontSize:'13px', color:'#374151', fontFamily:FONT, marginTop:'2px' }}>{s.role}</div>
-            </div>
-          </div>
+          <StaffCard key={s.id} staff={s} />
         ))}
       </div>
     </div>
