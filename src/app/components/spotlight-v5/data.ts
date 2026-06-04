@@ -29,8 +29,6 @@ export interface SupportStaff {
   site: 'main' | 'endeavor';
   photo?: string;
   bio?: string;
-  sessionDate?: string;
-  sessionTitle?: string;
   department?: string;
   email?: string;
   phone?: string;
@@ -39,7 +37,7 @@ export interface SupportStaff {
 export interface TrialV4 {
   id: string;
   name: string;
-  category: 'past-uchicago' | 'enrolling-uchicago' | 'upcoming-uchicago' | 'enrolling-endeavor' | 'al-placeholder';
+  category: 'past-uchicago' | 'enrolling-uchicago' | 'upcoming-uchicago' | 'enrolling-endeavor';
   status: string;
   note?: string;
 }
@@ -269,7 +267,7 @@ export const endeavorProviders: ClinicianV4[] = [
     bio: 'Dr. Amit K. Pursnani is a cardiologist at Endeavor Health who provides care for patients with a wide range of cardiovascular conditions. He has expertise in general cardiology, cardio-oncology and cardiac imaging, with a clinical focus that includes cardiovascular disease and cardio-obstetrics. He is the inaugural holder of the Pepper Family Endowed Chair of Cardiovascular Excellence and Education. Dr. Pursnani is Director of the Cardiovascular Disease Fellowship and Advanced Cardiovascular Imaging Fellowship. He speaks English, Hindi and Sindhi, allowing him to connect with patients from diverse backgrounds and offer personalized heart care at every stage of life.',
     education: 'New York University Grossman School of Medicine 2004 | University of Chicago Medical Center, Internal Medicine Residency 2007 | NYU Langone Medical Center, Cardiovascular Disease Fellowship 2010 | Massachusetts General Hospital / Harvard Medical School, Cardiovascular Imaging Fellowship 2014',
     hasSession: false, sessionDate: '', sessionTitle: '', sessionDescription: '',
-    hasVideo: false, appointmentUrl: '',
+    hasVideo: false, appointmentUrl: 'https://www.endeavorhealth.org/providers/amit-pursnani',
   },
   // ── HEMATOLOGY ──
   {
@@ -284,7 +282,7 @@ export const endeavorProviders: ClinicianV4[] = [
     bio: 'Dr. Robert Eisner is a hematologist who specializes in blood cancers and related disorders and is certified in Hospice & Palliative Medicine Oncology. He works closely with the amyloidosis multidisciplinary team to make sure each patient\'s diagnosis has an evidence-based care plan.',
     education: 'Midwest University School of Medicine 2000 | Loyola University Medical Center, Internal Medicine 2004, Hem/Onc Fellowship 2007',
     hasSession: false, sessionDate: '', sessionTitle: '', sessionDescription: '',
-    hasVideo: false, appointmentUrl: '',
+    hasVideo: false, appointmentUrl: 'https://www.endeavorhealth.org/providers/robert-eisner',
   },
   {
     id: 105,
@@ -298,7 +296,7 @@ export const endeavorProviders: ClinicianV4[] = [
     bio: 'Dr. Amy Wang specializes in hematology with an expertise in a broad range of blood disorders including amyloidosis. She is involved with her patients throughout their often complex journeys helping navigate treatment and care plan options. She also is involved with advanced cancer care and supports newer treatments such as CAR-T.',
     education: 'University of Texas Medical School at Houston 2014 | University of Chicago/Comer Children\'s Hospital, Combined Internal Medicine & Pediatrics Residency 2018, Hem/Onc Fellowship 2021',
     hasSession: false, sessionDate: '', sessionTitle: '', sessionDescription: '',
-    hasVideo: false, appointmentUrl: '',
+    hasVideo: false, appointmentUrl: 'https://www.endeavorhealth.org/providers/amy-wang',
   },
   {
     id: 106,
@@ -312,7 +310,7 @@ export const endeavorProviders: ClinicianV4[] = [
     bio: 'Dr. David Grinblatt specializes in hematology with an expertise in a broad range of blood disorders including amyloidosis. He is actively involved in newer innovative therapies such as CAR-T.',
     education: 'Case Western Reserve University School of Medicine 1986 | Rush-Presbyterian-St Luke\'s Medical Center, Internal Medicine Residency 1989 | McGaw Medical Center of Northwestern University, Hem/Onc Fellowship 1992',
     hasSession: false, sessionDate: '', sessionTitle: '', sessionDescription: '',
-    hasVideo: false, appointmentUrl: '',
+    hasVideo: false, appointmentUrl: 'https://www.endeavorhealth.org/providers/david-grinblatt',
   },
   // ── NEUROLOGY ──
   {
@@ -327,7 +325,7 @@ export const endeavorProviders: ClinicianV4[] = [
     bio: 'Dr. Richard Wlodarski is a Neurologist who specializes in Neuromuscular Medicine caring for patients with myopathies, neuropathies and conditions like myasthenia gravis and amyloidosis. He is interested in new targeted disease-modifying therapies for previously untreatable disorders.',
     education: 'University of Illinois at Chicago College of Medicine 2015 | University of Chicago Hospitals, Neurology Residency 2019, Neurophysiology Fellowship 2020, Neuromuscular Diseases Fellowship 2021',
     hasSession: true, sessionDate: 'Jun 24', sessionTitle: 'Neurological Manifestations of Amyloidosis — Managing Amyloidosis PN', sessionDescription: "Join our session to learn about managing neurological symptoms in amyloidosis. We'll discuss strategies to cope with peripheral neuropathy, share tips for daily living, and provide support for both patients and caregivers. Gain insights and tools to help navigate this aspect of amyloidosis together.",
-    hasVideo: false, appointmentUrl: '',
+    hasVideo: false, appointmentUrl: 'https://www.endeavorhealth.org/providers/richard-wlodarski',
   },
   {
     id: 103,
@@ -341,7 +339,7 @@ export const endeavorProviders: ClinicianV4[] = [
     bio: 'Dr. Lawrence Zeidman is a Neurologist who specializes in neuromuscular and autonomic disorders with a focus on peripheral neuropathies including Amyloidosis. He is director of Neuromuscular and Autonomic Section at Endeavor Health NorthShore Hospitals. He is an expert in EMG, autonomic testing and skin biopsies actively involved in multidisciplinary programs such as Amyloidosis and in medical education.',
     education: 'Northwestern McGaw School of Medicine 2004 | McGaw Medical Center, Neurology Residency 2008 | Rush Medical College, Clinical Neurophysiology Fellowship 2009',
     hasSession: false, sessionDate: '', sessionTitle: '', sessionDescription: '',
-    hasVideo: false, appointmentUrl: '',
+    hasVideo: false, appointmentUrl: 'https://www.endeavorhealth.org/providers/lawrence-zeidman',
   },
   // ── ORTHOPEDIC SURGERY ──
   {
@@ -356,7 +354,7 @@ export const endeavorProviders: ClinicianV4[] = [
     bio: 'Dr. Robert Gray is an Orthopedic Surgeon with a specialty in Hand and Microvascular Surgery. He is an expert in treating conditions of the fingertips, shoulders, tendons and nerves and is skilled in microsurgical techniques, nerve transfers and small joint replacements. He works closely with the Amyloidosis Multidisciplinary programs to help manage the orthopedic complications such as carpal tunnel syndrome, trigger finger etc.',
     education: 'Brown University School of Medicine 2005 | Rush University Medical Center, Orthopedic Surgery 2010 | Mayo Clinic, Hand Surgery Fellowship 2011',
     hasSession: false, sessionDate: '', sessionTitle: '', sessionDescription: '',
-    hasVideo: false, appointmentUrl: '',
+    hasVideo: false, appointmentUrl: 'https://www.endeavorhealth.org/providers/robert-gray',
   },
 ];
 
@@ -369,9 +367,7 @@ export const supportStaff: SupportStaff[] = [
     role: 'Advanced Practice Nurse — Advanced Heart Failure',
     site: 'main',
     photo: 'https://somebodytotalkto.com/sites/default/files/pictures/2026-06/elizabeth%20hushka.png',
-    sessionDate: 'Jun 8',
-    sessionTitle: 'What is a care team and how to build one that works for you?',
-    bio: 'Elizabeth Hushka is an advanced practice nurse supporting patients through the University of Chicago amyloidosis and advanced heart failure care team. Her featured session focuses on helping patients organize the people, information, and contacts involved in their care.',
+    bio: 'Elizabeth Hushka is an advanced practice nurse supporting patients through the University of Chicago amyloidosis and advanced heart failure care team. She helps patients organize the people, information, and contacts involved in their care.',
   },
   {
     id: 2,
@@ -396,9 +392,7 @@ export const supportStaff: SupportStaff[] = [
     credentials: 'RN',
     role: 'Amyloid Navigator and Clinical Trial Coordinator',
     site: 'endeavor',
-    sessionDate: 'Jun 1',
-    sessionTitle: 'Your Medical Notebook: Labs, Meds, Questions, Contacts & Care Info',
-    bio: 'Tracey Silverstein is an amyloid navigator and clinical trial coordinator. Her featured session helps patients build a practical medical notebook for labs, medications, questions, contacts, and care information.',
+    bio: 'Tracey Silverstein is an amyloid navigator and clinical trial coordinator. She helps patients track labs, medications, questions, contacts, and care information.',
   },
 ];
 
@@ -417,5 +411,4 @@ export const trialsV4: TrialV4[] = [
   { id: 'enroll-end-1', name: 'Alnylam 007', category: 'enrolling-endeavor', status: 'Recruiting', note: 'Open label extension' },
   { id: 'enroll-end-2', name: 'Cleopatrra', category: 'enrolling-endeavor', status: 'Recruiting' },
   { id: 'enroll-end-3', name: 'Triton CM', category: 'enrolling-endeavor', status: 'Recruiting' },
-  { id: 'al-placeholder', name: 'AL Amyloidosis Trials', category: 'al-placeholder', status: 'Pending', note: 'Awaiting details from Dr. Derman and Dr. Cooperrider' },
 ];

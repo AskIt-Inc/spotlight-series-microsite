@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { useSpotlightSessions, buildRegUrlMap } from '../spotlight/useSpotlightSessions';
+import { useSpotlightSessions, buildRegUrlMap, buildPresenterSessionMap } from '../spotlight/useSpotlightSessions';
 import { useSpotlightProfiles } from '../spotlight/useSpotlightProfiles';
 import { Calendar, ExternalLink, X, Users } from 'lucide-react';
 import {
@@ -9,6 +9,8 @@ import {
   type ClinicianV4,
   type SupportStaff,
 } from './data';
+import type { NormalizedProfile } from '../spotlight/useSpotlightProfiles';
+import type { NormalizedSession } from '../spotlight/useSpotlightSessions';
 
 const FONT = 'gotham, sans-serif';
 const MAROON = '#8B1F2D';
@@ -23,8 +25,11 @@ function getInitials(name: string): string {
 }
 
 // ─── Presenter Detail Modal ─────────────────────────────────────────────────
-const PresenterModal: React.FC<{ c: ClinicianV4; onClose: () => void; bio?: string }> = ({ c, onClose, bio }) => {
+const PresenterModal: React.FC<{ c: ClinicianV4; onClose: () => void; profile?: NormalizedProfile }> = ({ c, onClose, profile }) => {
   const [imgErr, setImgErr] = useState(false);
+  const name = profile?.displayName || c.name;
+  const photo = profile?.photoUrl || c.photo;
+  const bio = profile?.bio || c.bio;
   return (
     <div
       style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.55)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:1000, padding:'24px' }}
@@ -32,22 +37,22 @@ const PresenterModal: React.FC<{ c: ClinicianV4; onClose: () => void; bio?: stri
     >
       <div style={{ background:'#fff', borderRadius:'12px', maxWidth:'620px', width:'100%', maxHeight:'80vh', overflowY:'auto', boxShadow:'0 20px 60px rgba(0,0,0,0.25)' }}>
         <div style={{ display:'flex', alignItems:'center', gap:'16px', padding:'20px 24px', borderBottom:'1px solid #E8E8E8' }}>
-          <div style={{ width:'72px', height:'72px', borderRadius:'50%', border:`3px solid ${MAROON}`, overflow:'hidden', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background: (c.photo && !imgErr) ? '#F3F4F6' : MAROON }}>
-            {c.photo && !imgErr ? (
-              <img src={c.photo} alt={c.name} onError={() => setImgErr(true)} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
+          <div style={{ width:'72px', height:'72px', borderRadius:'50%', border:`3px solid ${MAROON}`, overflow:'hidden', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background: (photo && !imgErr) ? '#F3F4F6' : MAROON }}>
+            {photo && !imgErr ? (
+              <img src={photo} alt={name} onError={() => setImgErr(true)} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
             ) : (
-              <span style={{ fontSize:'24px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{getInitials(c.name)}</span>
+              <span style={{ fontSize:'24px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{getInitials(name)}</span>
             )}
           </div>
           <div style={{ flex:1 }}>
-            <div style={{ fontSize:'17px', fontWeight:700, color:'#000', fontFamily:FONT }}>{c.name}</div>
+            <div style={{ fontSize:'17px', fontWeight:700, color:'#000', fontFamily:FONT }}>{name}</div>
             {c.credentials && <div style={{ fontSize:'13px', color:'#000', fontFamily:FONT, marginTop:'2px' }}>{c.credentials} · {c.title}</div>}
             <div style={{ fontSize:'13px', color:MAROON, fontFamily:FONT, marginTop:'2px' }}>{c.specialty}</div>
           </div>
           <button onClick={onClose} style={{ background:'none', border:'none', cursor:'pointer', padding:'4px', color:'#4B5563' }} aria-label="Close"><X size={20}/></button>
         </div>
         <div style={{ padding:'24px' }}>
-          {(bio || c.bio) && <p style={{ fontSize:'15px', fontWeight:300, color:'#000', lineHeight:1.7, margin:'0 0 16px 0', fontFamily:FONT, whiteSpace:'pre-line' as const }}>{bio || c.bio}</p>}
+          {bio && <p style={{ fontSize:'15px', fontWeight:300, color:'#000', lineHeight:1.7, margin:'0 0 16px 0', fontFamily:FONT, whiteSpace:'pre-line' as const }}>{bio}</p>}
           {c.education && (
             <details style={{ marginBottom:'16px' }}>
               <summary style={{ fontSize:'13px', fontWeight:700, color:MAROON, fontFamily:FONT, cursor:'pointer', marginBottom:'6px' }}>
@@ -108,21 +113,23 @@ function extractLastName(fullName: string): string {
 }
 
 // ─── Compact Card ───────────────────────────────────────────────────────────
-const CompactCard: React.FC<{ c: ClinicianV4; regUrl?: string; bio?: string }> = ({ c, regUrl, bio }) => {
+const CompactCard: React.FC<{ c: ClinicianV4; regUrl?: string; profile?: NormalizedProfile }> = ({ c, regUrl, profile }) => {
   const [imgErr, setImgErr] = useState(false);
   const [open, setOpen] = useState(false);
+  const name = profile?.displayName || c.name;
+  const photo = profile?.photoUrl || c.photo;
   return (
     <>
       <div style={{ background:'var(--oav-card-bg)', border:'1px solid var(--oav-border)', borderRadius:'8px', boxShadow:'var(--oav-card-shadow)', padding:'16px 20px', display:'flex', alignItems:'center', gap:'16px' }}>
-        <div style={{ width:'60px', height:'60px', borderRadius:'50%', border:`2px solid ${MAROON}`, background: (c.photo && !imgErr) ? '#F3F4F6' : MAROON, flexShrink:0, overflow:'hidden', display:'flex', alignItems:'center', justifyContent:'center' }}>
-          {c.photo && !imgErr ? (
-            <img src={c.photo} alt={c.name} onError={() => setImgErr(true)} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
+        <div style={{ width:'60px', height:'60px', borderRadius:'50%', border:`2px solid ${MAROON}`, background: (photo && !imgErr) ? '#F3F4F6' : MAROON, flexShrink:0, overflow:'hidden', display:'flex', alignItems:'center', justifyContent:'center' }}>
+          {photo && !imgErr ? (
+            <img src={photo} alt={name} onError={() => setImgErr(true)} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
           ) : (
-            <span style={{ fontSize:'20px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{getInitials(c.name)}</span>
+            <span style={{ fontSize:'20px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{getInitials(name)}</span>
           )}
         </div>
         <div style={{ flex:1, minWidth:0 }}>
-          <div style={{ fontSize:'16px', fontWeight:700, color:'#000', fontFamily:FONT }}>{c.name}</div>
+          <div style={{ fontSize:'16px', fontWeight:700, color:'#000', fontFamily:FONT }}>{name}</div>
           {c.credentials && (
             <div style={{ fontSize:'13px', color:'#000', fontFamily:FONT, marginTop:'3px', whiteSpace:'nowrap' as const, overflow:'hidden', textOverflow:'ellipsis' }}>
               {c.credentials} · {c.title}
@@ -139,7 +146,7 @@ const CompactCard: React.FC<{ c: ClinicianV4; regUrl?: string; bio?: string }> =
         <div style={{ flexShrink:0, display:'flex', flexDirection:'column' as const, gap:'6px', alignItems:'flex-end' }}>
           <button
             onClick={() => setOpen(true)}
-            aria-label={`View more about ${c.name}`}
+            aria-label={`View more about ${name}`}
             style={{ fontSize:'12px', fontWeight:300, color:'#005EB8', background:'none', border:'none', padding:0, cursor:'pointer', fontFamily:FONT, textDecoration:'underline' }}
           >
             View more
@@ -156,7 +163,7 @@ const CompactCard: React.FC<{ c: ClinicianV4; regUrl?: string; bio?: string }> =
           )}
         </div>
       </div>
-      {open && <PresenterModal c={c} onClose={() => setOpen(false)} bio={bio} />}
+      {open && <PresenterModal c={c} onClose={() => setOpen(false)} profile={profile} />}
     </>
   );
 };
@@ -176,8 +183,11 @@ const PlaceholderCard: React.FC<{ c: ClinicianV4 }> = ({ c }) => (
 );
 
 // ─── Support Staff Detail Modal ──────────────────────────────────────────────
-const StaffModal: React.FC<{ staff: SupportStaff; onClose: () => void }> = ({ staff, onClose }) => {
+const StaffModal: React.FC<{ staff: SupportStaff; onClose: () => void; profile?: NormalizedProfile; session?: NormalizedSession }> = ({ staff, onClose, profile, session }) => {
   const [imgErr, setImgErr] = useState(false);
+  const name = profile?.displayName || staff.name;
+  const photo = profile?.photoUrl || staff.photo;
+  const bio = profile?.bio || staff.bio;
   return (
     <div
       style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.55)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:1000, padding:'24px' }}
@@ -185,25 +195,38 @@ const StaffModal: React.FC<{ staff: SupportStaff; onClose: () => void }> = ({ st
     >
       <div style={{ background:'#fff', borderRadius:'12px', maxWidth:'560px', width:'100%', maxHeight:'80vh', overflowY:'auto', boxShadow:'0 20px 60px rgba(0,0,0,0.25)' }}>
         <div style={{ display:'flex', alignItems:'center', gap:'16px', padding:'20px 24px', borderBottom:'1px solid #E8E8E8' }}>
-          <div style={{ width:'72px', height:'72px', borderRadius:'50%', border:`3px solid ${MAROON}`, overflow:'hidden', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background:(staff.photo && !imgErr) ? '#F3F4F6' : MAROON }}>
-            {staff.photo && !imgErr ? (
-              <img src={staff.photo} alt={staff.name} onError={() => setImgErr(true)} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
+          <div style={{ width:'72px', height:'72px', borderRadius:'50%', border:`3px solid ${MAROON}`, overflow:'hidden', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background:(photo && !imgErr) ? '#F3F4F6' : MAROON }}>
+            {photo && !imgErr ? (
+              <img src={photo} alt={name} onError={() => setImgErr(true)} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
             ) : (
-              <span style={{ fontSize:'24px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{getInitials(staff.name)}</span>
+              <span style={{ fontSize:'24px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{getInitials(name)}</span>
             )}
           </div>
           <div style={{ flex:1 }}>
-            <div style={{ fontSize:'17px', fontWeight:700, color:'#000', fontFamily:FONT }}>{staff.name}{staff.credentials ? `, ${staff.credentials}` : ''}</div>
+            <div style={{ fontSize:'17px', fontWeight:700, color:'#000', fontFamily:FONT }}>{name}{staff.credentials ? `, ${staff.credentials}` : ''}</div>
             <div style={{ fontSize:'13px', color:MAROON, fontFamily:FONT, marginTop:'2px' }}>{staff.role}</div>
           </div>
           <button onClick={onClose} style={{ background:'none', border:'none', cursor:'pointer', padding:'4px', color:'#4B5563' }} aria-label="Close"><X size={20}/></button>
         </div>
         <div style={{ padding:'24px' }}>
-          {staff.bio && <p style={{ fontSize:'15px', fontWeight:300, color:'#000', lineHeight:1.7, margin:'0 0 16px 0', fontFamily:FONT }}>{staff.bio}</p>}
-          {staff.sessionTitle && (
-            <div style={{ background:'#FBF0F1', border:'1px solid #F0D0D3', borderRadius:'8px', padding:'16px' }}>
-              <div style={{ fontSize:'11px', fontWeight:700, textTransform:'uppercase' as const, letterSpacing:'0.1em', color:MAROON, fontFamily:FONT, marginBottom:'4px' }}>Featured Session{staff.sessionDate ? `: ${staff.sessionDate}` : ''}</div>
-              <div style={{ fontSize:'15px', fontWeight:700, color:'#000', fontFamily:FONT }}>{staff.sessionTitle}</div>
+          {bio && <p style={{ fontSize:'15px', fontWeight:300, color:'#000', lineHeight:1.7, margin:'0 0 16px 0', fontFamily:FONT }}>{bio}</p>}
+          {session && (
+            <div style={{ background:'#FBF0F1', border:'1px solid #F0D0D3', borderRadius:'8px', padding:'16px', marginBottom:'16px' }}>
+              <div style={{ fontSize:'11px', fontWeight:700, textTransform:'uppercase' as const, letterSpacing:'0.1em', color:MAROON, fontFamily:FONT, marginBottom:'4px' }}>Session: {session.month.charAt(0) + session.month.slice(1).toLowerCase()} {session.day}</div>
+              <div style={{ fontSize:'15px', fontWeight:700, color:'#000', fontFamily:FONT, marginBottom:'6px' }}>{session.title}</div>
+              {session.description && <p style={{ fontSize:'14px', color:'#000', lineHeight:1.6, margin:0, fontFamily:FONT }}>{session.description}</p>}
+            </div>
+          )}
+          {session?.regUrl && (
+            <div style={{ borderTop:'1px solid #E8E8E8', paddingTop:'16px', marginTop:'16px' }}>
+              <a
+                href={session.regUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', gap:'8px', width:'100%', boxSizing:'border-box' as const, padding:'10px 16px', background:MAROON, color:'#fff', borderRadius:'5px', fontSize:'14px', fontWeight:400, fontFamily:FONT, textDecoration:'none' }}
+              >
+                Register <ExternalLink size={14} color="#fff" />
+              </a>
             </div>
           )}
         </div>
@@ -212,39 +235,52 @@ const StaffModal: React.FC<{ staff: SupportStaff; onClose: () => void }> = ({ st
   );
 };
 
-const StaffCard: React.FC<{ staff: SupportStaff }> = ({ staff }) => {
+const StaffCard: React.FC<{ staff: SupportStaff; regUrl?: string; profile?: NormalizedProfile; session?: NormalizedSession }> = ({ staff, regUrl, profile, session }) => {
   const [imgErr, setImgErr] = useState(false);
   const [open, setOpen] = useState(false);
+  const name = profile?.displayName || staff.name;
+  const photo = profile?.photoUrl || staff.photo;
   return (
     <>
       <div style={{ background:'var(--oav-card-bg)', border:'1px solid var(--oav-border)', borderRadius:'8px', padding:'14px 20px', display:'flex', alignItems:'center', gap:'14px' }}>
-        <div style={{ width:'44px', height:'44px', borderRadius:'50%', background:(staff.photo && !imgErr) ? '#F3F4F6' : MAROON, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, overflow:'hidden' }}>
-          {staff.photo && !imgErr ? (
-            <img src={staff.photo} alt={staff.name} onError={() => setImgErr(true)} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
+        <div style={{ width:'44px', height:'44px', borderRadius:'50%', background:(photo && !imgErr) ? '#F3F4F6' : MAROON, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, overflow:'hidden' }}>
+          {photo && !imgErr ? (
+            <img src={photo} alt={name} onError={() => setImgErr(true)} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
           ) : (
-            <span style={{ fontSize:'15px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{getInitials(staff.name)}</span>
+            <span style={{ fontSize:'15px', fontWeight:600, color:'#fff', fontFamily:FONT }}>{getInitials(name)}</span>
           )}
         </div>
         <div style={{ flex:1, minWidth:0 }}>
-          <div style={{ fontSize:'15px', fontWeight:700, color:'#000', fontFamily:FONT }}>{staff.name}{staff.credentials ? `, ${staff.credentials}` : ''}</div>
+          <div style={{ fontSize:'15px', fontWeight:700, color:'#000', fontFamily:FONT }}>{name}{staff.credentials ? `, ${staff.credentials}` : ''}</div>
           <div style={{ fontSize:'13px', color:'#374151', fontFamily:FONT, marginTop:'2px' }}>{staff.role}</div>
-          {staff.sessionDate && <div style={{ fontSize:'12px', color:MAROON, fontFamily:FONT, marginTop:'4px' }}>{staff.sessionDate}</div>}
         </div>
-        <button
-          onClick={() => setOpen(true)}
-          aria-label={`View more about ${staff.name}`}
-          style={{ fontSize:'12px', fontWeight:300, color:'#005EB8', background:'none', border:'none', padding:0, cursor:'pointer', fontFamily:FONT, textDecoration:'underline', flexShrink:0 }}
-        >
-          View more
-        </button>
+        <div style={{ flexShrink:0, display:'flex', flexDirection:'column' as const, gap:'6px', alignItems:'flex-end' }}>
+          <button
+            onClick={() => setOpen(true)}
+            aria-label={`View more about ${name}`}
+            style={{ fontSize:'12px', fontWeight:300, color:'#005EB8', background:'none', border:'none', padding:0, cursor:'pointer', fontFamily:FONT, textDecoration:'underline' }}
+          >
+            View more
+          </button>
+          {regUrl && (
+            <a
+              href={regUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display:'inline-flex', alignItems:'center', gap:'5px', padding:'5px 12px', background:MAROON, color:'#fff', borderRadius:'4px', fontSize:'12px', fontWeight:300, cursor:'pointer', fontFamily:FONT, textDecoration:'none' }}
+            >
+              <Calendar size={11} color="#fff" /> Register
+            </a>
+          )}
+        </div>
       </div>
-      {open && <StaffModal staff={staff} onClose={() => setOpen(false)} />}
+      {open && <StaffModal staff={staff} profile={profile} session={session} onClose={() => setOpen(false)} />}
     </>
   );
 };
 
 // ─── Staff Cards ────────────────────────────────────────────────────────────
-const StaffList: React.FC<{ site: 'main' | 'endeavor' }> = ({ site }) => {
+const StaffList: React.FC<{ site: 'main' | 'endeavor'; regUrlMap: Map<string, string>; sessionMap: Map<string, NormalizedSession>; profileMap: Map<string, NormalizedProfile> }> = ({ site, regUrlMap, sessionMap, profileMap }) => {
   const staff = supportStaff.filter(s => s.site === site);
   if (staff.length === 0) return null;
   return (
@@ -255,7 +291,7 @@ const StaffList: React.FC<{ site: 'main' | 'endeavor' }> = ({ site }) => {
       </div>
       <div style={{ display:'flex', flexDirection:'column' as const, gap:'10px' }}>
         {staff.map(s => (
-          <StaffCard key={s.id} staff={s} />
+          <StaffCard key={s.id} staff={s} regUrl={regUrlMap.get(extractLastName(s.name))} session={sessionMap.get(extractLastName(s.name))} profile={profileMap.get(extractLastName(s.name))} />
         ))}
       </div>
     </div>
@@ -265,8 +301,9 @@ const StaffList: React.FC<{ site: 'main' | 'endeavor' }> = ({ site }) => {
 // ─── Team Section v5 — Tabbed Interface ─────────────────────────────────────
 export const TeamSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'uchicago' | 'endeavor'>('uchicago');
-  const { sessions } = useSpotlightSessions();
-  const regUrlMap = useMemo(() => buildRegUrlMap(sessions), [sessions]);
+  const { allSessions } = useSpotlightSessions();
+  const regUrlMap = useMemo(() => buildRegUrlMap(allSessions), [allSessions]);
+  const sessionMap = useMemo(() => buildPresenterSessionMap(allSessions), [allSessions]);
   const { bioMap } = useSpotlightProfiles();
 
   return (
@@ -334,9 +371,9 @@ export const TeamSection: React.FC = () => {
               University of Chicago Medicine — the multidisciplinary team behind the Amyloidosis Program
             </p>
             <div style={{ display:'flex', flexDirection:'column' as const, gap:'12px' }}>
-              {mainSiteProviders.map(c => <CompactCard key={c.id} c={c} regUrl={regUrlMap.get(extractLastName(c.name))} bio={bioMap.get(extractLastName(c.name))?.bio} />)}
+              {mainSiteProviders.map(c => <CompactCard key={c.id} c={c} regUrl={regUrlMap.get(extractLastName(c.name))} profile={bioMap.get(extractLastName(c.name))} />)}
             </div>
-            <StaffList site="main" />
+            <StaffList site="main" regUrlMap={regUrlMap} sessionMap={sessionMap} profileMap={bioMap} />
           </div>
         )}
 
@@ -346,9 +383,9 @@ export const TeamSection: React.FC = () => {
               Endeavor Health — Amyloidosis Program team members
             </p>
             <div style={{ display:'flex', flexDirection:'column' as const, gap:'12px' }}>
-              {endeavorProviders.map(c => c.bio ? <CompactCard key={c.id} c={c} regUrl={regUrlMap.get(extractLastName(c.name))} bio={bioMap.get(extractLastName(c.name))?.bio} /> : <PlaceholderCard key={c.id} c={c} />)}
+              {endeavorProviders.map(c => c.bio ? <CompactCard key={c.id} c={c} regUrl={regUrlMap.get(extractLastName(c.name))} profile={bioMap.get(extractLastName(c.name))} /> : <PlaceholderCard key={c.id} c={c} />)}
             </div>
-            <StaffList site="endeavor" />
+            <StaffList site="endeavor" regUrlMap={regUrlMap} sessionMap={sessionMap} profileMap={bioMap} />
           </div>
         )}
 

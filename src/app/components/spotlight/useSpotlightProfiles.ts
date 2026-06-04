@@ -5,8 +5,10 @@
 
 import { useState, useEffect } from 'react';
 
-const PROFILES_URL =
-  'https://somebodytotalkto.com/api/spotlight/microsite/profiles?indication=4&partner=12758';
+const PROFILES_URLS = [
+  'https://somebodytotalkto.com/api/spotlight/microsite/profiles?indication=4&partner=12758',
+  'https://somebodytotalkto.com/api/spotlight/microsite/profiles?indication=4&partner=12761',
+];
 
 // ─── Raw API shape ────────────────────────────────────────────────────────────
 export interface ApiProfile {
@@ -26,6 +28,7 @@ export interface ApiProfile {
 export interface NormalizedProfile {
   uid: number;
   lastNameKey: string;  // lowercase trimmed last_name — lookup key
+  displayName: string;
   bio: string;          // plain text, HTML stripped
   photoUrl: string;
 }
@@ -55,9 +58,17 @@ function isTestUser(p: ApiProfile): boolean {
 }
 
 function normalise(p: ApiProfile): NormalizedProfile {
+  const displayName = [p.title, p.first_name, p.last_name]
+    .map(part => part.trim())
+    .filter(Boolean)
+    .join(' ')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+
   return {
     uid:         p.uid,
     lastNameKey: p.last_name.trim().toLowerCase(),
+    displayName: displayName || p.display_name.trim(),
     bio:         stripHtml(p.bio),
     photoUrl:    p.photo_url,
   };
@@ -68,24 +79,34 @@ export function useSpotlightProfiles() {
   const [bioMap, setBioMap] = useState<Map<string, NormalizedProfile>>(new Map());
 
   useEffect(() => {
-    fetch(PROFILES_URL)
-      .then(r => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json() as Promise<{ data: ApiProfile[] }>;
-      })
-      .then(json => {
+    Promise.all(
+      PROFILES_URLS.map(url => (
+        fetch(url)
+          .then(r => {
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            return r.json() as Promise<{ data: ApiProfile[] }>;
+          })
+          .catch(err => {
+            console.warn(`[useSpotlightProfiles] profile fetch failed for ${url}:`, err);
+            return { data: [] as ApiProfile[] };
+          })
+      ))
+    )
+      .then(responses => {
         const map = new Map<string, NormalizedProfile>();
-        for (const p of json.data) {
-          if (isTestUser(p)) continue;      // skip internal accounts
-          const profile = normalise(p);
-          if (!profile.lastNameKey) continue;
-          map.set(profile.lastNameKey, profile);
+        for (const response of responses) {
+          for (const p of response.data) {
+            if (isTestUser(p)) continue;      // skip internal accounts
+            const profile = normalise(p);
+            if (!profile.lastNameKey) continue;
+            map.set(profile.lastNameKey, profile);
+            const lastNameToken = profile.lastNameKey.split(/\s+/).pop();
+            if (lastNameToken && !map.has(lastNameToken)) {
+              map.set(lastNameToken, profile);
+            }
+          }
         }
         setBioMap(map);
-      })
-      .catch(err => {
-        // Silent fallback — data.ts bios remain in use
-        console.warn('[useSpotlightProfiles] fetch failed, using static bios:', err);
       });
   }, []);
 

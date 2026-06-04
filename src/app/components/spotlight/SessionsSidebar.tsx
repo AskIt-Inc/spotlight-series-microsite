@@ -157,58 +157,86 @@ const SidebarSessionRow: React.FC<{ session: NormalizedSession }> = ({ session }
   );
 };
 
-export const SessionsSidebar: React.FC = () => {
-  const { sessions, loading, error } = useSpotlightSessions();
-
-  return (
+const SessionsBox: React.FC<{
+  title: string;
+  sessions: NormalizedSession[];
+  loading?: boolean;
+  error?: string | null;
+  emptyMessage: string;
+}> = ({ title, sessions, loading = false, error = null, emptyMessage }) => (
+  <div
+    style={{
+      background: 'var(--oav-card-bg)',
+      border: '1px solid var(--oav-border)',
+      borderRadius: '8px',
+      boxShadow: 'var(--oav-card-shadow)',
+      overflow: 'hidden',
+    }}
+  >
+    {/* Sidebar header */}
     <div
       style={{
-        background: 'var(--oav-card-bg)',
-        border: '1px solid var(--oav-border)',
-        borderRadius: '8px',
-        boxShadow: 'var(--oav-card-shadow)',
-        overflow: 'hidden',
+        padding: '14px 16px',
+        borderBottom: '1px solid var(--oav-border)',
+        background: '#8B1F2D',
       }}
     >
-      {/* Sidebar header */}
       <div
         style={{
-          padding: '14px 16px',
-          borderBottom: '1px solid var(--oav-border)',
-          background: '#8B1F2D',
+          fontSize: '14px',
+          fontWeight: 700,
+          color: '#ffffff',
+          fontFamily: FONT,
         }}
       >
-        <div
-          style={{
-            fontSize: '14px',
-            fontWeight: 700,
-            color: '#ffffff',
-            fontFamily: FONT,
-          }}
-        >
-          Upcoming Sessions
+        {title}
+      </div>
+    </div>
+
+    {/* Session rows — live from STTT API */}
+    <div className="sessions-list">
+      {loading && (
+        <div style={{ padding: '24px 16px', display: 'flex', alignItems: 'center', gap: '10px', color: '#6B7280', fontFamily: FONT, fontSize: '13px' }}>
+          <Loader size={14} style={{ animation: 'spin 1s linear infinite' }} />
+          Loading sessions…
         </div>
-      </div>
+      )}
+      {!loading && error && (
+        <div style={{ padding: '12px 16px', display: 'flex', alignItems: 'flex-start', gap: '8px', background: '#FFFBEB', borderBottom: '1px solid #FDE68A' }}>
+          <AlertCircle size={14} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
+          <span style={{ fontSize: '12px', color: '#92400E', fontFamily: FONT }}>{error}</span>
+        </div>
+      )}
+      {!loading && sessions.map((session) => (
+        <SidebarSessionRow key={session.id} session={session} />
+      ))}
+      {!loading && sessions.length === 0 && (
+        <div style={{ padding: '18px 16px', color: '#6B7280', fontFamily: FONT, fontSize: '13px', lineHeight: 1.5 }}>
+          {emptyMessage}
+        </div>
+      )}
+    </div>
+  </div>
+);
 
-      {/* Session rows — live from STTT API */}
-      <div className="sessions-list">
-        {loading && (
-          <div style={{ padding: '24px 16px', display: 'flex', alignItems: 'center', gap: '10px', color: '#6B7280', fontFamily: FONT, fontSize: '13px' }}>
-            <Loader size={14} style={{ animation: 'spin 1s linear infinite' }} />
-            Loading sessions…
-          </div>
-        )}
-        {!loading && error && (
-          <div style={{ padding: '12px 16px', display: 'flex', alignItems: 'flex-start', gap: '8px', background: '#FFFBEB', borderBottom: '1px solid #FDE68A' }}>
-            <AlertCircle size={14} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
-            <span style={{ fontSize: '12px', color: '#92400E', fontFamily: FONT }}>{error}</span>
-          </div>
-        )}
-        {!loading && sessions.map((session) => (
-          <SidebarSessionRow key={session.id} session={session} />
-        ))}
-      </div>
+export const SessionsSidebar: React.FC = () => {
+  const { sessions, completedSessions, loading, error } = useSpotlightSessions();
 
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <SessionsBox
+        title="Upcoming Sessions"
+        sessions={sessions}
+        loading={loading}
+        error={error}
+        emptyMessage="No upcoming sessions available."
+      />
+      <SessionsBox
+        title="Completed Sessions"
+        sessions={completedSessions}
+        loading={loading}
+        emptyMessage="No completed sessions available yet."
+      />
     </div>
   );
 };

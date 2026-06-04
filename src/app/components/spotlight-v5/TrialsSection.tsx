@@ -206,7 +206,6 @@ export const TrialsSection: React.FC = () => {
   const enrollUC = trialsV4.filter(t => t.category === 'enrolling-uchicago');
   const upcomingUC = trialsV4.filter(t => t.category === 'upcoming-uchicago');
   const enrollEnd = trialsV4.filter(t => t.category === 'enrolling-endeavor');
-  const alPlaceholder = trialsV4.filter(t => t.category === 'al-placeholder');
 
   return (
     <section style={{ background: 'var(--oav-page-bg)', padding: '56px 0' }}>
@@ -235,19 +234,6 @@ export const TrialsSection: React.FC = () => {
         <TrialGroup title="Currently Enrolling at UChicago" trials={enrollUC} />
         <TrialGroup title="Upcoming Trials at UChicago" trials={upcomingUC} />
         <TrialGroup title="Currently Enrolling at Endeavor Health" trials={enrollEnd} />
-
-        {/* AL placeholder */}
-        {alPlaceholder.length > 0 && (
-          <div style={{ border: '1px dashed #FDE68A', borderRadius: '8px', padding: '16px 20px', background: '#FFFBEB', display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '28px' }}>
-            <AlertCircle size={18} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
-            <div>
-              <div style={{ fontSize: '13px', fontWeight: 700, color: '#92400E', fontFamily: FONT, marginBottom: '4px' }}>AL Amyloidosis Trials — Pending</div>
-              <p style={{ fontSize: '13px', color: '#92400E', margin: 0, fontFamily: FONT, lineHeight: 1.6 }}>
-                Awaiting input from Dr. Derman and Dr. Cooperrider on AL trials to feature.
-              </p>
-            </div>
-          </div>
-        )}
 
       </div>
     </section>
