@@ -29,7 +29,7 @@ const highlights = [
   },
   {
     label: 'Active in Landmark Clinical Research-Past and Present',
-    text: 'Played a significant role in the completed trials ApolloB, Helios B, and Attribute CM, and is actively accruing to ACT-EARLY (Phase 3, acoramidis) and MaesTTRo (global observational, eplontersen) — giving patients access to emerging therapies.*',
+    text: 'Played a significant role in the completed trials ApolloB, Helios B, and Attribute CM, and is actively accruing to ACT-EARLY (Phase 3, acoramidis) and MaesTTRo (global observational, eplontersen) — giving patients access to emerging therapies.',
   },
 ];
 
