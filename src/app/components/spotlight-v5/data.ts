@@ -395,7 +395,7 @@ export const supportStaff: SupportStaff[] = [
     name: 'Tracey Silverstein',
     credentials: 'RN',
     role: 'Amyloid Navigator and Clinical Trial Coordinator',
-    site: 'main',
+    site: 'endeavor',
     sessionDate: 'Jun 1',
     sessionTitle: 'Your Medical Notebook: Labs, Meds, Questions, Contacts & Care Info',
     bio: 'Tracey Silverstein is an amyloid navigator and clinical trial coordinator. Her featured session helps patients build a practical medical notebook for labs, medications, questions, contacts, and care information.',
