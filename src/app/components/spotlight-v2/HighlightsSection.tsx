@@ -9,23 +9,23 @@ const FONT = 'gotham, sans-serif';
 const highlights = [
   {
     label: 'One Program, 7 Specialties',
-    text: 'Seven specialties — cardiology, hematology, neurology, nephrology, gastroenterology, orthopedics, and cardiovascular genetics — one of the Midwest\'s most comprehensive amyloidosis teams.*',
+    text: 'Seven specialties — cardiology, hematology, neurology, nephrology, gastroenterology, orthopedics, and cardiovascular genetics — one of the Midwest\'s most comprehensive amyloidosis teams.',
   },
   {
     label: 'Advanced Cardiac Imaging',
-    text: 'State-of-the-art cardiac MRI, CT, and echocardiography for accurate early detection, diagnosis, and ongoing monitoring of cardiac amyloidosis.*',
+    text: 'State-of-the-art cardiac MRI, CT, and echocardiography for accurate early detection, diagnosis, and ongoing monitoring of cardiac amyloidosis.',
   },
   {
     label: 'CAR T-Cell & Stem Cell Therapy',
-    text: 'Patients with AL amyloidosis have access to CAR T-cell therapy and autologous stem cell transplantation, with a research focus on MRD and racial disparities.*',
+    text: 'Patients with AL amyloidosis have access to CAR T-cell therapy and autologous stem cell transplantation, with a research focus on MRD and racial disparities.',
   },
   {
     label: 'Hereditary ATTR & Genetic Counselling',
-    text: 'A dedicated cardiovascular genetic counsellor provides hereditary ATTR testing, pedigree analysis, and personalised guidance for patients and at-risk family members.*',
+    text: 'A dedicated cardiovascular genetic counsellor provides hereditary ATTR testing, pedigree analysis, and personalised guidance for patients and at-risk family members.',
   },
   {
     label: 'Kidney Transplantation',
-    text: 'Specialist nephrology care including evaluation for kidney and pancreas transplantation and management of amyloid-related kidney disease.*',
+    text: 'Specialist nephrology care including evaluation for kidney and pancreas transplantation and management of amyloid-related kidney disease.',
   },
   {
     label: 'Active in Landmark Clinical Research-Past and Present',
