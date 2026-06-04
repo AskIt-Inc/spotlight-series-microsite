@@ -28,8 +28,8 @@ const highlights = [
     text: 'Specialist nephrology care including evaluation for kidney and pancreas transplantation and management of amyloid-related kidney disease.*',
   },
   {
-    label: 'Active in Landmark Clinical Research',
-    text: 'Participation in ACT-EARLY (Phase 3, acoramidis) and MaesTTRo (global observational, eplontersen) — giving patients access to emerging therapies.*',
+    label: 'Active in Landmark Clinical Research-Past and Present',
+    text: 'Played a significant role in the completed trials ApolloB, Helios B, and Attribute CM, and is actively accruing to ACT-EARLY (Phase 3, acoramidis) and MaesTTRo (global observational, eplontersen) — giving patients access to emerging therapies.*',
   },
 ];
 
@@ -99,20 +99,6 @@ export const HighlightsSection: React.FC = () => (
           </div>
         ))}
       </div>
-
-      {/* Asterisk disclaimer */}
-      <p
-        style={{
-          fontSize: '12px',
-          color: '#9CA3AF',
-          marginTop: '20px',
-          marginBottom: 0,
-          fontFamily: FONT,
-          fontStyle: 'italic',
-        }}
-      >
-        * Content generated for review purposes. Requires approval from University of Chicago Medicine before publication.
-      </p>
     </div>
   </section>
 );
