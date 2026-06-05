@@ -405,10 +405,10 @@ export const trialsV4: TrialV4[] = [
   { id: 'enroll-uc-2', name: 'Alnylam 007', category: 'enrolling-uchicago', status: 'Recruiting', note: 'Open label extension' },
   { id: 'enroll-uc-3', name: 'Trace AI', category: 'enrolling-uchicago', status: 'Recruiting' },
   { id: 'enroll-uc-4', name: 'MaesTTRo', category: 'enrolling-uchicago', status: 'Recruiting' },
-  { id: 'upcoming-uc-1', name: 'Cleopattra', category: 'upcoming-uchicago', status: 'Coming June 2026' },
+  { id: 'enroll-uc-5', name: 'Cleopatra', category: 'enrolling-uchicago', status: 'Recruiting' },
   { id: 'upcoming-uc-2', name: 'ATTRiumph', category: 'upcoming-uchicago', status: 'Coming July 2026' },
   { id: 'upcoming-uc-3', name: 'Magnitude', category: 'upcoming-uchicago', status: 'Coming July 2026' },
   { id: 'enroll-end-1', name: 'Alnylam 007', category: 'enrolling-endeavor', status: 'Recruiting', note: 'Open label extension' },
-  { id: 'enroll-end-2', name: 'Cleopatrra', category: 'enrolling-endeavor', status: 'Recruiting' },
+  { id: 'enroll-end-2', name: 'Cleopatra', category: 'enrolling-endeavor', status: 'Recruiting' },
   { id: 'enroll-end-3', name: 'Triton CM', category: 'enrolling-endeavor', status: 'Recruiting' },
 ];

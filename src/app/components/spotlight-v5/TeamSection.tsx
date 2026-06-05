@@ -100,6 +100,7 @@ const PresenterModal: React.FC<{ c: ClinicianV4; onClose: () => void; profile?: 
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 const CRED_TOKENS = new Set(['md', 'phd', 'ms', 'cgc', 'do', 'jr', 'sr', 'ii', 'iii', 'iv']);
+const LAST_NAME_PREFIXES = new Set(['de', 'del', 'van', 'von']);
 
 /** Extract lowercase last name from a clinician name like "Dr. Jeremy A. Slivnick" → "slivnick" */
 function extractLastName(fullName: string): string {
@@ -107,7 +108,10 @@ function extractLastName(fullName: string): string {
   const words = clean.split(/\s+/);
   for (let i = words.length - 1; i >= 0; i--) {
     const w = words[i].replace(/[.,]/g, '').toLowerCase();
-    if (!CRED_TOKENS.has(w)) return w;
+    if (!CRED_TOKENS.has(w)) {
+      const previous = words[i - 1]?.replace(/[.,]/g, '').toLowerCase();
+      return previous && LAST_NAME_PREFIXES.has(previous) ? `${previous} ${w}` : w;
+    }
   }
   return clean.toLowerCase();
 }

@@ -12,6 +12,12 @@ const SUPPORT_STAFF_PRESENTER_LAST_NAMES = new Set([
   'silverstein',
 ]);
 
+const PROMOTED_SUPPORT_STAFF_SESSION_IDS = new Set([
+  'a01841c6-4b38-4a7a-b05f-b96ef64c1fd2', // Tracey Silverstein, Jun 1
+  'c4713c23-6c6c-46f2-8c33-5437ced82294', // Elizabeth Hushka, Jun 8
+  '755af507-04d1-4c79-86b4-0e7a7b6444ea', // Martha Hodges, Jun 22
+]);
+
 // ─── Raw API shape ────────────────────────────────────────────────────────────
 export interface ApiSession {
   uuid: string;
@@ -146,7 +152,9 @@ function normalise(s: ApiSession): NormalizedSession {
   };
 }
 
-function isSupportStaffPresenter(s: ApiSession): boolean {
+function isHiddenSupportStaffPresenter(s: ApiSession): boolean {
+  if (PROMOTED_SUPPORT_STAFF_SESSION_IDS.has(s.uuid)) return false;
+
   return s.presenters?.some((presenter) => (
     SUPPORT_STAFF_PRESENTER_LAST_NAMES.has(presenter.last_name.trim().toLowerCase())
   )) ?? false;
@@ -197,11 +205,11 @@ export function useSpotlightSessions() {
           ...completedJson.data.map(normalise),
         ]);
         const displayNormalised = upcomingJson.data
-          .filter(s => !isSupportStaffPresenter(s))
+          .filter(s => !isHiddenSupportStaffPresenter(s))
           .map(normalise);
         const completedDisplayNormalised = dedupeSessions([
           ...completedJson.data
-          .filter(s => !isSupportStaffPresenter(s))
+          .filter(s => !isHiddenSupportStaffPresenter(s))
           .map(normalise)
           .filter(s => s.status === 'completed'),
         ]);
