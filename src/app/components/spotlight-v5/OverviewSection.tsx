@@ -91,7 +91,7 @@ const DirectorSection: React.FC = () => {
         />
         <div style={{ fontFamily: FONT, minWidth: 0 }}>
           <div style={{ fontSize: '22px', fontWeight: 700, color: '#000', lineHeight: 1.2 }}>
-            Nitasha Sarswat, MD
+            Dr. Nitasha Sarswat, MD
           </div>
           <div style={{ fontSize: '13px', color: '#444', lineHeight: 1.5, marginTop: '4px' }}>
             Associate Professor of Medicine
